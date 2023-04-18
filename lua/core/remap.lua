@@ -24,7 +24,8 @@ local mappings = {
 	["<C-u>"] = { "<C-u>zz", "Scroll up", mode = "n" },
 	["<C-b>"] = { "<ESC>^i", "Beginning of line", mode = "i" },
 	["<C-e>"] = { "<End>", "End of line", mode = "i" },
-	["<leader>es"] = {":e $MYVIMRC | :cd %:p:h <CR>", "Edit vimrc", mode = "n"},
+	["<leader>es"] = {":e $MYVIMRC | :cd %:p:h <CR>", "Edit vimrc", mode = "n" },
+	["<leader>rd"] = {"<cmd>Alpha<CR>", "Return to dashboard", mode = "n" },
 
 	-- Switch between windows
 	["<C-h>"] = { "<C-w>h", "Window left", mode = "n" },

@@ -27,6 +27,9 @@ local mappings = {
 	["<leader>es"] = {":e $MYVIMRC | :cd %:p:h <CR>", "Edit vimrc", mode = "n" },
 	["<leader>rd"] = {"<cmd>Alpha<CR>", "Return to dashboard", mode = "n" },
 
+	-- Highlight all
+	["<leader>a"] = { "<ESC>ggVG", "Highlight all lines in file", mode = "v" },
+
 	-- Switch between windows
 	["<C-h>"] = { "<C-w>h", "Window left", mode = "n" },
 	["<C-l>"] = { "<C-w>l", "Window right", mode = "n" },

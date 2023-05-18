@@ -24,8 +24,8 @@ local mappings = {
 	["<C-u>"] = { "<C-u>zz", "Scroll up", mode = "n" },
 	["<C-b>"] = { "<ESC>^i", "Beginning of line", mode = "i" },
 	["<C-e>"] = { "<End>", "End of line", mode = "i" },
-	["<leader>es"] = {":e $MYVIMRC | :cd %:p:h <CR>", "Edit vimrc", mode = "n" },
-	["<leader>rd"] = {"<cmd>Alpha<CR>", "Return to dashboard", mode = "n" },
+	["<leader>es"] = { ":e $MYVIMRC | :cd %:p:h <CR>", "Edit vimrc", mode = "n" },
+	["<leader>rd"] = { "<cmd>Alpha<CR>", "Return to dashboard", mode = "n" },
 
 	-- Highlight all
 	["<leader>a"] = { "<ESC>ggVG", "Highlight all lines in file", mode = "v" },
@@ -58,6 +58,10 @@ local mappings = {
 	["<leader>k"] = { "<cmd>lnext<CR>zz", mode = "n" },
 	["<leader>j"] = { "<cmd>lprev<CR>zz", mode = "n" },
 	["<leader>s"] = { [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Rename symbol underneath", mode = "n" },
+	["<leader>rn"] = { function()
+		vim.wo.number = true
+		vim.wo.relativenumber = not vim.wo.relativenumber
+	end, "Toggle relative numbers", mode = "n" }
 }
 
 vim.g.mapleader = " "

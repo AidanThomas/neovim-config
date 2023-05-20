@@ -99,16 +99,6 @@ _G.packer_plugins = {
     path = "/home/aidant/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
-  everblush = {
-    loaded = true,
-    path = "/home/aidant/.local/share/nvim/site/pack/packer/start/everblush",
-    url = "https://github.com/Everblush/nvim"
-  },
-  harpoon = {
-    loaded = true,
-    path = "/home/aidant/.local/share/nvim/site/pack/packer/start/harpoon",
-    url = "https://github.com/theprimeagen/harpoon"
-  },
   iceberg = {
     loaded = true,
     path = "/home/aidant/.local/share/nvim/site/pack/packer/start/iceberg",
@@ -176,6 +166,11 @@ _G.packer_plugins = {
     path = "/home/aidant/.local/share/nvim/site/pack/packer/start/nvterm",
     url = "https://github.com/NvChad/nvterm"
   },
+  ["oil.nvim"] = {
+    loaded = true,
+    path = "/home/aidant/.local/share/nvim/site/pack/packer/start/oil.nvim",
+    url = "https://github.com/stevearc/oil.nvim"
+  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/home/aidant/.local/share/nvim/site/pack/packer/start/packer.nvim",
@@ -220,14 +215,14 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: quick-scope
-time([[Config for quick-scope]], true)
-try_loadstring("\27LJ\2\nD\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\27core.config.quickscope\frequire\0", "config", "quick-scope")
-time([[Config for quick-scope]], false)
 -- Config for: lualine.nvim
 time([[Config for lualine.nvim]], true)
 try_loadstring("\27LJ\2\nU\0\0\5\0\4\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0006\2\0\0'\4\3\0B\2\2\0A\0\0\1K\0\1\0\24core.config.lualine\nsetup\flualine\frequire\0", "config", "lualine.nvim")
 time([[Config for lualine.nvim]], false)
+-- Config for: quick-scope
+time([[Config for quick-scope]], true)
+try_loadstring("\27LJ\2\nD\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\27core.config.quickscope\frequire\0", "config", "quick-scope")
+time([[Config for quick-scope]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

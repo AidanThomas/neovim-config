@@ -5,7 +5,7 @@ end
 
 local mappings = {
 	-- Navigation
-	["<leader>pv"] = { vim.cmd.Ex, "Open netrw", mode = "n" },
+	["<leader>pv"] = { "<cmd>Oil --float", "Open file explorer", mode = "n" },
 	["<C-s>"] = { "<cmd>w<CR>", "Save current file", mode = "n", noremap = true },
 	["<leader>qq"] = { "<cmd>qall<CR>", "Quit all buffers", mode = "n" },
 	["<leader>qw"] = { "<cmd>wqall<CR>", "Write and quit all buffers", mode = "n" },

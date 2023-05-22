@@ -87,5 +87,8 @@ return require('packer').startup(function(use)
 	use 'numToStr/Comment.nvim'
 	use 'lukas-reineke/indent-blankline.nvim'
 	use 'folke/which-key.nvim'
-	use 'stevearc/oil.nvim'
+	use {
+		'stevearc/oil.nvim',
+		config = function() require('oil').setup() end
+	}
 end)

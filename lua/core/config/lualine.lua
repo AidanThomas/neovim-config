@@ -1,7 +1,7 @@
 local M = {
 	options = {
 		icons_enabled = true,
-		theme = 'iceberg_dark',
+		theme = 'tokyonight',
 		component_separators = { left = '', right = '' },
 		section_separators = {},
 		disabled_filetypes = {

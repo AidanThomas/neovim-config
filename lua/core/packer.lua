@@ -13,7 +13,12 @@ return require('packer').startup(function(use)
 
 	use {
 		'cocopon/iceberg.vim',
-		as = 'iceberg'
+		as = 'iceberg',
+	}
+
+	use {
+		"folke/tokyonight.nvim",
+		as = 'tokyonight',
 	}
 
 	use {

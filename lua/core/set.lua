@@ -12,8 +12,12 @@ vim.opt.wrap = true
 
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undoir"
 vim.opt.undofile = true
+
+local exists, home_dir = pcall(os.getenv, "HOME")
+if exists then
+	vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+end
 
 vim.opt.hlsearch = false
 vim.opt.incsearch = true

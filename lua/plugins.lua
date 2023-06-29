@@ -51,7 +51,11 @@ return {
 			{ "hrsh7th/nvim-cmp" },
 			{ "hrsh7th/cmp-nvim-lsp" },
 			{ "L3MON4D3/LuaSnip" }
-		}
+		},
+
+		init = function()
+			require("config.plugins.lsp")
+		end,
 	},
 
 	-- Themes
@@ -98,7 +102,12 @@ return {
 			require("config.plugins.nvimtree")
 		end,
 	},
-	"goolord/alpha-nvim",
+	{
+		"goolord/alpha-nvim",
+		init = function()
+			require("config.plugins.alpha")
+		end,
+	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		init = function()

@@ -57,7 +57,10 @@ local mappings = {
 	["<leader>rn"] = { function()
 		vim.wo.number = true
 		vim.wo.relativenumber = not vim.wo.relativenumber
-	end, "Toggle relative numbers", mode = "n" }
+	end, "Toggle relative numbers", mode = "n" },
+
+	-- Misc
+	["<leader>t"] = { ":lua require('toggle-checkbox').toggle()<CR>", "Toggle markdown checkbox", mode = { "n", "v" } },
 }
 
 RegisterMapping(mappings)

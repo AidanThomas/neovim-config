@@ -114,4 +114,7 @@ return {
 			require("config.plugins.indent-blankline")
 		end,
 	},
+	{
+		"opdavies/toggle-checkbox.nvim"
+	},
 }

@@ -117,4 +117,20 @@ return {
 	{
 		"opdavies/toggle-checkbox.nvim"
 	},
+	{
+		"kylechui/nvim-surround",
+		version = "*", -- Use for stability; omit to use `main` branch for latest features
+		event = "VeryLazy",
+		config = function()
+			require("config.plugins.nvim-surround")
+		end
+	},
+	{
+		"folke/trouble.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		event = "VeryLazy",
+		opts = {
+			require("config.plugins.trouble")
+		},
+	},
 }

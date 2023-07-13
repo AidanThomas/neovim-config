@@ -20,6 +20,11 @@ local mappings = {
 	["<leader>gs"] = { vim.cmd.Git, "Open fugitive", mode = "n" },
 	["<leader>u"] = { vim.cmd.UndotreeToggle, "Open undo tree", mode = "n" },
 
+	-- Trouble keybinds
+	["<leader>tt"] = { "<cmd>TroubleToggle workspace_diagnostics<CR>", "Toggles Trouble UI", mode = "n" },
+	["<leader>tr"] = { "<cmd>TroubleToggle lsp_references<CR>", "Toggles Trouble references", mode = "n" },
+	["<leader>tq"] = { "<cmd>TroubleToggle quickfix<CR>", "Toggles Trouble references", mode = "n" },
+
 	-- Tab controls
 	["<tab>"] = { "<cmd>bnext<CR>", "Move to next tab", mode = "n" },
 	["<S-tab>"] = { "<cmd>bprev<CR>", "Move to prev tab", mode = "n" },

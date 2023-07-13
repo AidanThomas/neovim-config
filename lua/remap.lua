@@ -18,7 +18,7 @@ local mappings = {
 	["<leader>es"] = { ":e $MYVIMRC | :cd %:p:h <CR>", "Edit vimrc", mode = "n" },
 	["<leader>rd"] = { "<cmd>Alpha<CR>", "Return to dashboard", mode = "n" },
 	["<leader>gs"] = { vim.cmd.Git, "Open fugitive", mode = "n" },
-	["<leader>u"] = { vim.cmd.UndoTreeToggle, "Open undo tree", mode = "n" },
+	["<leader>u"] = { vim.cmd.UndotreeToggle, "Open undo tree", mode = "n" },
 
 	-- Tab controls
 	["<tab>"] = { "<cmd>bnext<CR>", "Move to next tab", mode = "n" },

@@ -5,7 +5,7 @@ vim.opt.rtp:prepend(lazypath)
 require("set")
 
 -- load lazy.nvim
-require("lazy").setup("plugins")
+require("config.lazy")
 
 -- load keymaps
 require("remap")

@@ -32,6 +32,20 @@ local function button(sc, txt, keybind)
 	}
 end
 
+local function get_version()
+	local version = vim.api.nvim_cmd({ cmd = "version" }, { output = true })
+	local i = 0
+	for line in version:gmatch("([^\n]*)\n?") do
+		i = i + 1
+		if i == 2 then
+			local v = string.sub(line, 6, #line)
+			local num_spaces = 45 - #line
+			local padding = string.rep(" ", num_spaces)
+			return padding .. v
+		end
+	end
+end
+
 -- dynamic header padding
 local fn = vim.fn
 local marginTopPercent = 0.3
@@ -41,17 +55,24 @@ local options = {
 	header = {
 		type = "text",
 		val = {
-			"   ⣴⣶⣤⡤⠦⣤⣀⣤⠆     ⣈⣭⣿⣶⣿⣦⣼⣆          ",
-			"    ⠉⠻⢿⣿⠿⣿⣿⣶⣦⠤⠄⡠⢾⣿⣿⡿⠋⠉⠉⠻⣿⣿⡛⣦       ",
-			"          ⠈⢿⣿⣟⠦ ⣾⣿⣿⣷    ⠻⠿⢿⣿⣧⣄     ",
-			"           ⣸⣿⣿⢧ ⢻⠻⣿⣿⣷⣄⣀⠄⠢⣀⡀⠈⠙⠿⠄    ",
-			"          ⢠⣿⣿⣿⠈    ⣻⣿⣿⣿⣿⣿⣿⣿⣛⣳⣤⣀⣀   ",
-			"   ⢠⣧⣶⣥⡤⢄ ⣸⣿⣿⠘  ⢀⣴⣿⣿⡿⠛⣿⣿⣧⠈⢿⠿⠟⠛⠻⠿⠄  ",
-			"  ⣰⣿⣿⠛⠻⣿⣿⡦⢹⣿⣷   ⢊⣿⣿⡏  ⢸⣿⣿⡇ ⢀⣠⣄⣾⠄   ",
-			" ⣠⣿⠿⠛ ⢀⣿⣿⣷⠘⢿⣿⣦⡀ ⢸⢿⣿⣿⣄ ⣸⣿⣿⡇⣪⣿⡿⠿⣿⣷⡄  ",
-			" ⠙⠃   ⣼⣿⡟  ⠈⠻⣿⣿⣦⣌⡇⠻⣿⣿⣷⣿⣿⣿ ⣿⣿⡇ ⠛⠻⢷⣄ ",
-			"      ⢻⣿⣿⣄   ⠈⠻⣿⣿⣿⣷⣿⣿⣿⣿⣿⡟ ⠫⢿⣿⡆     ",
-			"       ⠻⣿⣿⣿⣿⣶⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⡟⢀⣀⣤⣾⡿⠃     ",
+			"     ⣴⣶⣤⡤⠦⣤⣀⣤⠆     ⣈⣭⣿⣶⣿⣦⣼⣆          ",
+			"      ⠉⠻⢿⣿⠿⣿⣿⣶⣦⠤⠄⡠⢾⣿⣿⡿⠋⠉⠉⠻⣿⣿⡛⣦       ",
+			"            ⠈⢿⣿⣟⠦ ⣾⣿⣿⣷    ⠻⠿⢿⣿⣧⣄     ",
+			"             ⣸⣿⣿⢧ ⢻⠻⣿⣿⣷⣄⣀⠄⠢⣀⡀⠈⠙⠿⠄    ",
+			"            ⢠⣿⣿⣿⠈    ⣻⣿⣿⣿⣿⣿⣿⣿⣛⣳⣤⣀⣀   ",
+			"     ⢠⣧⣶⣥⡤⢄ ⣸⣿⣿⠘  ⢀⣴⣿⣿⡿⠛⣿⣿⣧⠈⢿⠿⠟⠛⠻⠿⠄  ",
+			"    ⣰⣿⣿⠛⠻⣿⣿⡦⢹⣿⣷   ⢊⣿⣿⡏  ⢸⣿⣿⡇ ⢀⣠⣄⣾⠄   ",
+			"   ⣠⣿⠿⠛ ⢀⣿⣿⣷⠘⢿⣿⣦⡀ ⢸⢿⣿⣿⣄ ⣸⣿⣿⡇⣪⣿⡿⠿⣿⣷⡄  ",
+			"   ⠙⠃   ⣼⣿⡟  ⠈⠻⣿⣿⣦⣌⡇⠻⣿⣿⣷⣿⣿⣿ ⣿⣿⡇ ⠛⠻⢷⣄ ",
+			"        ⢻⣿⣿⣄   ⠈⠻⣿⣿⣿⣷⣿⣿⣿⣿⣿⡟ ⠫⢿⣿⡆     ",
+			"         ⠻⣿⣿⣿⣿⣶⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⡟⢀⣀⣤⣾⡿⠃     ",
+			" _   _ ______ _____      _______ __  __ ",
+			"| \\ | |  ____/ __\\ \\    / /_   _|  \\/  |",
+			"|  \\| | |__ | |  |\\ \\  / /  | | | \\  / |",
+			"| . ` |  __|| |  | \\ \\/ /   | | | |\\/| |",
+			"| |\\  | |___| |__| |\\  /   _| |_| |  | |",
+			"|_| \\_|______\\____/  \\/   |_____|_|  |_|",
+
 		},
 		opts = {
 			position = "center",
@@ -61,10 +82,10 @@ local options = {
 	buttons = {
 		type = "group",
 		val = {
-			button("SPC f f", "  Find File  ", ":Telescope find_files<CR>"),
-			button("SPC f o", "󰈚  Recent File  ", ":Telescope oldfiles<CR>"),
-			button("SPC f w", "󰈭  Find Word  ", ":Telescope live_grep<CR>"),
-			button("SPC b m", "  Bookmarks  ", ":Telescope marks<CR>"),
+			button("SPC f f", "  Find File", ":Telescope find_files<CR>"),
+			button("SPC f o", "󰈚  Recent File", ":Telescope oldfiles<CR>"),
+			button("SPC f w", "󰈭  Find Word", ":Telescope live_grep<CR>"),
+			button("SPC b m", "  Bookmarks", ":Telescope marks<CR>"),
 			button("SPC e s", "  Settings", ":e $MYVIMRC | :cd %:p:h <CR>"),
 		},
 		opts = {
@@ -72,13 +93,24 @@ local options = {
 		},
 	},
 	headerPaddingTop = { type = "padding", val = headerPadding },
-	headerPaddingBottom = { type = "padding", val = 2 },
+	headerPaddingVersion = { type = "padding", val = 1 },
+	headerPaddingBottom = { type = "padding", val = 1 },
+	version = {
+		type = "text",
+		val = get_version,
+		opts = {
+			position = "center",
+			hl = "Comment"
+		},
+	},
 }
 
 alpha.setup {
 	layout = {
 		options.headerPaddingTop,
 		options.header,
+		options.headerPaddingVersion,
+		options.version,
 		options.headerPaddingBottom,
 		options.buttons,
 	},

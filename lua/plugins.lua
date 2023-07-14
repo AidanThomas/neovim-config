@@ -51,12 +51,16 @@ return {
 			-- Autocompletion
 			{ "hrsh7th/nvim-cmp" },
 			{ "hrsh7th/cmp-nvim-lsp" },
-			{ "L3MON4D3/LuaSnip" }
 		},
 
 		init = function()
 			require("config.plugins.lsp")
 		end,
+	},
+	{
+		"L3MON4D3/LuaSnip",
+		lazy = true,
+		event = "VeryLazy",
 	},
 
 	-- Themes
@@ -105,6 +109,7 @@ return {
 	},
 	{
 		"goolord/alpha-nvim",
+		event = "VimEnter",
 		init = function()
 			require("config.plugins.alpha")
 		end,

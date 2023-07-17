@@ -5,22 +5,24 @@ return {
 		"nvim-telescope/telescope.nvim",
 		version = "0.1.1",
 		dependencies = { "nvim-lua/plenary.nvim" },
-		lazy = true,
-		init = function()
+		event = "VeryLazy",
+		config = function()
 			require("config.plugins.telescope")
 		end,
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
-		init = function()
+		event = "BufEnter *.*",
+		config = function()
 			require("config.plugins.treesitter")
 		end,
 	},
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
-		init = function()
+		event = "BufEnter *.*",
+		config = function()
 			require("config.plugins.lualine")
 		end,
 	},
@@ -28,7 +30,8 @@ return {
 		"akinsho/bufferline.nvim",
 		version = "v3.*",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
-		init = function()
+		event = "BufEnter *.*",
+		config = function()
 			require("config.plugins.bufferline")
 		end,
 	},
@@ -53,80 +56,95 @@ return {
 			{ "hrsh7th/cmp-nvim-lsp" },
 		},
 
-		init = function()
+		event = "BufEnter *.*",
+		config = function()
 			require("config.plugins.lsp")
 		end,
 	},
 	{
 		"L3MON4D3/LuaSnip",
-		lazy = true,
-		event = "VeryLazy",
+		ft = "lua",
 	},
 
 	-- Themes
 	{
 		"folke/tokyonight.nvim",
 		as = "tokyonight",
+		priority = 1000,
 	},
 
 	-- Essential editor plugins
 	{
 		"windwp/nvim-autopairs",
+		event = "BufEnter *.*",
 		opts = require("config.plugins.autopairs")
 	},
 	{
 		"NvChad/nvterm",
-		init = function()
+		event = "BufEnter *.*",
+		config = function()
 			require("config.plugins.nvterm")
 		end,
 	},
 	{
 		"unblevable/quick-scope",
-		init = function() require("config.plugins.quickscope").setup() end,
+		event = "BufEnter *.*",
+		config = function() require("config.plugins.quickscope").setup() end,
 	},
 	{
 		"numToStr/Comment.nvim",
-		init = function()
+		event = "BufEnter *.*",
+		config = function()
 			require("Comment").setup(require("config.plugins.comment"))
 		end
 	},
 	{
 		"folke/which-key.nvim",
-		init = function()
+		event = "VeryLazy",
+		config = function()
 			require("config.plugins.whichkey")
 		end
 	},
 
 	-- Misc plugins
-	"mbbill/undotree",
-	"tpope/vim-fugitive",
+	{
+		"mbbill/undotree",
+		event = "BufEnter *.*"
+	},
+	{
+		"tpope/vim-fugitive",
+		event = "BufEnter *.*"
+	},
 	{
 		"nvim-tree/nvim-tree.lua",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
-		init = function()
+		event = "BufEnter *.*",
+		config = function()
 			require("config.plugins.nvimtree")
 		end,
 	},
 	{
 		"goolord/alpha-nvim",
 		event = "VimEnter",
-		init = function()
+		config = function()
 			require("config.plugins.alpha")
 		end,
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
-		init = function()
+		event = "BufEnter *.*",
+		config = function()
 			require("config.plugins.indent-blankline")
 		end,
 	},
 	{
-		"opdavies/toggle-checkbox.nvim"
+		"opdavies/toggle-checkbox.nvim",
+		ft = "markdown",
 	},
 	{
 		"kylechui/nvim-surround",
 		version = "*", -- Use for stability; omit to use `main` branch for latest features
-		event = "VeryLazy",
+		event = "BufEnter *.*",
 		config = function()
 			require("config.plugins.nvim-surround")
 		end
@@ -134,7 +152,7 @@ return {
 	{
 		"folke/trouble.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
-		event = "VeryLazy",
+		event = "BufEnter *.*",
 		opts = {
 			require("config.plugins.trouble")
 		},

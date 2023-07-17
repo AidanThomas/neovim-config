@@ -16,7 +16,7 @@ vim.opt.undofile = true
 
 local exists, home_dir = pcall(os.getenv, "HOME")
 if exists then
-	vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+	vim.opt.undodir = home_dir .. "/.vim/undodir"
 end
 
 vim.opt.hlsearch = false
@@ -27,5 +27,7 @@ vim.opt.termguicolors = true
 vim.opt.scrolloff = 8
 vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
+
+vim.g.qs_highlight_on_keys = { 'f', 'F', 't', 'T' }
 
 vim.g.mapleader = " "

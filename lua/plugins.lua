@@ -157,4 +157,11 @@ return {
 			require("config.plugins.trouble")
 		},
 	},
+	{
+		"nvim-treesitter/nvim-treesitter-context",
+		event = "BufEnter *.*",
+		config = function()
+			require("config.plugins.treesitter-context")
+		end,
+	}
 }

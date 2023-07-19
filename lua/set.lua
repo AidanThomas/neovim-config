@@ -14,8 +14,8 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undofile = true
 
-local exists, home_dir = pcall(os.getenv, "HOME")
-if exists then
+home_dir = os.getenv( "HOME")
+if home_dir ~= nil then
 	vim.opt.undodir = home_dir .. "/.vim/undodir"
 end
 

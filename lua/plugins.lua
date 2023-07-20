@@ -138,10 +138,6 @@ return {
 		end,
 	},
 	{
-		"opdavies/toggle-checkbox.nvim",
-		ft = "markdown",
-	},
-	{
 		"kylechui/nvim-surround",
 		version = "*", -- Use for stability; omit to use `main` branch for latest features
 		event = "BufEnter *.*",
@@ -163,5 +159,12 @@ return {
 		config = function()
 			require("config.plugins.treesitter-context")
 		end,
-	}
+	},
+	{
+		"jakewvincent/mkdnflow.nvim",
+		ft = "markdown",
+		config = function()
+			require("config.plugins/mkdnflow")
+		end,
+	},
 }

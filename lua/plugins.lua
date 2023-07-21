@@ -54,16 +54,13 @@ return {
 			-- Autocompletion
 			{ "hrsh7th/nvim-cmp" },
 			{ "hrsh7th/cmp-nvim-lsp" },
+			{ "L3MON4D3/LuaSnip" }
 		},
 
-		event = "BufEnter *.*",
+		event = "BufAdd *.*",
 		config = function()
 			require("config.plugins.lsp")
 		end,
-	},
-	{
-		"L3MON4D3/LuaSnip",
-		ft = "lua",
 	},
 
 	-- Themes

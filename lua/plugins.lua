@@ -102,14 +102,14 @@ return {
 			require("config.plugins.whichkey")
 		end
 	},
+	{
+		"tpope/vim-fugitive",
+		event = "BufEnter *.*"
+	},
 
 	-- Misc plugins
 	{
 		"mbbill/undotree",
-		event = "BufEnter *.*"
-	},
-	{
-		"tpope/vim-fugitive",
 		event = "BufEnter *.*"
 	},
 	{
@@ -162,6 +162,13 @@ return {
 		ft = "markdown",
 		config = function()
 			require("config.plugins/mkdnflow")
+		end,
+	},
+	{
+		"lewis6991/gitsigns.nvim",
+		event = "BufEnter *.*",
+		config = function()
+			require("config.plugins.gitsigns")
 		end,
 	},
 }

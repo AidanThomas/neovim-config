@@ -3,6 +3,8 @@ local function RegisterMapping(mappings)
 	wk.register(mappings)
 end
 
+local gs = package.loaded.gitsigns
+
 local keymaps = {
 	["n"] = {
 		-- Navigation
@@ -67,6 +69,8 @@ local keymaps = {
 		["<C-b>"] = { "<ESC>^i", "Beginning of line" },
 		["<C-h>"] = { "<Left>", "Move left", noremap = true },
 		["<C-l>"] = { "<Right>", "Move right" },
+		["<C-j>"] = { "<Down>", "Move down" },
+		["<C-k>"] = { "<Up>", "Move up" },
 	},
 
 	["v"] = {

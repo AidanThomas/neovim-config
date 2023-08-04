@@ -4,7 +4,6 @@ require("bufferline").setup {
 	highlights = {
 		tab_selected = {
 			bold = true,
-			bg = colors.bg_highlight,
 			italic = false,
 		},
 		close_button_selected = {
@@ -12,82 +11,66 @@ require("bufferline").setup {
 			italic = false,
 		},
 		buffer_selected = {
-			bg = colors.bg_highlight,
 			bold = true,
 			italic = false,
 		},
 		numbers_selected = {
-			bg = colors.bg_highlight,
 			bold = true,
 			italic = false,
 		},
 		diagnostic_selected = {
-			bg = colors.bg_highlight,
 			bold = true,
 			italic = false,
 		},
 		hint_selected = {
-			bg = colors.bg_highlight,
 			bold = true,
 			italic = false,
 		},
 		hint_diagnostic_selected = {
-			bg = colors.bg_highlight,
 			bold = true,
 			italic = false,
 		},
 		info_selected = {
-			bg = colors.bg_highlight,
 			bold = true,
 			italic = false,
 		},
 		info_diagnostic_selected = {
-			bg = colors.bg_highlight,
 			bold = true,
 			italic = false,
 		},
 		warning_selected = {
-			bg = colors.bg_highlight,
 			bold = true,
 			italic = false,
 		},
 		warning_diagnostic_selected = {
-			bg = colors.bg_highlight,
 			bold = true,
 			italic = false,
 		},
 		error_selected = {
-			bg = colors.bg_highlight,
 			bold = true,
 			italic = false,
 		},
 		error_diagnostic_selected = {
-			bg = colors.bg_highlight,
 			bold = true,
 			italic = false,
 		},
 		modified_selected = {
-			bg = colors.bg_highlight,
 			bold = true,
 			italic = false,
 		},
 		duplicate_selected = {
-			bg = colors.bg_highlight,
 			bold = true,
 			italic = false,
 		},
 		separator_selected = {
-			bg = colors.bg_highlight,
 			bold = true,
 			italic = false,
 		},
 		indicator_selected = {
-			bg = colors.bg_highlight,
 			bold = true,
 			italic = false,
 		},
 		pick_selected = {
-			bg = colors.bg_highlight,
 			bold = true,
 			italic = false,
 		},

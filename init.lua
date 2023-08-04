@@ -1,15 +1,9 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 vim.opt.rtp:prepend(lazypath)
 
--- load options
 require("set")
-
--- load lazy.nvim
 require("config.lazy")
-
--- load keymaps
 require("remap")
-
 require("autocmd")
 
 local function SetTheme(theme)

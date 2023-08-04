@@ -107,6 +107,28 @@ return {
 		event = "BufEnter *.*"
 	},
 
+	-- Debugging
+	-- {
+	-- 	"mfussenegger/nvim-dap",
+	-- 	lazy = false,
+	-- },
+	-- {
+	-- 	"leoluz/nvim-dap-go",
+	-- 	lazy = false,
+	-- },
+	-- {
+	-- 	"rcarriga/nvim-dap-ui",
+	-- 	lazy = false,
+	-- },
+	-- {
+	-- 	"theHamsta/nvim-dap-virtual-text",
+	-- 	lazy = false,
+	-- },
+	-- {
+	-- 	"nvim-telescope/telescope-dap.nvim",
+	-- 	lazy = false,
+	-- },
+
 	-- Misc plugins
 	{
 		"mbbill/undotree",

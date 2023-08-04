@@ -39,6 +39,33 @@ require("bufferline").setup {
 			return "(" .. count .. ")"
 		end,
 		-- NOTE: this will be called a lot so don't do any heavy processing here
+		custom_areas = {
+			right = function()
+				local result = {}
+				local seve = vim.diagnostic.severity
+				local error = #vim.diagnostic.get(0, { severity = seve.ERROR })
+				local warning = #vim.diagnostic.get(0, { severity = seve.WARN })
+				local info = #vim.diagnostic.get(0, { severity = seve.INFO })
+				local hint = #vim.diagnostic.get(0, { severity = seve.HINT })
+
+				if error ~= 0 then
+					table.insert(result, { text = "  " .. error, fg = "#EC5241" })
+				end
+
+				if warning ~= 0 then
+					table.insert(result, { text = "  " .. warning, fg = "#EFB839" })
+				end
+
+				if hint ~= 0 then
+					table.insert(result, { text = "  " .. hint, fg = "#A3BA5E" })
+				end
+
+				if info ~= 0 then
+					table.insert(result, { text = "  " .. info, fg = "#7EA9A7" })
+				end
+				return result
+			end,
+		},
 		custom_filter = function(buf_number, buf_numbers)
 			-- e.g. filter out vim wiki buffer from tabline in your work repo
 			if vim.fn.getcwd() == "<work-repo>" and vim.bo[buf_number].filetype ~= "wiki" then
@@ -59,22 +86,21 @@ require("bufferline").setup {
 		},
 		color_icons = true, -- whether or not to add the filetype icon highlights
 		show_buffer_icons = true, -- disable filetype icons for buffers
-		show_buffer_close_icons = true,
+		show_buffer_close_icons = false,
 		show_close_icon = true,
 		show_tab_indicators = true,
 		show_duplicate_prefix = false, -- whether to show duplicate buffer prefix
 		persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
 		-- can also be a table containing 2 custom separators
 		-- [focused and unfocused]. eg: { '|', '|' }
-		separator_style = "thick",
+		separator_style = "slope",
 		enforce_regular_tabs = true,
-		always_show_bufferline = false,
+		always_show_bufferline = true,
 		hover = {
-			enabled = true,
+			enabled = false,
 			delay = 200,
 			reveal = { 'close' }
 		},
 		sort_by = 'id'
 	}
 }
-

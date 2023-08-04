@@ -131,6 +131,9 @@ return {
 
 	-- Misc plugins
 	{
+		"nvim-treesitter/playground",
+	},
+	{
 		"mbbill/undotree",
 		event = "BufEnter *.*"
 	},

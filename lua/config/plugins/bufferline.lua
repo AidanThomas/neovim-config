@@ -1,5 +1,97 @@
 vim.opt.termguicolors = true
+local colors = require("tokyonight.colors").setup({ style = "night" })
 require("bufferline").setup {
+	highlights = {
+		tab_selected = {
+			bold = true,
+			bg = colors.bg_highlight,
+			italic = false,
+		},
+		close_button_selected = {
+			bold = true,
+			italic = false,
+		},
+		buffer_selected = {
+			bg = colors.bg_highlight,
+			bold = true,
+			italic = false,
+		},
+		numbers_selected = {
+			bg = colors.bg_highlight,
+			bold = true,
+			italic = false,
+		},
+		diagnostic_selected = {
+			bg = colors.bg_highlight,
+			bold = true,
+			italic = false,
+		},
+		hint_selected = {
+			bg = colors.bg_highlight,
+			bold = true,
+			italic = false,
+		},
+		hint_diagnostic_selected = {
+			bg = colors.bg_highlight,
+			bold = true,
+			italic = false,
+		},
+		info_selected = {
+			bg = colors.bg_highlight,
+			bold = true,
+			italic = false,
+		},
+		info_diagnostic_selected = {
+			bg = colors.bg_highlight,
+			bold = true,
+			italic = false,
+		},
+		warning_selected = {
+			bg = colors.bg_highlight,
+			bold = true,
+			italic = false,
+		},
+		warning_diagnostic_selected = {
+			bg = colors.bg_highlight,
+			bold = true,
+			italic = false,
+		},
+		error_selected = {
+			bg = colors.bg_highlight,
+			bold = true,
+			italic = false,
+		},
+		error_diagnostic_selected = {
+			bg = colors.bg_highlight,
+			bold = true,
+			italic = false,
+		},
+		modified_selected = {
+			bg = colors.bg_highlight,
+			bold = true,
+			italic = false,
+		},
+		duplicate_selected = {
+			bg = colors.bg_highlight,
+			bold = true,
+			italic = false,
+		},
+		separator_selected = {
+			bg = colors.bg_highlight,
+			bold = true,
+			italic = false,
+		},
+		indicator_selected = {
+			bg = colors.bg_highlight,
+			bold = true,
+			italic = false,
+		},
+		pick_selected = {
+			bg = colors.bg_highlight,
+			bold = true,
+			italic = false,
+		},
+	},
 	options = {
 		mode = "buffers",              -- set to "tabs" to only show tabpages instead
 		themable = true,               -- allows highlight groups to be overriden i.e. sets highlights as default
@@ -21,13 +113,6 @@ require("bufferline").setup {
 		--- Please note some names can/will break the
 		--- bufferline so use this at your discretion knowing that it has
 		--- some limitations that will *NOT* be fixed.
-		name_formatter = function(buf) -- buf contains:
-			-- name                | str        | the basename of the active file
-			-- path                | str        | the full path of the active file
-			-- bufnr (buffer only) | int        | the number of the active buffer
-			-- buffers (tabs only) | table(int) | the numbers of the buffers in the tab
-			-- tabnr (tabs only)   | int        | the "handle" of the tab, can be converted to its ordinal number using: `vim.api.nvim_tabpage_get_number(buf.tabnr)`
-		end,
 		max_name_length = 18,
 		max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
 		truncate_names = true, -- whether or not tab names should be truncated

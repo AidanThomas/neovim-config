@@ -14,6 +14,8 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undofile = true
 
+vim.opt.cursorline = true
+
 local home_dir = os.getenv("HOME")
 if home_dir ~= nil then
 	vim.opt.undodir = home_dir .. "/.vim/undodir"

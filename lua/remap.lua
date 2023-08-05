@@ -3,8 +3,12 @@ local function RegisterMapping(mappings)
 	wk.register(mappings)
 end
 
-local gs = package.loaded.gitsigns
 
+local modes = { "n", "t" }
+
+vim.keymap.set(modes, "<A-h>", function() require("nvterm.terminal").toggle("horizontal") end)
+vim.keymap.set(modes, "<A-v>", function() require("nvterm.terminal").toggle("vertical") end)
+vim.keymap.set(modes, "<A-i>", function() require("nvterm.terminal").toggle("float") end)
 local keymaps = {
 	["n"] = {
 		-- Navigation
@@ -12,22 +16,13 @@ local keymaps = {
 		["<C-s>"] = { "<cmd>w<CR>", "Save current file", noremap = true },
 		["<leader>qq"] = { "<cmd>qall<CR>", "Quit all buffers" },
 		["<leader>qw"] = { "<cmd>wqall<CR>", "Write and quit all buffers" },
-		["<leader>n"] = { "<cmd>NvimTreeToggle<CR>", "Toggle file tree" },
+		["<leader>n"] = { vim.cmd.NvimTreeToggle, "Toggle file tree" },
 		["<C-d>"] = { "<C-d>zz", "Scroll down" },
 		["<C-u>"] = { "<C-u>zz", "Scroll up" },
 		["<leader>es"] = { ":e $MYVIMRC | :cd %:p:h <CR>", "Edit vimrc" },
 		["<leader>rd"] = { "<cmd>Alpha<CR>", "Return to dashboard" },
 		["<leader>gs"] = { vim.cmd.Git, "Open fugitive" },
 		["<leader>u"] = { vim.cmd.UndotreeToggle, "Open undo tree" },
-
-		-- Splitting
-		["<leader>v"] = { "<cmd>vsplit<CR>", "Vertically split the current file" },
-		["<leader>h"] = { "<cmd>split<CR>", "Horizontally split the currentl file" },
-
-		-- Trouble keybinds
-		["<leader>tt"] = { "<cmd>TroubleToggle workspace_diagnostics<CR>", "Toggles Trouble UI" },
-		["<leader>tr"] = { "<cmd>TroubleToggle lsp_references<CR>", "Toggles Trouble references" },
-		["<leader>tq"] = { "<cmd>TroubleToggle quickfix<CR>", "Toggles Trouble references" },
 
 		-- Tab controls
 		["<tab>"] = { "<cmd>bnext<CR>", "Move to next tab" },
@@ -53,6 +48,35 @@ local keymaps = {
 		-- Copy/Paste
 		["<leader>y"] = { [["+y]], "Copy to clipboard" },
 		["<leader>Y"] = { [["+Y]], "Copy to clipboard" },
+
+		-- Splitting
+		["<leader>v"] = { "<cmd>vsplit<CR>", "Vertically split the current file" },
+		["<leader>h"] = { "<cmd>split<CR>", "Horizontally split the currentl file" },
+
+		-- Terminal
+		["<A-h>"] = { function() require("nvterm.terminal").toggle("horizontal") end, "Toggle horizontal terminal" },
+		["<A-v>"] = { function() require("nvterm.terminal").toggle("vertical") end, "Toggle vertical terminal" },
+		["<A-i>"] = { function() require("nvterm.terminal").toggle("float") end, "Toggle floating terminal" },
+
+		-- Scratchpad
+		["<leader>sp"] = { function() require("scratchpad").toggle() end, "Open new scratchpad" },
+
+		-- Telescope
+		["<leader>ff"] = { function()
+			vim.cmd("Lazy load telescope.nvim")
+			require("telescope.builtin").find_files()
+		end, "Find files" },
+		["<C-p>"] = { function() require("telescope.builtin").git_files() end, "Find Git files" },
+		["<leader>ps"] = { function()
+			require("telescope.builtin").grep_string({ search = vim.fn.input("Grep > ") })
+		end, "Find by grep" },
+
+
+		-- Trouble keybinds
+		["<leader>tt"] = { "<cmd>TroubleToggle workspace_diagnostics<CR>", "Toggles Trouble UI" },
+		["<leader>tr"] = { "<cmd>TroubleToggle lsp_references<CR>", "Toggles Trouble references" },
+		["<leader>tq"] = { "<cmd>TroubleToggle quickfix<CR>", "Toggles Trouble references" },
+
 
 		-- LSP commands
 		["<leader>f"] = { vim.lsp.buf.format, "LSP format" },
@@ -102,6 +126,9 @@ local keymaps = {
 
 	["t"] = {
 		["<Esc>"] = { "<C-\\><C-n>", "Exit terminal mode" },
+		["<A-h>"] = { function() require("nvterm.terminal").toggle("horizontal") end, "Toggle horizontal terminal" },
+		["<A-v>"] = { function() require("nvterm.terminal").toggle("vertical") end, "Toggle vertical terminal" },
+		["<A-i>"] = { function() require("nvterm.terminal").toggle("float") end, "Toggle floating terminal" },
 	},
 
 	["x"] = {

@@ -24,9 +24,3 @@ require("nvterm").setup({
 		auto_insert = true,
 	},
 })
-
-local modes = { "n", "t" }
-
-vim.keymap.set(modes, "<A-h>", function() require("nvterm.terminal").toggle("horizontal") end)
-vim.keymap.set(modes, "<A-v>", function() require("nvterm.terminal").toggle("vertical") end)
-vim.keymap.set(modes, "<A-i>", function() require("nvterm.terminal").toggle("float") end)

@@ -13,15 +13,14 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
-		event = "BufEnter *.*",
 		config = function()
 			require("config.plugins.treesitter")
 		end,
 	},
 	{
 		"nvim-lualine/lualine.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
-		event = "BufEnter *.*",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		event = "VeryLazy",
 		config = function()
 			require("config.plugins.lualine")
 		end,
@@ -46,7 +45,7 @@ return {
 			{
 				"williamboman/mason.nvim",
 				build = function()
-					pcall(vim.cmd, "MasonUpdate")
+					pcall(vim.cmd.MasonUpdate)
 				end,
 			},
 			{ "williamboman/mason-lspconfig.nvim" },
@@ -78,21 +77,26 @@ return {
 	},
 	{
 		"NvChad/nvterm",
-		event = "BufEnter *.*",
 		config = function()
 			require("config.plugins.nvterm")
 		end,
 	},
 	{
 		"unblevable/quick-scope",
-		event = "BufEnter *.*",
+		keys = { "f", "F", "t", "T" },
 		config = function() require("config.plugins.quickscope").setup() end,
 	},
 	{
 		"numToStr/Comment.nvim",
-		event = "BufEnter *.*",
+		keys = {
+			{ "gcc", nil, mode = "n" },
+			{ "gbc", nil, mode = "n" },
+			{ "gc",  nil, mode = "v" },
+			{ "gco", nil, mode = "n" },
+			{ "gcO", nil, mode = "n" },
+		},
 		config = function()
-			require("Comment").setup(require("config.plugins.comment"))
+			require("config.plugins.comment")
 		end
 	},
 	{
@@ -104,7 +108,7 @@ return {
 	},
 	{
 		"tpope/vim-fugitive",
-		event = "BufEnter *.*"
+		cmd = "Git"
 	},
 
 	-- Debugging
@@ -135,12 +139,12 @@ return {
 	},
 	{
 		"mbbill/undotree",
-		event = "BufEnter *.*"
+		cmd = "UndotreeToggle",
 	},
 	{
 		"nvim-tree/nvim-tree.lua",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
-		event = "BufEnter *.*",
+		cmd = "NvimTreeToggle",
 		config = function()
 			require("config.plugins.nvimtree")
 		end,
@@ -170,7 +174,7 @@ return {
 	{
 		"folke/trouble.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
-		event = "BufEnter *.*",
+		cmd = "TroubleToggle",
 		opts = {
 			require("config.plugins.trouble")
 		},
@@ -196,4 +200,19 @@ return {
 			require("config.plugins.gitsigns")
 		end,
 	},
+
+	-- My plugins
+	{
+		"AidanThomas/scratchpad.nvim",
+		config = function()
+			require("config.plugins.scratchpad")
+		end,
+	}
+	-- {
+	-- 	dir = "/home/aidant/dev/AidanThomas/scratchpad.nvim",
+	-- 	lazy = false,
+	-- 	config = function()
+	-- 		require("config.plugins.scratchpad")
+	-- 	end,
+	-- }
 }

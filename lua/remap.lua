@@ -58,6 +58,9 @@ local keymaps = {
 		["<A-v>"] = { function() require("nvterm.terminal").toggle("vertical") end, "Toggle vertical terminal" },
 		["<A-i>"] = { function() require("nvterm.terminal").toggle("float") end, "Toggle floating terminal" },
 
+		-- Manipulation
+		["<C-o>"] = { "o<Esc>k", "Add an empty line below" },
+
 		-- Scratchpad
 		["<leader>sp"] = { function() require("scratchpad").toggle() end, "Open new scratchpad" },
 
@@ -80,7 +83,6 @@ local keymaps = {
 
 		-- LSP commands
 		["<leader>f"] = { vim.lsp.buf.format, "LSP format" },
-		["<leader>s"] = { [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Rename symbol underneath" },
 		["<leader>rn"] = { function()
 			vim.wo.number = true
 			vim.wo.relativenumber = not vim.wo.relativenumber

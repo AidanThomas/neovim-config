@@ -5,7 +5,8 @@ return {
 		"nvim-telescope/telescope.nvim",
 		version = "0.1.1",
 		dependencies = { "nvim-lua/plenary.nvim" },
-		event = "VeryLazy",
+		-- event = "VeryLazy",
+		cmd = "Telescope",
 		config = function()
 			require("config.plugins.telescope")
 		end,
@@ -112,26 +113,21 @@ return {
 	},
 
 	-- Debugging
-	-- {
-	-- 	"mfussenegger/nvim-dap",
-	-- 	lazy = false,
-	-- },
-	-- {
-	-- 	"leoluz/nvim-dap-go",
-	-- 	lazy = false,
-	-- },
-	-- {
-	-- 	"rcarriga/nvim-dap-ui",
-	-- 	lazy = false,
-	-- },
-	-- {
-	-- 	"theHamsta/nvim-dap-virtual-text",
-	-- 	lazy = false,
-	-- },
-	-- {
-	-- 	"nvim-telescope/telescope-dap.nvim",
-	-- 	lazy = false,
-	-- },
+	{
+		"mfussenegger/nvim-dap",
+		keys = {
+			"<leader>b"
+		},
+		dependencies = {
+			{ "leoluz/nvim-dap-go" },
+			{ "rcarriga/nvim-dap-ui" },
+			{ "theHamsta/nvim-dap-virtual-text" },
+			{ "nvim-telescope/telescope-dap.nvim" },
+		},
+		config = function()
+			require("config.plugins.nvim-dap")
+		end,
+	},
 
 	-- Misc plugins
 	{
@@ -198,6 +194,12 @@ return {
 		event = "BufEnter *.*",
 		config = function()
 			require("config.plugins.gitsigns")
+		end,
+	},
+	{
+		"folke/neodev.nvim",
+		config = function()
+			require("config.plugins.neodev")
 		end,
 	},
 

@@ -19,7 +19,8 @@ local keymaps = {
 		["<leader>n"] = { vim.cmd.NvimTreeToggle, "Toggle file tree" },
 		["<C-d>"] = { "<C-d>zz", "Scroll down" },
 		["<C-u>"] = { "<C-u>zz", "Scroll up" },
-		["<leader>es"] = { ":e $MYVIMRC | :cd %:p:h <CR>", "Edit vimrc" },
+		["<leader>es"] = { ":Telescope find_files cwd=~/.config/nvim<CR>", "Show configuration files" },
+		["<leader>cwd"] = { ":cd %:p:h <CR>", "Set current working directory" },
 		["<leader>rd"] = { "<cmd>Alpha<CR>", "Return to dashboard" },
 		["<leader>gs"] = { vim.cmd.Git, "Open fugitive" },
 		["<leader>u"] = { vim.cmd.UndotreeToggle, "Open undo tree" },
@@ -66,7 +67,6 @@ local keymaps = {
 
 		-- Telescope
 		["<leader>ff"] = { function()
-			vim.cmd("Lazy load telescope.nvim")
 			require("telescope.builtin").find_files()
 		end, "Find files" },
 		["<C-p>"] = { function() require("telescope.builtin").git_files() end, "Find Git files" },

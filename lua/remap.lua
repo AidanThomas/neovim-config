@@ -92,9 +92,9 @@ local keymaps = {
 
 		-- Debugging
 		["<F5>"] = { ":lua require'dap'.continue()<CR>", "Start debugging/Continue" },
-		["<F10>"] = { ":lua require'dap'.step_over()<CR>", "Step over" },
-		["<F11>"] = { ":lua require'dap'.step_into()<CR>", "Step into" },
-		["<F12>"] = { ":lua require'dap'.step_out()<CR>", "Step out" },
+		["<F6>"] = { ":lua require'dap'.step_over()<CR>", "Step over" },
+		["<F7>"] = { ":lua require'dap'.step_into()<CR>", "Step into" },
+		["<F8>"] = { ":lua require'dap'.step_out()<CR>", "Step out" },
 		["<leader>b"] = { ":lua require'dap'.toggle_breakpoint()<CR>", "Toggle breakpoint" },
 		["<leader>B"] = { ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
 			"Set breakpoint with conidition" },

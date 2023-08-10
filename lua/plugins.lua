@@ -115,9 +115,6 @@ return {
 	-- Debugging
 	{
 		"mfussenegger/nvim-dap",
-		keys = {
-			"<leader>b"
-		},
 		dependencies = {
 			{ "leoluz/nvim-dap-go" },
 			{ "rcarriga/nvim-dap-ui" },

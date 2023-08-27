@@ -135,14 +135,6 @@ return {
 		cmd = "UndotreeToggle",
 	},
 	{
-		"nvim-tree/nvim-tree.lua",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		cmd = "NvimTreeToggle",
-		config = function()
-			require("config.plugins.nvimtree")
-		end,
-	},
-	{
 		"goolord/alpha-nvim",
 		event = "VimEnter",
 		config = function()

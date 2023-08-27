@@ -16,7 +16,6 @@ local keymaps = {
 		["<C-s>"] = { "<cmd>w<CR>", "Save current file", noremap = true },
 		["<leader>qq"] = { "<cmd>qall<CR>", "Quit all buffers" },
 		["<leader>qw"] = { "<cmd>wqall<CR>", "Write and quit all buffers" },
-		["<leader>n"] = { vim.cmd.NvimTreeToggle, "Toggle file tree" },
 		["<C-d>"] = { "<C-d>zz", "Scroll down" },
 		["<C-u>"] = { "<C-u>zz", "Scroll up" },
 		["<leader>es"] = { ":Telescope find_files cwd=~/.config/nvim<CR>", "Show configuration files" },

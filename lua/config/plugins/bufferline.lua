@@ -1,5 +1,4 @@
 vim.opt.termguicolors = true
-local colors = require("tokyonight.colors").setup({ style = "night" })
 require("bufferline").setup {
 	highlights = {
 		tab_selected = {
@@ -62,6 +61,8 @@ require("bufferline").setup {
 			bold = true,
 			italic = false,
 		},
+		separator = {
+		},
 		separator_selected = {
 			bold = true,
 			italic = false,
@@ -76,16 +77,15 @@ require("bufferline").setup {
 		},
 	},
 	options = {
-		mode = "buffers", -- set to "tabs" to only show tabpages instead
-		themable = true, -- allows highlight groups to be overriden i.e. sets highlights as default
+		mode = "buffers",              -- set to "tabs" to only show tabpages instead
+		themable = true,               -- allows highlight groups to be overriden i.e. sets highlights as default
 		numbers = "none",
 		close_command = "bdelete! %d", -- can be a string | function, | false see "Mouse actions"
 		right_mouse_command = "bdelete! %d", -- can be a string | function | false, see "Mouse actions"
 		left_mouse_command = "buffer %d", -- can be a string | function, | false see "Mouse actions"
-		middle_mouse_command = nil, -- can be a string | function, | false see "Mouse actions"
+		middle_mouse_command = nil,    -- can be a string | function, | false see "Mouse actions"
 		indicator = {
-			icon = '▎', -- this should be omitted if indicator style is not 'icon'
-			style = 'icon',
+			style = 'none',
 		},
 		buffer_close_icon = '',
 		modified_icon = '●',
@@ -108,31 +108,6 @@ require("bufferline").setup {
 		end,
 		-- NOTE: this will be called a lot so don't do any heavy processing here
 		custom_areas = {
-			right = function()
-				local result = {}
-				local seve = vim.diagnostic.severity
-				local error = #vim.diagnostic.get(0, { severity = seve.ERROR })
-				local warning = #vim.diagnostic.get(0, { severity = seve.WARN })
-				local info = #vim.diagnostic.get(0, { severity = seve.INFO })
-				local hint = #vim.diagnostic.get(0, { severity = seve.HINT })
-
-				if error ~= 0 then
-					table.insert(result, { text = "  " .. error, fg = "#EC5241" })
-				end
-
-				if warning ~= 0 then
-					table.insert(result, { text = "  " .. warning, fg = "#EFB839" })
-				end
-
-				if hint ~= 0 then
-					table.insert(result, { text = "  " .. hint, fg = "#A3BA5E" })
-				end
-
-				if info ~= 0 then
-					table.insert(result, { text = "  " .. info, fg = "#7EA9A7" })
-				end
-				return result
-			end,
 		},
 		custom_filter = function(buf_number, buf_numbers)
 			-- e.g. filter out vim wiki buffer from tabline in your work repo
@@ -161,7 +136,7 @@ require("bufferline").setup {
 		persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
 		-- can also be a table containing 2 custom separators
 		-- [focused and unfocused]. eg: { '|', '|' }
-		separator_style = "slope",
+		separator_style = {},
 		enforce_regular_tabs = true,
 		always_show_bufferline = true,
 		hover = {

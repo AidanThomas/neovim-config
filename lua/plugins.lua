@@ -3,7 +3,7 @@ return {
 	"nvim-lua/plenary.nvim",
 	{
 		"nvim-telescope/telescope.nvim",
-		version = "0.1.1",
+		version = "0.1.4",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		-- event = "VeryLazy",
 		cmd = "Telescope",
@@ -28,6 +28,7 @@ return {
 	},
 	{
 		"akinsho/bufferline.nvim",
+		enabled = false,
 		version = "v3.*",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		event = "BufEnter *.*",
@@ -111,6 +112,12 @@ return {
 		"tpope/vim-fugitive",
 		cmd = "Git"
 	},
+	{
+		"ThePrimeagen/harpoon",
+		config = function()
+			require("config.plugins.harpoon")
+		end
+	},
 
 	-- Debugging
 	{
@@ -153,6 +160,7 @@ return {
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
+		enabled = false,
 		event = "BufEnter *.*",
 		config = function()
 			require("config.plugins.indent-blankline")

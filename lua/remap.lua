@@ -3,12 +3,6 @@ local function RegisterMapping(mappings)
 	wk.register(mappings)
 end
 
-
-local modes = { "n", "t" }
-
-vim.keymap.set(modes, "<A-h>", function() require("nvterm.terminal").toggle("horizontal") end)
-vim.keymap.set(modes, "<A-v>", function() require("nvterm.terminal").toggle("vertical") end)
-vim.keymap.set(modes, "<A-i>", function() require("nvterm.terminal").toggle("float") end)
 local keymaps = {
 	["n"] = {
 		-- Navigation
@@ -25,16 +19,26 @@ local keymaps = {
 		["<leader>gs"] = { vim.cmd.Git, "Open fugitive" },
 		["<leader>u"] = { vim.cmd.UndotreeToggle, "Open undo tree" },
 
-		-- Tab controls
-		["<tab>"] = { "<cmd>bnext<CR>", "Move to next tab" },
-		["<S-tab>"] = { "<cmd>bprev<CR>", "Move to prev tab" },
-		["<leader>x"] = { "<cmd>bdelete<CR>", "Close current tab" },
-		["<leader>xl"] = { "<cmd>BufferLineCloseLeft<CR>", "Close tabs to the left" },
-		["<leader>xr"] = { "<cmd>BufferLineCloseRight<CR>", "Close tabs to the right" },
-		["<leader>xa"] = { function()
-			vim.cmd("BufferLineCloseLeft")
-			vim.cmd("BufferLineCloseRight")
-		end, "Close all other tabs" },
+		-- -- Tab controls
+		-- ["<tab>"] = { "<cmd>bnext<CR>", "Move to next tab" },
+		-- ["<S-tab>"] = { "<cmd>bprev<CR>", "Move to prev tab" },
+		-- ["<leader>x"] = { "<cmd>bdelete<CR>", "Close current tab" },
+		-- ["<leader>xl"] = { "<cmd>BufferLineCloseLeft<CR>", "Close tabs to the left" },
+		-- ["<leader>xr"] = { "<cmd>BufferLineCloseRight<CR>", "Close tabs to the right" },
+		-- ["<leader>xa"] = { function()
+		-- 	vim.cmd("BufferLineCloseLeft")
+		-- 	vim.cmd("BufferLineCloseRight")
+		-- end, "Close all other tabs" },
+
+		-- Harpoon
+		["<leader>hp"] = { [[:lua require("harpoon.ui").toggle_quick_menu()<CR>]], "Toggle harpoon menu" },
+		["<leader>ha"] = { function() require("harpoon.mark").add_file() end, "Add file to harpoon" },
+		["<tab>"] = { function() require("harpoon.ui").nav_next() end, "Navigate to next pooned file" },
+		["<S-tab>"] = { function() require("harpoon.ui").nav_prev() end, "Navigate to prev pooned file" },
+		["<A-a>"] = { function() require("harpoon.ui").nav_file(1) end, "Navigate to pooned file 1" },
+		["<A-s>"] = { function() require("harpoon.ui").nav_file(2) end, "Navigate to pooned file 2" },
+		["<A-d>"] = { function() require("harpoon.ui").nav_file(3) end, "Navigate to pooned file 3" },
+		["<A-f>"] = { function() require("harpoon.ui").nav_file(4) end, "Navigate to pooned file 4" },
 
 		-- Switch between windows
 		["<C-h>"] = { "<C-w>h", "Window left" },

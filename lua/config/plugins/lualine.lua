@@ -1,10 +1,50 @@
+local function get_dir()
+	local path = vim.fn.expand("%:.:h")
+	local sep = "/"
+	local t = {}
+	for str in string.gmatch(path, "([^" .. sep .. "]+)") do
+		table.insert(t, str)
+	end
+	path = ""
+	for i, v in ipairs(t) do
+		if i == #t then
+			path = path .. v
+		else
+			path = path .. v .. "  "
+		end
+	end
+
+	return path
+end
+
+local function get_dir_inactive()
+	local path = vim.fn.expand("%:.")
+	local sep = "/"
+	local t = {}
+	for str in string.gmatch(path, "([^" .. sep .. "]+)") do
+		table.insert(t, str)
+	end
+	path = ""
+	for i, v in ipairs(t) do
+		if i == #t then
+			path = path .. v
+		else
+			path = path .. v .. "  "
+		end
+	end
+
+	return path
+end
+
 require("lualine").setup {
 	options = {
 		icons_enabled = true,
 		theme = 'tokyonight',
-		component_separators = { left = '\\', right = '/' },
-		section_separators = { left = '', right = '' },
+		component_separators = { left = '', right = '' },
+		section_separators = { left = '', right = '' },
 		disabled_filetypes = {
+			'alpha',
+			'TelescopePrompt',
 			status_line = {},
 			winbar = {},
 		},
@@ -14,7 +54,7 @@ require("lualine").setup {
 		refresh = {
 			status_line = 1000,
 			tabline = 1000,
-			winbar = 1000,
+			winbar = 100,
 		}
 	},
 	sections = {
@@ -47,8 +87,29 @@ require("lualine").setup {
 		lualine_y = {},
 		lualine_z = {}
 	},
-	tabline = {},
-	winbar = {},
-	inactive_winbar = {},
+	tabline = {
+	},
+	winbar = {
+		lualine_a = { get_dir },
+		lualine_b = { 'filename' },
+		lualine_c = {},
+		lualine_x = {},
+		lualine_y = { 'diagnostics' },
+		lualine_z = {
+		}
+	},
+	inactive_winbar = {
+		lualine_a = {
+		},
+		lualine_b = {
+		},
+		lualine_c = {
+			get_dir_inactive
+		},
+		lualine_x = {},
+		lualine_y = { 'diagnostics' },
+		lualine_z = {
+		}
+	},
 	extensions = {}
 }

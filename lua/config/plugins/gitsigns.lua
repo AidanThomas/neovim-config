@@ -29,7 +29,7 @@ require('gitsigns').setup {
 	max_file_length = 40000, -- Disable if file is longer than this (in lines)
 	preview_config = {
 		-- Options passed to nvim_open_win
-		border = 'signle',
+		border = 'single',
 		style = 'minimal',
 		relative = 'cursor',
 		row = 0,
@@ -68,7 +68,7 @@ require('gitsigns').setup {
 		map('n', '<leader>hS', gs.stage_buffer)
 		map('n', '<leader>hu', gs.undo_stage_hunk)
 		map('n', '<leader>hR', gs.reset_buffer)
-		map('n', '<leader>hp', gs.preview_hunk)
+		-- map('n', '<leader>hp', gs.preview_hunk) -- used by harpoon see remap.lua
 		map('n', '<leader>hb', function() gs.blame_line { full = true } end)
 		map('n', '<leader>tb', gs.toggle_current_line_blame)
 		map('n', '<leader>hd', gs.diffthis)

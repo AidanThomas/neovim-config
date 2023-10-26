@@ -45,3 +45,6 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 	},
 	update_in_insert = true,
 })
+
+vim.opt.list = true
+vim.opt.listchars:append "eol:↴"

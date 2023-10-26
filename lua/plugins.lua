@@ -160,7 +160,6 @@ return {
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
-		enabled = false,
 		event = "BufEnter *.*",
 		config = function()
 			require("config.plugins.indent-blankline")

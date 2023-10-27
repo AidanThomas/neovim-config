@@ -48,5 +48,15 @@ require("telescope").setup({
 		},
 	},
 
-	extensions_list = { "themes", "terms" },
+	extensions_list = { "themes", "terms", "file_browser" },
+
+	extensions = {
+		file_browser = {
+			hijack_netrw = true,
+			initial_mode = "normal",
+		}
+	}
 })
+
+-- Extensions
+require("telescope").load_extension("file_browser")

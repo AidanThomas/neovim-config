@@ -6,7 +6,12 @@ end
 local keymaps = {
 	["n"] = {
 		-- Navigation
-		["<leader>pv"] = { vim.cmd.Ex, "Open file explorer" },
+		["<leader>pv"] = { function()
+			require("telescope").extensions.file_browser.file_browser({
+				grouped = true,
+				hidden = true,
+			})
+		end, "Open file explorer" },
 		["<C-s>"] = { "<cmd>w<CR>", "Save current file", noremap = true },
 		["<leader>qq"] = { "<cmd>qall<CR>", "Quit all buffers" },
 		["<leader>qw"] = { "<cmd>wqall<CR>", "Write and quit all buffers" },

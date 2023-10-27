@@ -45,6 +45,7 @@ require("lualine").setup {
 		disabled_filetypes = {
 			'alpha',
 			'TelescopePrompt',
+			'lazy',
 			status_line = {},
 			winbar = {},
 		},

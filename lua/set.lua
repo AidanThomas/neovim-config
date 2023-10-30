@@ -21,7 +21,7 @@ if home_dir ~= nil then
 	vim.opt.undodir = home_dir .. "/.vim/undodir"
 end
 
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
 vim.opt.termguicolors = true

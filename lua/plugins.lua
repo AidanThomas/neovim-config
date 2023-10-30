@@ -26,16 +26,16 @@ return {
 			require("config.plugins.lualine")
 		end,
 	},
-	{
-		"akinsho/bufferline.nvim",
-		enabled = false,
-		version = "v3.*",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		event = "BufEnter *.*",
-		config = function()
-			require("config.plugins.bufferline")
-		end,
-	},
+	-- {
+	-- 	"akinsho/bufferline.nvim",
+	-- 	enabled = false,
+	-- 	version = "v3.*",
+	-- 	dependencies = { "nvim-tree/nvim-web-devicons" },
+	-- 	event = "BufEnter *.*",
+	-- 	config = function()
+	-- 		require("config.plugins.bufferline")
+	-- 	end,
+	-- },
 
 	-- LSP
 	{
@@ -127,23 +127,23 @@ return {
 	},
 
 	-- Debugging
-	{
-		"mfussenegger/nvim-dap",
-		dependencies = {
-			{ "leoluz/nvim-dap-go" },
-			{ "rcarriga/nvim-dap-ui" },
-			{ "theHamsta/nvim-dap-virtual-text" },
-			{ "nvim-telescope/telescope-dap.nvim" },
-		},
-		config = function()
-			require("config.plugins.nvim-dap")
-		end,
-	},
+	-- {
+	-- 	"mfussenegger/nvim-dap",
+	-- 	dependencies = {
+	-- 		{ "leoluz/nvim-dap-go" },
+	-- 		{ "rcarriga/nvim-dap-ui" },
+	-- 		{ "theHamsta/nvim-dap-virtual-text" },
+	-- 		{ "nvim-telescope/telescope-dap.nvim" },
+	-- 	},
+	-- 	config = function()
+	-- 		require("config.plugins.nvim-dap")
+	-- 	end,
+	-- },
 
 	-- Misc plugins
-	{
-		"nvim-treesitter/playground",
-	},
+	-- {
+	-- 	"nvim-treesitter/playground",
+	-- },
 	{
 		"mbbill/undotree",
 		cmd = "UndotreeToggle",
@@ -209,12 +209,12 @@ return {
 			require("config.plugins.gitsigns")
 		end,
 	},
-	{
-		"folke/neodev.nvim",
-		config = function()
-			require("config.plugins.neodev")
-		end,
-	},
+	-- {
+	-- 	"folke/neodev.nvim",
+	-- 	config = function()
+	-- 		require("config.plugins.neodev")
+	-- 	end,
+	-- },
 
 	-- My plugins
 	{
@@ -222,12 +222,20 @@ return {
 		config = function()
 			require("config.plugins.scratchpad")
 		end,
-	}
+	},
 	-- {
 	-- 	dir = "/home/aidant/dev/AidanThomas/scratchpad.nvim",
 	-- 	lazy = false,
 	-- 	config = function()
 	-- 		require("config.plugins.scratchpad")
 	-- 	end,
+	-- },
+	--
+	-- {
+	-- 	dir = "/home/aidant/dev/AidanThomas/telescope-make.nvim",
+	-- 	lazy = false,
+	-- 	dependencies = {
+	-- 		"nvim-telescope/telescope.nvim",
+	-- 	}
 	-- }
 }

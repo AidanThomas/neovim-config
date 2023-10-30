@@ -60,13 +60,13 @@ require("lualine").setup {
 	},
 	sections = {
 		lualine_a = { 'mode' },
-		lualine_b = { 'branch', 'diff', 'diagnostics' },
+		lualine_b = { 'branch', 'diagnostics' },
 		lualine_c = {
 			{
 				'filename',
-				file_status = true,
-				newfile_status = true,
-				path = 1,
+				file_status = false,
+				newfile_status = false,
+				path = 0,
 				shorting_target = 40,
 				symbols = {
 					modified = "[+]",
@@ -74,7 +74,7 @@ require("lualine").setup {
 					unnamed = "[No Name]",
 					newfile = "[New]"
 				}
-			}
+			},
 		},
 		lualine_x = { 'encoding', 'fileformat', 'filetype' },
 		lualine_y = { 'progress' },
@@ -94,10 +94,9 @@ require("lualine").setup {
 		lualine_a = { get_dir },
 		lualine_b = { 'filename' },
 		lualine_c = {},
-		lualine_x = {},
-		lualine_y = { 'diagnostics' },
-		lualine_z = {
-		}
+		lualine_x = { 'searchcount', 'selectioncount', 'diagnostics' },
+		lualine_y = {},
+		lualine_z = {}
 	},
 	inactive_winbar = {
 		lualine_a = {

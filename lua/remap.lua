@@ -52,6 +52,7 @@ local keymaps = {
 		["<C-k>"] = { "<C-w>k", "Window up" },
 
 
+		["<Esc>"] = { vim.cmd.noh, "Turn off search highlights" },
 		["n"] = { "nzzzv", "Move to next search result" },
 		["N"] = { "Nzzzv", "Move to prev search result" },
 
@@ -100,17 +101,17 @@ local keymaps = {
 		["<leader>t"] = { ":lua require('toggle-checkbox').toggle()<CR>", "Toggle markdown checkbox" },
 
 		-- Debugging
-		["<F5>"] = { ":lua require'dap'.continue()<CR>", "Start debugging/Continue" },
-		["<F6>"] = { ":lua require'dap'.step_over()<CR>", "Step over" },
-		["<F7>"] = { ":lua require'dap'.step_into()<CR>", "Step into" },
-		["<F8>"] = { ":lua require'dap'.step_out()<CR>", "Step out" },
-		["<leader>b"] = { ":lua require'dap'.toggle_breakpoint()<CR>", "Toggle breakpoint" },
-		["<leader>B"] = { ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
-			"Set breakpoint with conidition" },
-		["<leader>lp"] = { ":lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>",
-			"Set log point" },
-		["<leader>dr"] = { ":lua require'dap'.repl.open()<CR>", "repl.open" },
-		["<leader>dbg"] = { ":lua require('dap-go').debug_test()<CR>", "Debug test" },
+		-- ["<F5>"] = { ":lua require'dap'.continue()<CR>", "Start debugging/Continue" },
+		-- ["<F6>"] = { ":lua require'dap'.step_over()<CR>", "Step over" },
+		-- ["<F7>"] = { ":lua require'dap'.step_into()<CR>", "Step into" },
+		-- ["<F8>"] = { ":lua require'dap'.step_out()<CR>", "Step out" },
+		-- ["<leader>b"] = { ":lua require'dap'.toggle_breakpoint()<CR>", "Toggle breakpoint" },
+		-- ["<leader>B"] = { ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
+		-- 	"Set breakpoint with conidition" },
+		-- ["<leader>lp"] = { ":lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>",
+		-- 	"Set log point" },
+		-- ["<leader>dr"] = { ":lua require'dap'.repl.open()<CR>", "repl.open" },
+		-- ["<leader>dbg"] = { ":lua require('dap-go').debug_test()<CR>", "Debug test" },
 	},
 
 	["i"] = {
@@ -131,7 +132,6 @@ local keymaps = {
 
 		-- Copy/Paste
 		["<leader>y"] = { [["+y]], "Copy to clipboard" },
-		["<leader>Y"] = { [["+Y]], "Copy to clipboard" },
 
 	},
 

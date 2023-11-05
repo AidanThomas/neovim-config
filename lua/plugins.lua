@@ -63,7 +63,7 @@ return {
 	-- Essential editor plugins
 	{
 		"windwp/nvim-autopairs",
-		-- event = "BufEnter *.*",
+		event = "BufEnter *.*",
 		opts = require("config.plugins.autopairs")
 	},
 	{

@@ -1,11 +1,10 @@
 return {
 	-- Core
-	"nvim-lua/plenary.nvim",
+	{ "nvim-lua/plenary.nvim" },
 	{
 		"nvim-telescope/telescope.nvim",
 		version = "0.1.4",
 		dependencies = { "nvim-lua/plenary.nvim" },
-		-- event = "VeryLazy",
 		cmd = "Telescope",
 		config = function()
 			require("config.plugins.telescope")
@@ -26,16 +25,6 @@ return {
 			require("config.plugins.lualine")
 		end,
 	},
-	-- {
-	-- 	"akinsho/bufferline.nvim",
-	-- 	enabled = false,
-	-- 	version = "v3.*",
-	-- 	dependencies = { "nvim-tree/nvim-web-devicons" },
-	-- 	event = "BufEnter *.*",
-	-- 	config = function()
-	-- 		require("config.plugins.bufferline")
-	-- 	end,
-	-- },
 
 	-- LSP
 	{
@@ -58,7 +47,7 @@ return {
 			{ "L3MON4D3/LuaSnip" }
 		},
 
-		event = "BufAdd *.*",
+		event = "UIEnter",
 		config = function()
 			require("config.plugins.lsp")
 		end,
@@ -74,7 +63,7 @@ return {
 	-- Essential editor plugins
 	{
 		"windwp/nvim-autopairs",
-		event = "BufEnter *.*",
+		-- event = "BufEnter *.*",
 		opts = require("config.plugins.autopairs")
 	},
 	{
@@ -99,13 +88,6 @@ return {
 		},
 		config = function()
 			require("config.plugins.comment")
-		end
-	},
-	{
-		"folke/which-key.nvim",
-		event = "VeryLazy",
-		config = function()
-			require("config.plugins.whichkey")
 		end
 	},
 	{
@@ -148,16 +130,16 @@ return {
 		"mbbill/undotree",
 		cmd = "UndotreeToggle",
 	},
-	{
-		"nvim-tree/nvim-tree.lua",
-		dependencies = {
-			"nvim-tree/nvim-web-devicons"
-		},
-		cmd = "NvimTreeToggle",
-		config = function()
-			require("config.plugins.nvimtree")
-		end,
-	},
+	-- {
+	-- 	"nvim-tree/nvim-tree.lua",
+	-- 	dependencies = {
+	-- 		"nvim-tree/nvim-web-devicons"
+	-- 	},
+	-- 	cmd = "NvimTreeToggle",
+	-- 	config = function()
+	-- 		require("config.plugins.nvimtree")
+	-- 	end,
+	-- },
 	{
 		"goolord/alpha-nvim",
 		event = "VimEnter",

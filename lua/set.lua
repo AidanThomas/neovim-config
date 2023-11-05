@@ -30,8 +30,6 @@ vim.opt.scrolloff = 8
 vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 
-vim.opt.mousemoveevent = true
-
 vim.g.qs_highlight_on_keys = { 'f', 'F', 't', 'T' }
 
 vim.g.mapleader = " "

@@ -1,6 +1,15 @@
-local function RegisterMapping(mappings)
-	local wk = require("which-key")
-	wk.register(mappings)
+local function RegisterMappings(mappings)
+	local options = { noremap = true, silent = true }
+	for mode, maps in pairs(mappings) do
+		for lhs, map in pairs(maps) do
+			local rhs = map[1]
+			local opts = map[2]
+			if opts then
+				options = vim.tbl_extend('force', options, opts)
+			end
+			vim.keymap.set(mode, lhs, rhs, options)
+		end
+	end
 end
 
 local keymaps = {
@@ -11,94 +20,74 @@ local keymaps = {
 				grouped = true,
 				hidden = true,
 			})
-		end, "Open file explorer" },
-		["<C-s>"] = { "<cmd>w<CR>", "Save current file", noremap = true },
-		["<leader>qq"] = { "<cmd>qall<CR>", "Quit all buffers" },
-		["<leader>qw"] = { "<cmd>wqall<CR>", "Write and quit all buffers" },
-		["<leader>n"] = { vim.cmd.NvimTreeToggle, "Toggle file tree" },
-		["<C-d>"] = { "<C-d>zz", "Scroll down" },
-		["<C-u>"] = { "<C-u>zz", "Scroll up" },
-		["<leader>es"] = { ":Telescope find_files cwd=~/.config/nvim<CR>", "Show configuration files" },
-		["<leader>cwd"] = { ":cd %:p:h <CR>", "Set current working directory" },
-		["<leader>rd"] = { "<cmd>Alpha<CR>", "Return to dashboard" },
-		["<leader>gs"] = { vim.cmd.Git, "Open fugitive" },
-		["<leader>u"] = { vim.cmd.UndotreeToggle, "Open undo tree" },
-
-		-- -- Tab controls
-		-- ["<tab>"] = { "<cmd>bnext<CR>", "Move to next tab" },
-		-- ["<S-tab>"] = { "<cmd>bprev<CR>", "Move to prev tab" },
-		-- ["<leader>x"] = { "<cmd>bdelete<CR>", "Close current tab" },
-		-- ["<leader>xl"] = { "<cmd>BufferLineCloseLeft<CR>", "Close tabs to the left" },
-		-- ["<leader>xr"] = { "<cmd>BufferLineCloseRight<CR>", "Close tabs to the right" },
-		-- ["<leader>xa"] = { function()
-		-- 	vim.cmd("BufferLineCloseLeft")
-		-- 	vim.cmd("BufferLineCloseRight")
-		-- end, "Close all other tabs" },
+		end, { desc = "Open file explorer" } },
+		["<C-s>"] = { "<cmd>w<CR>", { desc = "Save current file", noremap = true } },
+		["<leader>qq"] = { "<cmd>qall<CR>", { desc = "Quit all buffers" } },
+		["<leader>qw"] = { "<cmd>wqall<CR>", { desc = "Write and quit all buffers" } },
+		["<C-d>"] = { "<C-d>zz", { desc = "Scroll down" } },
+		["<C-u>"] = { "<C-u>zz", { desc = "Scroll up" } },
+		["<leader>es"] = { ":Telescope find_files cwd=~/.config/nvim<CR>", { desc = "Show configuration files" } },
+		["<leader>cwd"] = { ":cd %:p:h <CR>", { desc = "Set current working directory" } },
+		["<leader>gs"] = { vim.cmd.Git, { desc = "Open fugitive" } },
+		["<leader>u"] = { vim.cmd.UndotreeToggle, { desc = "Open undo tree" } },
 
 		-- Harpoon
-		["<leader>hp"] = { [[:lua require("harpoon.ui").toggle_quick_menu()<CR>]], "Toggle harpoon menu" },
-		["<leader>ha"] = { function() require("harpoon.mark").add_file() end, "Add file to harpoon" },
-		["<tab>"] = { function() require("harpoon.ui").nav_next() end, "Navigate to next pooned file" },
-		["<S-tab>"] = { function() require("harpoon.ui").nav_prev() end, "Navigate to prev pooned file" },
-		["<A-a>"] = { function() require("harpoon.ui").nav_file(1) end, "Navigate to pooned file 1" },
-		["<A-s>"] = { function() require("harpoon.ui").nav_file(2) end, "Navigate to pooned file 2" },
-		["<A-d>"] = { function() require("harpoon.ui").nav_file(3) end, "Navigate to pooned file 3" },
-		["<A-f>"] = { function() require("harpoon.ui").nav_file(4) end, "Navigate to pooned file 4" },
+		["<leader>hp"] = { [[:lua require("harpoon.ui").toggle_quick_menu()<CR>]], { desc = "Toggle harpoon menu" } },
+		["<leader>ha"] = { function() require("harpoon.mark").add_file() end, { desc = "Add file to harpoon" } },
+		["<tab>"] = { function() require("harpoon.ui").nav_next() end, { desc = "Navigate to next pooned file" } },
+		["<S-tab>"] = { function() require("harpoon.ui").nav_prev() end, { desc = "Navigate to prev pooned file" } },
+		["<A-a>"] = { function() require("harpoon.ui").nav_file(1) end, { desc = "Navigate to pooned file 1" } },
+		["<A-s>"] = { function() require("harpoon.ui").nav_file(2) end, { desc = "Navigate to pooned file 2" } },
+		["<A-d>"] = { function() require("harpoon.ui").nav_file(3) end, { desc = "Navigate to pooned file 3" } },
+		["<A-f>"] = { function() require("harpoon.ui").nav_file(4) end, { desc = "Navigate to pooned file 4" } },
 
 		-- Switch between windows
-		["<C-h>"] = { "<C-w>h", "Window left" },
-		["<C-l>"] = { "<C-w>l", "Window right" },
-		["<C-j>"] = { "<C-w>j", "Window down" },
-		["<C-k>"] = { "<C-w>k", "Window up" },
+		["<C-h>"] = { "<C-w>h", { desc = "Window left" } },
+		["<C-l>"] = { "<C-w>l", { desc = "Window right" } },
+		["<C-j>"] = { "<C-w>j", { desc = "Window down" } },
+		["<C-k>"] = { "<C-w>k", { desc = "Window up" } },
 
 
-		["<Esc>"] = { vim.cmd.noh, "Turn off search highlights" },
-		["n"] = { "nzzzv", "Move to next search result" },
-		["N"] = { "Nzzzv", "Move to prev search result" },
+		["<Esc>"] = { vim.cmd.noh, { desc = "Turn off search highlights" } },
+		["n"] = { "nzzzv", { desc = "Move to next search result" } },
+		["N"] = { "Nzzzv", { desc = "Move to prev search result" } },
 
 		-- Copy/Paste
-		["<leader>y"] = { [["+y]], "Copy to clipboard" },
-		["<leader>Y"] = { [["+Y]], "Copy to clipboard" },
+		["<leader>y"] = { [["+y]], { desc = "Copy to clipboard" } },
 
 		-- Splitting
-		["<leader>v"] = { "<cmd>vsplit<CR>", "Vertically split the current file" },
-		["<leader>h"] = { "<cmd>split<CR>", "Horizontally split the currentl file" },
+		["<leader>v"] = { "<cmd>vsplit<CR>", { desc = "Vertically split the current file" } },
+		["<leader>h"] = { "<cmd>split<CR>", { desc = "Horizontally split the currentl file" } },
 
 		-- Terminal
-		["<A-h>"] = { function() require("nvterm.terminal").toggle("horizontal") end, "Toggle horizontal terminal" },
-		["<A-v>"] = { function() require("nvterm.terminal").toggle("vertical") end, "Toggle vertical terminal" },
-		["<A-i>"] = { function() require("nvterm.terminal").toggle("float") end, "Toggle floating terminal" },
-
-		-- Manipulation
-		["<C-o>"] = { "o<Esc>k", "Add an empty line below" },
+		["<A-h>"] = { function() require("nvterm.terminal").toggle("horizontal") end, {
+			desc = "Toggle horizontal terminal" } },
+		["<A-v>"] = { function() require("nvterm.terminal").toggle("vertical") end, { desc = "Toggle vertical terminal" } },
+		["<A-i>"] = { function() require("nvterm.terminal").toggle("float") end, { desc = "Toggle floating terminal" } },
 
 		-- Scratchpad
-		["<leader>sp"] = { function() require("scratchpad").toggle() end, "Open new scratchpad" },
+		["<leader>sp"] = { function() require("scratchpad").toggle() end, { desc = "Open new scratchpad" } },
 
 		-- Telescope
 		["<leader>ff"] = { function()
 			require("telescope.builtin").find_files()
-		end, "Find files" },
-		["<C-p>"] = { function() require("telescope.builtin").git_files() end, "Find Git files" },
+		end, { desc = "Find files" } },
 		["<leader>ps"] = { function()
 			require("telescope.builtin").grep_string({ search = vim.fn.input("Grep > ") })
-		end, "Find by grep" },
+		end, { desc = "Find by grep" } },
 
 
 		-- Trouble keybinds
-		["<leader>tt"] = { "<cmd>TroubleToggle workspace_diagnostics<CR>", "Toggles Trouble UI" },
-		["<leader>tr"] = { "<cmd>TroubleToggle lsp_references<CR>", "Toggles Trouble references" },
-		["<leader>tq"] = { "<cmd>TroubleToggle quickfix<CR>", "Toggles Trouble references" },
+		["<leader>tt"] = { "<cmd>TroubleToggle workspace_diagnostics<CR>", { desc = "Toggles Trouble UI" } },
+		["<leader>tr"] = { "<cmd>TroubleToggle lsp_references<CR>", { desc = "Toggles Trouble references" } },
+		["<leader>tq"] = { "<cmd>TroubleToggle quickfix<CR>", { desc = "Toggles Trouble references" } },
 
 
 		-- LSP commands
-		["<leader>f"] = { vim.lsp.buf.format, "LSP format" },
 		["<leader>rn"] = { function()
 			vim.wo.number = true
 			vim.wo.relativenumber = not vim.wo.relativenumber
-		end, "Toggle relative numbers" },
-
-		["<leader>t"] = { ":lua require('toggle-checkbox').toggle()<CR>", "Toggle markdown checkbox" },
+		end, { desc = "Toggle relative numbers" } },
 
 		-- Debugging
 		-- ["<F5>"] = { ":lua require'dap'.continue()<CR>", "Start debugging/Continue" },
@@ -115,43 +104,37 @@ local keymaps = {
 	},
 
 	["i"] = {
-		["<C-b>"] = { "<ESC>^i", "Beginning of line" },
-		["<C-h>"] = { "<Left>", "Move left", noremap = true },
-		["<C-l>"] = { "<Right>", "Move right" },
-		["<C-j>"] = { "<Down>", "Move down" },
-		["<C-k>"] = { "<Up>", "Move up" },
+		["<C-b>"] = { "<ESC>^i", { desc = "Beginning of line" } },
+		["<C-h>"] = { "<Left>", { desc = "Move left" } },
+		["<C-l>"] = { "<Right>", { desc = "Move right" } },
+		["<C-j>"] = { "<Down>", { desc = "Move down" } },
+		["<C-k>"] = { "<Up>", { desc = "Move up" } },
 	},
 
 	["v"] = {
 		-- Highlight all
-		["<leader>a"] = { "<ESC>ggVG", "Highlight all lines in file" },
+		["<leader>a"] = { "<ESC>ggVG", { desc = "Highlight all lines in file" } },
 
 		-- Move commands
-		["J"] = { ":m '>+1<CR>gv=gv", "Move highlighted line down" },
-		["K"] = { ":m '<-2<CR>gv=gv", "Move highlighted line up" },
+		["J"] = { ":m '>+1<CR>gv=gv", { desc = "Move highlighted line down" } },
+		["K"] = { ":m '<-2<CR>gv=gv", { desc = "Move highlighted line up" } },
 
 		-- Copy/Paste
-		["<leader>y"] = { [["+y]], "Copy to clipboard" },
+		["<leader>y"] = { [["+y]], { desc = "Copy to clipboard" } },
 
 	},
 
 	["t"] = {
-		["<Esc>"] = { "<C-\\><C-n>", "Exit terminal mode" },
-		["<A-h>"] = { function() require("nvterm.terminal").toggle("horizontal") end, "Toggle horizontal terminal" },
-		["<A-v>"] = { function() require("nvterm.terminal").toggle("vertical") end, "Toggle vertical terminal" },
-		["<A-i>"] = { function() require("nvterm.terminal").toggle("float") end, "Toggle floating terminal" },
+		["<Esc>"] = { "<C-\\><C-n>", { desc = "Exit terminal mode" } },
+		["<A-h>"] = { function() require("nvterm.terminal").toggle("horizontal") end, {
+			desc = "Toggle horizontal terminal" } },
+		["<A-v>"] = { function() require("nvterm.terminal").toggle("vertical") end, { desc = "Toggle vertical terminal" } },
+		["<A-i>"] = { function() require("nvterm.terminal").toggle("float") end, { desc = "Toggle floating terminal" } },
 	},
 
 	["x"] = {
-		["<leader>p"] = { [["_dP]], "Paste over and delete" },
+		["<leader>p"] = { [["_dP]], { desc = "Paste over and delete" } },
 	}
 }
 
-for mode, mappings in pairs(keymaps) do
-	local processed = {}
-	for mapping, action in pairs(mappings) do
-		processed[mapping] = action
-		processed[mapping].mode = mode
-	end
-	RegisterMapping(processed)
-end
+RegisterMappings(keymaps)

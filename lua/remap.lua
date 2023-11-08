@@ -34,12 +34,12 @@ local keymaps = {
 		-- Harpoon
 		["<leader>hp"] = { [[:lua require("harpoon.ui").toggle_quick_menu()<CR>]], { desc = "Toggle harpoon menu" } },
 		["<leader>ha"] = { function() require("harpoon.mark").add_file() end, { desc = "Add file to harpoon" } },
-		["<tab>"] = { function() require("harpoon.ui").nav_next() end, { desc = "Navigate to next pooned file" } },
-		["<S-tab>"] = { function() require("harpoon.ui").nav_prev() end, { desc = "Navigate to prev pooned file" } },
 		["<A-a>"] = { function() require("harpoon.ui").nav_file(1) end, { desc = "Navigate to pooned file 1" } },
 		["<A-s>"] = { function() require("harpoon.ui").nav_file(2) end, { desc = "Navigate to pooned file 2" } },
 		["<A-d>"] = { function() require("harpoon.ui").nav_file(3) end, { desc = "Navigate to pooned file 3" } },
 		["<A-f>"] = { function() require("harpoon.ui").nav_file(4) end, { desc = "Navigate to pooned file 4" } },
+		["<Tab>"] = { vim.cmd.bnext, { desc = "Next buffer" } },
+		["<S-Tab>"] = { vim.cmd.bprev, { desc = "Next buffer" } },
 
 		-- Switch between windows
 		["<C-h>"] = { "<C-w>h", { desc = "Window left" } },

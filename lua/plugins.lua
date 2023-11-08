@@ -191,12 +191,9 @@ return {
 			require("config.plugins.gitsigns")
 		end,
 	},
-	-- {
-	-- 	"folke/neodev.nvim",
-	-- 	config = function()
-	-- 		require("config.plugins.neodev")
-	-- 	end,
-	-- },
+	{
+		"folke/neodev.nvim",
+	},
 
 	-- My plugins
 	{
@@ -220,4 +217,11 @@ return {
 	-- 		"nvim-telescope/telescope.nvim",
 	-- 	}
 	-- }
+	{
+		dir = "/home/aidant/dev/AidanThomas/multiterm.nvim",
+		lazy = true,
+		config = function()
+			require("multiterm").setup({})
+		end
+	}
 }

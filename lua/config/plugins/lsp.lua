@@ -1,11 +1,13 @@
 local lsp = require("lsp-zero")
 
+require("config.plugins.neodev")
+
 lsp.preset("recommended")
 lsp.nvim_lua_ls()
 lsp.ensure_installed({
 	'gopls',
 	'rust_analyzer',
-	'lua_ls'
+	'lua_ls',
 })
 
 local cmp = require("cmp")
@@ -61,7 +63,7 @@ lsp.format_on_save({
 	servers = {
 		["lua_ls"] = { "lua" },
 		["rust_analyzer"] = { "rust" },
-		["gopls"] = { "go" }
+		["gopls"] = { "go" },
 	}
 })
 

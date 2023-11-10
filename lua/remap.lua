@@ -109,6 +109,8 @@ local keymaps = {
 		["<C-l>"] = { "<Right>", { desc = "Move right" } },
 		["<C-j>"] = { "<Down>", { desc = "Move down" } },
 		["<C-k>"] = { "<Up>", { desc = "Move up" } },
+
+		["jk"] = { "<ESC>", { desc = "because stephen said so" } }
 	},
 
 	["v"] = {

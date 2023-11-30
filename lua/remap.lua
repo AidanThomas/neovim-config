@@ -104,13 +104,12 @@ local keymaps = {
 	},
 
 	["i"] = {
-		["<C-b>"] = { "<ESC>^i", { desc = "Beginning of line" } },
-		["<C-h>"] = { "<Left>", { desc = "Move left" } },
-		["<C-l>"] = { "<Right>", { desc = "Move right" } },
-		["<C-j>"] = { "<Down>", { desc = "Move down" } },
-		["<C-k>"] = { "<Up>", { desc = "Move up" } },
+		["<A-h>"] = { "<Left>", { desc = "Move left" } },
+		["<A-l>"] = { "<Right>", { desc = "Move right" } },
+		["<A-j>"] = { "<Down>", { desc = "Move down" } },
+		["<A-k>"] = { "<Up>", { desc = "Move up" } },
 
-		["jk"] = { "<ESC>", { desc = "because stephen said so" } }
+		["jk"] = { "<ESC>", { desc = "Stephen is always right" } }
 	},
 
 	["v"] = {

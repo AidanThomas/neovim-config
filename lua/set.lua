@@ -31,7 +31,6 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 
 vim.g.qs_highlight_on_keys = { 'f', 'F', 't', 'T' }
-
 vim.g.mapleader = " "
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -46,3 +45,5 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 
 vim.opt.list = true
 vim.opt.listchars:append "eol:↴"
+
+vim.o.cmdheight = 0

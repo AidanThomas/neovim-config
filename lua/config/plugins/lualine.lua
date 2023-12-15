@@ -60,22 +60,8 @@ require("lualine").setup {
 	},
 	sections = {
 		lualine_a = { 'mode' },
-		lualine_b = { 'branch', 'diagnostics' },
-		lualine_c = {
-			{
-				'filename',
-				file_status = false,
-				newfile_status = false,
-				path = 0,
-				shorting_target = 40,
-				symbols = {
-					modified = "[+]",
-					readonly = "[Read Only]",
-					unnamed = "[No Name]",
-					newfile = "[New]"
-				}
-			},
-		},
+		lualine_b = { 'branch' },
+		lualine_c = { 'diff', 'diagnostics' },
 		lualine_x = { 'encoding', 'fileformat', 'filetype' },
 		lualine_y = { 'progress' },
 		lualine_z = { 'location' }

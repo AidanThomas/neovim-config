@@ -19,6 +19,8 @@ local keymaps = {
 			require("telescope").extensions.file_browser.file_browser({
 				grouped = true,
 				hidden = true,
+				select_buffer = true,
+				cwd = vim.fn.expand("%:h")
 			})
 		end, { desc = "Open file explorer" } },
 		["<C-s>"] = { "<cmd>w<CR>", { desc = "Save current file", noremap = true } },
@@ -90,17 +92,17 @@ local keymaps = {
 		end, { desc = "Toggle relative numbers" } },
 
 		-- Debugging
-		-- ["<F5>"] = { ":lua require'dap'.continue()<CR>", "Start debugging/Continue" },
-		-- ["<F6>"] = { ":lua require'dap'.step_over()<CR>", "Step over" },
-		-- ["<F7>"] = { ":lua require'dap'.step_into()<CR>", "Step into" },
-		-- ["<F8>"] = { ":lua require'dap'.step_out()<CR>", "Step out" },
-		-- ["<leader>b"] = { ":lua require'dap'.toggle_breakpoint()<CR>", "Toggle breakpoint" },
-		-- ["<leader>B"] = { ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
-		-- 	"Set breakpoint with conidition" },
-		-- ["<leader>lp"] = { ":lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>",
-		-- 	"Set log point" },
-		-- ["<leader>dr"] = { ":lua require'dap'.repl.open()<CR>", "repl.open" },
-		-- ["<leader>dbg"] = { ":lua require('dap-go').debug_test()<CR>", "Debug test" },
+		["<F5>"] = { ":lua require'dap'.continue()<CR>", { desc = "Start debugging/Continue" } },
+		["<F6>"] = { ":lua require'dap'.step_over()<CR>", { desc = "Step over" } },
+		["<F7>"] = { ":lua require'dap'.step_into()<CR>", { desc = "Step into" } },
+		["<F8>"] = { ":lua require'dap'.step_out()<CR>", { desc = "Step out" } },
+		["<leader>b"] = { ":lua require'dap'.toggle_breakpoint()<CR>", { desc = "Toggle breakpoint" } },
+		["<leader>B"] = { ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
+			{ desc = "Set breakpoint with conidition" } },
+		["<leader>lp"] = { ":lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>",
+			{ desc = "Set log point" } },
+		["<leader>dr"] = { ":lua require'dap'.repl.open()<CR>", { desc = "repl.open" } },
+		["<leader>dbg"] = { ":lua require('dap-go').debug_test()<CR>", { desc = "Debug test" } },
 	},
 
 	["i"] = {

@@ -82,11 +82,11 @@ local options = {
 	buttons = {
 		type = "group",
 		val = {
-			button("e", "  Create File", ":Telescope file_browser<CR>"),
-			button("f f", "  Find File", ":Telescope find_files<CR>"),
-			button("f w", "󰈭  Find Word", ":Telescope live_grep<CR>"),
-			button("b m", "  Bookmarks", ":Telescope marks<CR>"),
-			button("e s", "  Settings", ":Telescope find_files cwd=~/.config/nvim<CR>"),
+			button("b", "  Browse files", ":Telescope file_browser grouped=true hidden=true<CR>"),
+			button("f", "  Find File", ":Telescope find_files<CR>"),
+			button("w", "󰈭  Find Word", ":Telescope live_grep<CR>"),
+			button("m", "  Marks", ":Telescope marks<CR>"),
+			button("s", "  Settings", ":Telescope find_files cwd=~/.config/nvim<CR>"),
 		},
 		opts = {
 			spacing = 1,

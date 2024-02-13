@@ -1,3 +1,5 @@
+local fb_actions = require("telescope").extensions.file_browser.actions
+
 require("telescope").setup({
 	defaults = {
 		vimgrep_arguments = {
@@ -54,6 +56,17 @@ require("telescope").setup({
 		file_browser = {
 			hijack_netrw = true,
 			initial_mode = "normal",
+			mappings = {
+				["n"] = {
+					["<C-c>"] = fb_actions.create,
+					["<C-r>"] = fb_actions.rename,
+					["<C-m>"] = fb_actions.move,
+					["<C-d>"] = fb_actions.remove,
+				},
+				["i"] = {
+					["<C-c>"] = fb_actions.create_from_prompt,
+				}
+			}
 		}
 	}
 })

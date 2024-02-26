@@ -21,4 +21,28 @@ require 'nvim-treesitter.configs'.setup {
 		-- Instead of true it can also be a list of languages
 		additional_vim_regex_highlighting = false,
 	},
+	textobjects = {
+		select = {
+			enable = true,
+			lookahead = true,
+
+			keymaps = {
+				-- You can use the capture groups defined in textobjects.scm
+				["af"] = { query = "@function.outer", desc = "Select the outer part of a function region" },
+				["if"] = { query = "@function.inner", desc = "Select the inner part of a function region" },
+				["ls"] = { query = "@assignment.lhs", desc = "Select lhs of assignment" },
+				["rs"] = { query = "@assignment.rhs", desc = "Select rhs of assignment" },
+				["ac"] = { query = "@conditional.outer", desc = "Select the outer part of a conditional region" },
+				["ic"] = { query = "@conditional.inner", desc = "Select the inner part of a conditional region" },
+				["ap"] = { query = "@parameter.outer", desc = "Select the outer part of a parameter region" },
+				["ip"] = { query = "@parameter.inner", desc = "Select the inner part of a parameter region" },
+			},
+			selection_modes = {
+				-- ['@parameter.outer'] = 'v', -- charwise
+				-- ['@function.outer'] = 'V', -- linewise
+				-- ['@class.outer'] = '<c-v>', -- blockwise
+			},
+			include_surrounding_whitespace = true,
+		},
+	},
 }

@@ -1,76 +1,78 @@
 local fb_actions = require("telescope").extensions.file_browser.actions
 
 require("telescope").setup({
-	defaults = {
-		vimgrep_arguments = {
-			"rg",
-			"-L",
-			"--color=never",
-			"--no-heading",
-			"--with-filename",
-			"--line-number",
-			"--column",
-			"--smart-case",
-		},
-		prompt_prefix = "   ",
-		selection_caret = "󰜴 ",
-		entry_prefix = "  ",
-		initial_mode = "insert",
-		selection_strategy = "reset",
-		sorting_strategy = "ascending",
-		layout_strategy = "horizontal",
-		layout_config = {
-			horizontal = {
-				prompt_position = "top",
-				preview_width = 0.55,
-				results_width = 0.8,
-			},
-			vertical = {
-				mirror = false,
-			},
-			width = 0.87,
-			height = 0.80,
-			preview_cutoff = 120,
-		},
-		file_sorter = require("telescope.sorters").get_fuzzy_file,
-		file_ignore_patterns = { "node_modules", ".git/", ".git\\" },
-		generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
-		path_display = { "truncate" },
-		winblend = 0,
-		border = {},
-		borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-		color_devicons = true,
-		set_env = { ["COLORTERM"] = "truecolor" }, --default = nil,
-		file_previewer = require("telescope.previewers").vim_buffer_cat.new,
-		grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
-		qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
-		buffer_preview_maker = require("telescope.previewers").buffer_previewer_maker,
-		mappings = {
-			n = { ["q"] = require("telescope.actions").close },
-		},
-	},
+    defaults = {
+        vimgrep_arguments = {
+            "rg",
+            "-L",
+            "--color=never",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--smart-case",
+        },
+        prompt_prefix = "   ",
+        selection_caret = "󰜴 ",
+        entry_prefix = "  ",
+        initial_mode = "insert",
+        selection_strategy = "reset",
+        sorting_strategy = "ascending",
+        layout_strategy = "horizontal",
+        layout_config = {
+            horizontal = {
+                prompt_position = "top",
+                preview_width = 0.55,
+                results_width = 0.8,
+            },
+            vertical = {
+                mirror = false,
+            },
+            width = 0.87,
+            height = 0.80,
+            preview_cutoff = 120,
+        },
+        file_sorter = require("telescope.sorters").get_fuzzy_file,
+        file_ignore_patterns = { "node_modules", ".git/", ".git\\" },
+        generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
+        path_display = { "truncate" },
+        winblend = 0,
+        border = {},
+        borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+        color_devicons = true,
+        set_env = { ["COLORTERM"] = "truecolor" }, --default = nil,
+        file_previewer = require("telescope.previewers").vim_buffer_cat.new,
+        grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+        qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
+        buffer_preview_maker = require("telescope.previewers").buffer_previewer_maker,
+        mappings = {
+            n = { ["q"] = require("telescope.actions").close },
+        },
+    },
 
-	extensions_list = { "themes", "terms", "file_browser" },
+    extensions_list = { "themes", "terms", "file_browser" },
 
-	extensions = {
-		file_browser = {
-			hijack_netrw = true,
-			initial_mode = "normal",
-			mappings = {
-				["n"] = {
-					["<C-c>"] = fb_actions.create,
-					["<C-r>"] = fb_actions.rename,
-					["<C-m>"] = fb_actions.move,
-					["<C-d>"] = fb_actions.remove,
-				},
-				["i"] = {
-					["<C-c>"] = fb_actions.create_from_prompt,
-				}
-			}
-		}
-	}
+    extensions = {
+        file_browser = {
+            hijack_netrw = true,
+            initial_mode = "normal",
+            mappings = {
+                ["n"] = {
+                    ["<A-r>"] = fb_actions.rename,
+                    ["<A-m>"] = fb_actions.move,
+                    ["<A-d>"] = fb_actions.remove,
+                    ["_"] = fb_actions.goto_parent_dir,
+                },
+                ["i"] = {
+                    ["<C-c>"] = fb_actions.create_from_prompt,
+                }
+            }
+        }
+    }
 })
 
 -- Extensions
+require("telescope").load_extension("fzf")
 require("telescope").load_extension("file_browser")
+require("telescope").load_extension("ui-select")
 -- require("telescope").load_extension("make")

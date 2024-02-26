@@ -1,227 +1,222 @@
 return {
-	-- Core
-	{ "nvim-lua/plenary.nvim" },
-	{
-		"nvim-telescope/telescope.nvim",
-		version = "0.1.4",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		cmd = "Telescope",
-		config = function()
-			require("config.plugins.telescope")
-		end,
-	},
-	{
-		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate",
-		config = function()
-			require("config.plugins.treesitter")
-		end,
-	},
-	{
-		"nvim-lualine/lualine.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		event = "VeryLazy",
-		config = function()
-			require("config.plugins.lualine")
-		end,
-	},
+    -- Core
+    {
+        "nvim-telescope/telescope.nvim",
+        version = "0.1.4",
+        dependencies = {
+            { "nvim-lua/plenary.nvim" },
 
-	-- LSP
-	{
-		"VonHeikemen/lsp-zero.nvim",
-		branch = "v2.x",
-		dependencies = {
-			-- LSP support
-			{ "neovim/nvim-lspconfig" },
-			{
-				"williamboman/mason.nvim",
-				build = function()
-					pcall(vim.cmd.MasonUpdate)
-				end,
-			},
-			{ "williamboman/mason-lspconfig.nvim" },
+            -- Extra extensions
+            { "nvim-telescope/telescope-ui-select.nvim" },
+            { "nvim-telescope/telescope-file-browser.nvim", },
+            { "nvim-telescope/telescope-dap.nvim" },
+            {
+                "nvim-telescope/telescope-fzf-native.nvim",
+                build = 'make',
+            },
+        },
+        cmd = "Telescope",
+        config = function()
+            require("config.plugins.telescope")
+        end,
+    },
+    {
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate",
+        config = function()
+            require("config.plugins.treesitter")
+        end,
+        dependencies = {
+            { "nvim-treesitter/nvim-treesitter-textobjects" },
+        }
+    },
+    {
+        "nvim-lualine/lualine.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        event = "VeryLazy",
+        config = function()
+            require("config.plugins.lualine")
+        end,
+    },
 
-			-- Autocompletion
-			{ "hrsh7th/nvim-cmp" },
-			{ "hrsh7th/cmp-nvim-lsp" },
-			{ "L3MON4D3/LuaSnip" }
-		},
+    -- LSP
+    {
+        "VonHeikemen/lsp-zero.nvim",
+        branch = "v2.x",
+        dependencies = {
+            -- LSP support
+            {
+                "neovim/nvim-lspconfig",
+                dependencies = {
+                    {
+                        "SmiteshP/nvim-navbuddy",
+                        dependencies = {
+                            {
+                                "SmiteshP/nvim-navic",
+                                dependencies = {
+                                    { "neovim/nvim-lspconfig" }
+                                },
+                                config = function()
+                                    require("config.plugins.navic")
+                                end
+                            },
+                            { "MunifTanjim/nui.nvim" },
+                            { "numToStr/Comment.nvim" },
+                            { "nvim-telescope/telescope.nvim" },
+                        },
+                        config = function()
+                            require("config.plugins.navbuddy")
+                        end
+                    },
+                },
+            },
+            {
+                "williamboman/mason.nvim",
+                build = function()
+                    pcall(vim.cmd.MasonUpdate)
+                end,
+            },
+            { "williamboman/mason-lspconfig.nvim" },
 
-		event = "UIEnter",
-		config = function()
-			require("config.plugins.lsp")
-		end,
-	},
+            -- Autocompletion
+            { "hrsh7th/nvim-cmp" },
+            { "hrsh7th/cmp-nvim-lsp" },
+            { "L3MON4D3/LuaSnip" }
+        },
 
-	-- Themes
-	{
-		"folke/tokyonight.nvim",
-		as = "tokyonight",
-		priority = 1000,
-	},
+        event = "UIEnter",
+        config = function()
+            require("config.plugins.lsp")
+        end,
+    },
 
-	-- Essential editor plugins
-	{
-		"windwp/nvim-autopairs",
-		event = "BufEnter *.*",
-		opts = require("config.plugins.autopairs")
-	},
-	{
-		"NvChad/nvterm",
-		config = function()
-			require("config.plugins.nvterm")
-		end,
-	},
-	{
-		"unblevable/quick-scope",
-		keys = { "f", "F", "t", "T" },
-		config = function() require("config.plugins.quickscope").setup() end,
-	},
-	{
-		"numToStr/Comment.nvim",
-		keys = {
-			{ "gcc", nil, mode = "n" },
-			{ "gbc", nil, mode = "n" },
-			{ "gc",  nil, mode = "v" },
-			{ "gco", nil, mode = "n" },
-			{ "gcO", nil, mode = "n" },
-		},
-		config = function()
-			require("config.plugins.comment")
-		end
-	},
-	{
-		"tpope/vim-fugitive",
-		cmd = "Git"
-	},
-	{
-		"ThePrimeagen/harpoon",
-		config = function()
-			require("config.plugins.harpoon")
-		end
-	},
-	{
-		"nvim-telescope/telescope-file-browser.nvim",
-		dependencies = {
-			"nvim-telescope/telescope.nvim",
-			"nvim-lua/plenary.nvim"
-		}
-	},
+    -- Themes
+    {
+        "folke/tokyonight.nvim",
+        as = "tokyonight",
+        priority = 1000,
+    },
 
-	-- Debugging
-	{
-		"mfussenegger/nvim-dap",
-		dependencies = {
-			{ "leoluz/nvim-dap-go" },
-			{ "rcarriga/nvim-dap-ui" },
-			{ "theHamsta/nvim-dap-virtual-text" },
-			{ "nvim-telescope/telescope-dap.nvim" },
-		},
-		config = function()
-			require("config.plugins.nvim-dap")
-		end,
-	},
+    -- Essential editor plugins
+    {
+        "windwp/nvim-autopairs",
+        event = "BufEnter *.*",
+        opts = require("config.plugins.autopairs")
+    },
+    {
+        "NvChad/nvterm",
+        config = function()
+            require("config.plugins.nvterm")
+        end,
+    },
+    {
+        "unblevable/quick-scope",
+        keys = { "f", "F", "t", "T" },
+        config = function() require("config.plugins.quickscope").setup() end,
+    },
+    {
+        "numToStr/Comment.nvim",
+        keys = {
+            { "gcc", nil, mode = "n" },
+            { "gbc", nil, mode = "n" },
+            { "gc",  nil, mode = "v" },
+            { "gco", nil, mode = "n" },
+            { "gcO", nil, mode = "n" },
+        },
+        config = function()
+            require("config.plugins.comment")
+        end
+    },
+    {
+        "tpope/vim-fugitive",
+        cmd = "Git"
+    },
+    {
+        "ThePrimeagen/harpoon",
+        config = function()
+            require("config.plugins.harpoon")
+        end
+    },
 
-	-- Misc plugins
-	-- {
-	-- 	"nvim-treesitter/playground",
-	-- },
-	{
-		"mbbill/undotree",
-		cmd = "UndotreeToggle",
-	},
-	-- {
-	-- 	"nvim-tree/nvim-tree.lua",
-	-- 	dependencies = {
-	-- 		"nvim-tree/nvim-web-devicons"
-	-- 	},
-	-- 	cmd = "NvimTreeToggle",
-	-- 	config = function()
-	-- 		require("config.plugins.nvimtree")
-	-- 	end,
-	-- },
-	{
-		"goolord/alpha-nvim",
-		event = "VimEnter",
-		config = function()
-			require("config.plugins.alpha")
-		end,
-	},
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		event = "BufEnter *.*",
-		config = function()
-			require("config.plugins.indent-blankline")
-		end,
-	},
-	{
-		"kylechui/nvim-surround",
-		version = "*", -- Use for stability; omit to use `main` branch for latest features
-		event = "BufEnter *.*",
-		config = function()
-			require("config.plugins.nvim-surround")
-		end
-	},
-	{
-		"folke/trouble.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		cmd = "TroubleToggle",
-		opts = {
-			require("config.plugins.trouble")
-		},
-	},
-	{
-		"nvim-treesitter/nvim-treesitter-context",
-		event = "BufEnter *.*",
-		config = function()
-			require("config.plugins.treesitter-context")
-		end,
-	},
-	{
-		"jakewvincent/mkdnflow.nvim",
-		ft = "markdown",
-		config = function()
-			require("config.plugins/mkdnflow")
-		end,
-	},
-	{
-		"lewis6991/gitsigns.nvim",
-		event = "BufEnter *.*",
-		config = function()
-			require("config.plugins.gitsigns")
-		end,
-	},
-	{
-		"folke/neodev.nvim",
-	},
+    -- Debugging
+    {
+        "mfussenegger/nvim-dap",
+        dependencies = {
+            { "leoluz/nvim-dap-go" },
+            { "rcarriga/nvim-dap-ui" },
+            { "theHamsta/nvim-dap-virtual-text" },
+        },
+        config = function()
+            require("config.plugins.nvim-dap")
+        end,
+    },
 
-	-- My plugins
-	{
-		"AidanThomas/scratchpad.nvim",
-		config = function()
-			require("config.plugins.scratchpad")
-		end,
-	},
-	-- {
-	-- 	dir = "/home/aidant/dev/AidanThomas/scratchpad.nvim",
-	-- 	lazy = false,
-	-- 	config = function()
-	-- 		require("config.plugins.scratchpad")
-	-- 	end,
-	-- },
-	--
-	-- {
-	-- 	dir = "/home/aidant/dev/AidanThomas/telescope-make.nvim",
-	-- 	lazy = false,
-	-- 	dependencies = {
-	-- 		"nvim-telescope/telescope.nvim",
-	-- 	}
-	-- }
-	{
-		dir = "/home/aidant/dev/AidanThomas/multiterm.nvim",
-		lazy = true,
-		config = function()
-			require("multiterm").setup({})
-		end
-	}
+    -- Misc plugins
+    {
+        "mbbill/undotree",
+        cmd = "UndotreeToggle",
+    },
+    {
+        "goolord/alpha-nvim",
+        event = "VimEnter",
+        config = function()
+            require("config.plugins.alpha")
+        end,
+    },
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        event = "BufEnter *.*",
+        config = function()
+            require("config.plugins.indent-blankline")
+        end,
+    },
+    {
+        "kylechui/nvim-surround",
+        version = "*", -- Use for stability; omit to use `main` branch for latest features
+        event = "BufEnter *.*",
+        config = function()
+            require("config.plugins.nvim-surround")
+        end
+    },
+    {
+        "folke/trouble.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        cmd = "TroubleToggle",
+        opts = {
+            require("config.plugins.trouble")
+        },
+    },
+    {
+        "lewis6991/gitsigns.nvim",
+        event = "BufEnter *.*",
+        config = function()
+            require("config.plugins.gitsigns")
+        end,
+    },
+    {
+        "folke/neodev.nvim",
+    },
+
+    -- My plugins
+    {
+        "AidanThomas/scratchpad.nvim",
+        config = function()
+            require("config.plugins.scratchpad")
+        end,
+    },
+    -- {
+    -- 	dir = "/home/aidant/dev/AidanThomas/scratchpad.nvim",
+    -- 	lazy = false,
+    -- 	config = function()
+    -- 		require("config.plugins.scratchpad")
+    -- 	end,
+    -- },
+    --
+    -- {
+    -- 	dir = "/home/aidant/dev/AidanThomas/telescope-make.nvim",
+    -- 	lazy = false,
+    -- 	dependencies = {
+    -- 		"nvim-telescope/telescope.nvim",
+    -- 	}
+    -- }
 }

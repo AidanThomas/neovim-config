@@ -33,6 +33,9 @@ local keymaps = {
         ["<leader>gs"] = { vim.cmd.Git, { desc = "Open fugitive" } },
         ["<leader>u"] = { vim.cmd.UndotreeToggle, { desc = "Open undo tree" } },
         ["<leader>n"] = { vim.cmd.Navbuddy, { desc = "Open Navdbuddy" } },
+        ["<leader>ph"] = { function()
+            require("telescope.builtin").help_tags()
+        end, { desc = "Open help" } },
 
         -- Harpoon
         ["<leader>hp"] = { [[:lua require("harpoon.ui").toggle_quick_menu()<CR>]], { desc = "Toggle harpoon menu" } },
@@ -60,13 +63,10 @@ local keymaps = {
 
         -- Splitting
         ["<leader>vs"] = { "<cmd>vsplit<CR>", { desc = "Vertically split the current file" } },
-        ["<leader>h"] = { "<cmd>split<CR>", { desc = "Horizontally split the currentl file" } },
+        ["<leader>hs"] = { "<cmd>split<CR>", { desc = "Horizontally split the currentl file" } },
 
         -- Terminal
-        ["<A-h>"] = { function() require("nvterm.terminal").toggle("horizontal") end, {
-            desc = "Toggle horizontal terminal" } },
-        ["<A-v>"] = { function() require("nvterm.terminal").toggle("vertical") end, { desc = "Toggle vertical terminal" } },
-        ["<A-i>"] = { function() require("nvterm.terminal").toggle("float") end, { desc = "Toggle floating terminal" } },
+        ["<A-i>"] = { function() require("custom.terminal").toggle() end, { desc = "Toggle terminal" } },
 
         -- Scratchpad
         ["<leader>sp"] = { function() require("scratchpad").toggle() end, { desc = "Open new scratchpad" } },
@@ -129,10 +129,7 @@ local keymaps = {
 
     ["t"] = {
         ["<Esc>"] = { "<C-\\><C-n>", { desc = "Exit terminal mode" } },
-        ["<A-h>"] = { function() require("nvterm.terminal").toggle("horizontal") end, {
-            desc = "Toggle horizontal terminal" } },
-        ["<A-v>"] = { function() require("nvterm.terminal").toggle("vertical") end, { desc = "Toggle vertical terminal" } },
-        ["<A-i>"] = { function() require("nvterm.terminal").toggle("float") end, { desc = "Toggle floating terminal" } },
+        ["<A-i>"] = { function() require("custom.terminal").toggle() end, { desc = "Toggle terminal" } },
     },
 
     ["x"] = {

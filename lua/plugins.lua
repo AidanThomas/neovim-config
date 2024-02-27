@@ -104,12 +104,6 @@ return {
         opts = require("config.plugins.autopairs")
     },
     {
-        "NvChad/nvterm",
-        config = function()
-            require("config.plugins.nvterm")
-        end,
-    },
-    {
         "unblevable/quick-scope",
         keys = { "f", "F", "t", "T" },
         config = function() require("config.plugins.quickscope").setup() end,

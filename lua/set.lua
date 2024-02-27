@@ -18,7 +18,7 @@ vim.opt.cursorline = true
 
 local home_dir = os.getenv("HOME")
 if home_dir ~= nil then
-	vim.opt.undodir = home_dir .. "/.vim/undodir"
+    vim.opt.undodir = home_dir .. "/.vim/undodir"
 end
 
 vim.opt.hlsearch = true
@@ -34,16 +34,17 @@ vim.g.qs_highlight_on_keys = { 'f', 'F', 't', 'T' }
 vim.g.mapleader = " "
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-	signs = true,
-	underline = true,
-	virtual_text = {
-		spacing = 5,
-		severity_limit = "Hint",
-	},
-	update_in_insert = true,
+    signs = true,
+    underline = true,
+    virtual_text = {
+        spacing = 5,
+        severity_limit = "Hint",
+    },
+    update_in_insert = true,
 })
 
 vim.opt.list = true
 vim.opt.listchars:append "eol:↴"
 
 vim.o.cmdheight = 0
+vim.o.showtabline = 0 -- Don't show tabline

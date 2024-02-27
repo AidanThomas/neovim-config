@@ -11,6 +11,7 @@ M.toggle = function()
         else
             vim.api.nvim_set_current_buf(M.buf)
         end
+        vim.cmd.set("filetype=terminal")
         M.open = true
         vim.cmd.startinsert()
     else

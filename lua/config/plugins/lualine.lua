@@ -49,7 +49,9 @@ require("lualine").setup {
             'TelescopePrompt',
             'lazy',
             status_line = {},
-            winbar = {},
+            winbar = {
+                'terminal'
+            },
         },
         ignore_focus = {},
         always_divide_middle = true,
@@ -82,9 +84,7 @@ require("lualine").setup {
         lualine_a = { get_dir },
         lualine_b = { 'filename' },
         lualine_c = {
-            "navic",
-            color_correction = nil,
-            navic_opts = nil
+            'navic'
         },
         lualine_x = { 'searchcount', 'selectioncount', 'diagnostics' },
         lualine_y = {},

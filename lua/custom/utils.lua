@@ -27,4 +27,8 @@ M.open_float_win = function(buf, opts)
     vim.api.nvim_open_win(buf, true, o)
 end
 
+M.vim_print = function(object)
+    vim.api.nvim_echo({ { vim.inspect(object) } }, true, {})
+end
+
 return M

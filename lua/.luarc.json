@@ -33,5 +33,5 @@
         "/home/aidant/.local/share/nvim/lazy/cmp-nvim-lsp/lua",
         "/home/aidant/.config/nvim/lua",
         "${3rd}/luv/library"
-    ]
+    ],
 }

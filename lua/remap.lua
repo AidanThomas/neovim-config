@@ -14,7 +14,20 @@ end
 
 local keymaps = {
     ["n"] = {
+        -- Saving/Quitting
+        ["<C-s>"] = { "<cmd>w<CR>", { desc = "Save current file", noremap = true } },
+        ["<leader>qq"] = { "<cmd>qall<CR>", { desc = "Quit all buffers" } },
+        ["<leader>qw"] = { "<cmd>wqall<CR>", { desc = "Write and quit all buffers" } },
+
         -- Navigation
+        ["<C-d>"] = { "<C-d>zz", { desc = "Scroll down" } },
+        ["<C-u>"] = { "<C-u>zz", { desc = "Scroll up" } },
+        ["<leader>es"] = { ":Telescope find_files cwd=~/.config/nvim<CR>", { desc = "Show configuration files" } },
+        ["<leader>cwd"] = { ":cd %:p:h <CR>", { desc = "Set current working directory" } },
+        ["<leader>u"] = { vim.cmd.UndotreeToggle, { desc = "Open undo tree" } },
+        ["<leader>n"] = { vim.cmd.Navbuddy, { desc = "Open Navdbuddy" } },
+
+        -- Telescope
         ["<leader>pv"] = { function()
             require("telescope").extensions.file_browser.file_browser({
                 grouped = true,
@@ -23,21 +36,17 @@ local keymaps = {
                 cwd = vim.fn.expand("%:h")
             })
         end, { desc = "Open file explorer" } },
-        ["<C-s>"] = { "<cmd>w<CR>", { desc = "Save current file", noremap = true } },
-        ["<leader>qq"] = { "<cmd>qall<CR>", { desc = "Quit all buffers" } },
-        ["<leader>qw"] = { "<cmd>wqall<CR>", { desc = "Write and quit all buffers" } },
-        ["<C-d>"] = { "<C-d>zz", { desc = "Scroll down" } },
-        ["<C-u>"] = { "<C-u>zz", { desc = "Scroll up" } },
-        ["<leader>es"] = { ":Telescope find_files cwd=~/.config/nvim<CR>", { desc = "Show configuration files" } },
-        ["<leader>cwd"] = { ":cd %:p:h <CR>", { desc = "Set current working directory" } },
-        ["<leader>gs"] = { vim.cmd.Git, { desc = "Open fugitive" } },
-        ["<leader>u"] = { vim.cmd.UndotreeToggle, { desc = "Open undo tree" } },
-        ["<leader>n"] = { vim.cmd.Navbuddy, { desc = "Open Navdbuddy" } },
         ["<leader>ph"] = { function()
             require("telescope.builtin").help_tags()
         end, { desc = "Open help" } },
+        ["<leader>ff"] = { function()
+            require("telescope.builtin").find_files()
+        end, { desc = "Find files" } },
+        ["<leader>ps"] = { function()
+            require("telescope.builtin").grep_string({ search = vim.fn.input("Grep > ") })
+        end, { desc = "Find by grep" } },
 
-        -- Harpoon
+        -- Harpoon/Tabs
         ["<leader>hp"] = { [[:lua require("harpoon.ui").toggle_quick_menu()<CR>]], { desc = "Toggle harpoon menu" } },
         ["<leader>ha"] = { function() require("harpoon.mark").add_file() end, { desc = "Add file to harpoon" } },
         ["<A-a>"] = { function() require("harpoon.ui").nav_file(1) end, { desc = "Navigate to pooned file 1" } },
@@ -53,7 +62,10 @@ local keymaps = {
         ["<C-j>"] = { "<C-w>j", { desc = "Window down" } },
         ["<C-k>"] = { "<C-w>k", { desc = "Window up" } },
 
+        -- Git
+        ["<leader>gs"] = { vim.cmd.Git, { desc = "Open fugitive" } },
 
+        -- Searching
         ["<Esc>"] = { vim.cmd.noh, { desc = "Turn off search highlights" } },
         ["n"] = { "nzzzv", { desc = "Move to next search result" } },
         ["N"] = { "Nzzzv", { desc = "Move to prev search result" } },
@@ -68,29 +80,10 @@ local keymaps = {
         -- Terminal
         ["<A-i>"] = { function() require("custom.terminal").toggle() end, { desc = "Toggle terminal" } },
 
-        -- Scratchpad
-        ["<leader>sp"] = { function() require("scratchpad").toggle() end, { desc = "Open new scratchpad" } },
-
-        -- Telescope
-        ["<leader>ff"] = { function()
-            require("telescope.builtin").find_files()
-        end, { desc = "Find files" } },
-        ["<leader>ps"] = { function()
-            require("telescope.builtin").grep_string({ search = vim.fn.input("Grep > ") })
-        end, { desc = "Find by grep" } },
-
-
         -- Trouble keybinds
         ["<leader>tt"] = { "<cmd>TroubleToggle workspace_diagnostics<CR>", { desc = "Toggles Trouble UI" } },
         ["<leader>tr"] = { "<cmd>TroubleToggle lsp_references<CR>", { desc = "Toggles Trouble references" } },
         ["<leader>tq"] = { "<cmd>TroubleToggle quickfix<CR>", { desc = "Toggles Trouble references" } },
-
-
-        -- LSP commands
-        ["<leader>rn"] = { function()
-            vim.wo.number = true
-            vim.wo.relativenumber = not vim.wo.relativenumber
-        end, { desc = "Toggle relative numbers" } },
 
         -- Debugging
         ["<F5>"] = { ":lua require'dap'.continue()<CR>", { desc = "Start debugging/Continue" } },

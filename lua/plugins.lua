@@ -192,20 +192,6 @@ return {
     },
 
     -- My plugins
-    {
-        "AidanThomas/scratchpad.nvim",
-        config = function()
-            require("config.plugins.scratchpad")
-        end,
-    },
-    -- {
-    -- 	dir = "/home/aidant/dev/AidanThomas/scratchpad.nvim",
-    -- 	lazy = false,
-    -- 	config = function()
-    -- 		require("config.plugins.scratchpad")
-    -- 	end,
-    -- },
-    --
     -- {
     -- 	dir = "/home/aidant/dev/AidanThomas/telescope-make.nvim",
     -- 	lazy = false,

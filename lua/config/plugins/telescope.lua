@@ -18,12 +18,11 @@ require("telescope").setup({
         initial_mode = "insert",
         selection_strategy = "reset",
         sorting_strategy = "ascending",
-        layout_strategy = "horizontal",
+        layout_strategy = "flex",
         layout_config = {
             horizontal = {
                 prompt_position = "top",
                 preview_width = 0.55,
-                results_width = 0.8,
             },
             vertical = {
                 mirror = false,
@@ -62,6 +61,12 @@ require("telescope").setup({
                     ["<A-m>"] = fb_actions.move,
                     ["<A-d>"] = fb_actions.remove,
                     ["_"] = fb_actions.goto_parent_dir,
+                    -- ["cd"] = function(prompt_bufnr)
+                    --     local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
+                    --     local dir = vim.fn.fnamemodify(picker.path, ":p:h")
+                    --     -- require("telescope.actions").close(prompt_bufnr)
+                    --     vim.cmd(string.format("silent cd  %s", dir))
+                    -- end
                 },
                 ["i"] = {
                     ["<C-c>"] = fb_actions.create_from_prompt,

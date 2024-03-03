@@ -1,6 +1,5 @@
-local M = {}
-
-M.RegisterMappings = function(mappings, options)
+RegisterMappings = function(mappings)
+    local options = { noremap = true, silent = true }
     for mode, maps in pairs(mappings) do
         for lhs, map in pairs(maps) do
             local rhs = map[1]
@@ -13,7 +12,7 @@ M.RegisterMappings = function(mappings, options)
     end
 end
 
-M.keymaps = {
+local keymaps = {
     ["n"] = {
         -- Saving/Quitting
         ["<C-s>"] = { "<cmd>w<CR>", { desc = "Save current file", noremap = true } },
@@ -131,28 +130,4 @@ M.keymaps = {
     },
 }
 
-M.lsp_maps = function(bufnr)
-    local mappings = {
-        ["n"] = {
-            ["gd"] = { function() vim.lsp.buf.defintion() end, { desc = "Go to symbol definition" } },
-            ["K"] = { function() vim.lsp.buf.hover() end, { desc = "Symbol information" } },
-            ["<leader>df"] = { function() vim.diagnostic.open_float() end, { desc = "Open diagnostic as float" } },
-            ["]d"] = { function() vim.diagnostic.goto_next() end, { desc = "Go to next diagnostic" } },
-            ["[d"] = { function() vim.diagnostic.goto_prev() end, { desc = "Go to previous diagnostic" } },
-            ["<leader>ca"] = { function() vim.lsp.buf.code_action() end, { desc = "See code actions" } },
-            ["<leader>rn"] = { function() vim.lsp.buf.rename() end, { desc = "Rename symbol" } },
-        }
-    }
-    M.RegisterMappings(mappings, { buffer = bufnr, remap = false })
-end
-
-M.cmp_maps = function(cmp, cmp_select)
-    return {
-        ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
-        ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
-        ["<CR>"] = cmp.mapping.confirm({ select = true }),
-        ["<C-space>"] = cmp.mapping.complete(),
-    }
-end
-
-return M
+RegisterMappings(keymaps)

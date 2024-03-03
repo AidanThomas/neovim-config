@@ -15,10 +15,9 @@ vim.opt.rtp:prepend(lazypath)
 require("set")
 require("config.lazy")
 require("autocmd")
+require("commands")
+require("remap")
 
--- Keymaps
-local r = require("remap")
-r.RegisterMappings(r.keymaps, { noremap = true, silent = true })
 
 local function SetTheme(theme)
     local config_path = "config.themes." .. theme

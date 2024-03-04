@@ -97,6 +97,11 @@ local keymaps = {
             { desc = "Set log point" } },
         ["<leader>dr"] = { ":lua require'dap'.repl.open()<CR>", { desc = "repl.open" } },
         ["<leader>dbg"] = { ":lua require('dap-go').debug_test()<CR>", { desc = "Debug test" } },
+
+        -- Diagnostics
+        ["<leader>df"] = { function() vim.diagnostic.open_float() end, { desc = "Open diagnostic as float" } },
+        ["]d"] = { function() vim.diagnostic.goto_next() end, { desc = "Go to next diagnostic" } },
+        ["[d]"] = { function() vim.diagnostic.goto_prev() end, { desc = "Go to previous diagnostic" } },
     },
 
     ["i"] = {

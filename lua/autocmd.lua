@@ -13,3 +13,12 @@ autocmd("TextYankPost", {
         vim.highlight.on_yank()
     end,
 })
+
+autocmd("BufWritePost", {
+    desc = "Run cfn-lint on yaml files",
+    pattern = { "*/cm-dev/platform/*.yaml" },
+    group = augroup("YAML Linting", { clear = true }),
+    callback = function()
+        require("lint").try_lint()
+    end
+})

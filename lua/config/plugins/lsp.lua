@@ -53,9 +53,6 @@ lsp.on_attach(function(client, bufnr)
         ["n"] = {
             ["gd"] = { function() vim.lsp.buf.defintion() end, { desc = "Go to symbol definition", buffer = bufnr } },
             ["K"] = { function() vim.lsp.buf.hover() end, { desc = "Symbol information", buffer = bufnr } },
-            ["<leader>df"] = { function() vim.diagnostic.open_float() end, { desc = "Open diagnostic as float", buffer = bufnr } },
-            ["]d"] = { function() vim.diagnostic.goto_next() end, { desc = "Go to next diagnostic", buffer = bufnr } },
-            ["[d"] = { function() vim.diagnostic.goto_prev() end, { desc = "Go to previous diagnostic", buffer = bufnr } },
             ["<leader>ca"] = { function() vim.lsp.buf.code_action() end, { desc = "See code actions", buffer = bufnr } },
             ["<leader>rn"] = { function() vim.lsp.buf.rename() end, { desc = "Rename symbol", buffer = bufnr } },
         }

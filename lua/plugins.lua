@@ -190,13 +190,13 @@ return {
     {
         "folke/neodev.nvim",
     },
-
-    -- My plugins
-    -- {
-    -- 	dir = "/home/aidant/dev/AidanThomas/telescope-make.nvim",
-    -- 	lazy = false,
-    -- 	dependencies = {
-    -- 		"nvim-telescope/telescope.nvim",
-    -- 	}
-    -- }
+    {
+        "mfussenegger/nvim-lint",
+        lazy = false,
+        config = function()
+            require("lint").linters_by_ft = {
+                yaml = { 'cfn_lint' }
+            }
+        end
+    }
 }

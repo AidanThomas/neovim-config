@@ -1,4 +1,5 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+
 -- Install lazy if it is not found
 if not vim.loop.fs_stat(lazypath) then
     vim.fn.system({
@@ -12,12 +13,14 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- Set options
 require("set")
-require("config.lazy")
+require("remap")
 require("autocmd")
 require("commands")
-require("remap")
 
+-- Start lazy
+require("config.lazy")
 
 local function SetTheme(theme)
     local config_path = "config.themes." .. theme

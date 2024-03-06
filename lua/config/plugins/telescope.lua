@@ -1,4 +1,5 @@
 local fb_actions = require("telescope").extensions.file_browser.actions
+local actions = require("telescope.actions")
 
 require("telescope").setup({
     defaults = {
@@ -45,7 +46,27 @@ require("telescope").setup({
         qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
         buffer_preview_maker = require("telescope.previewers").buffer_previewer_maker,
         mappings = {
-            n = { ["q"] = require("telescope.actions").close },
+            n = {
+                ["q"] = require("telescope.actions").close,
+                ["<C-n>"] = actions.move_selection_next,
+                ["<C-p>"] = actions.move_selection_previous,
+            },
+        },
+    },
+
+    pickers = {
+        buffers = {
+            mappings = {
+                i = {
+                    ["<C-d>"] = actions.delete_buffer + actions.move_to_top,
+                },
+                n = {
+                    ["d"] = actions.delete_buffer + actions.move_to_top
+                }
+            }
+        },
+        colorscheme = {
+            enable_preview = true
         },
     },
 
@@ -57,16 +78,10 @@ require("telescope").setup({
             initial_mode = "normal",
             mappings = {
                 ["n"] = {
-                    ["<A-r>"] = fb_actions.rename,
-                    ["<A-m>"] = fb_actions.move,
-                    ["<A-d>"] = fb_actions.remove,
+                    ["<r>"] = fb_actions.rename,
+                    ["<m>"] = fb_actions.move,
+                    ["<d>"] = fb_actions.remove,
                     ["_"] = fb_actions.goto_parent_dir,
-                    -- ["cd"] = function(prompt_bufnr)
-                    --     local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
-                    --     local dir = vim.fn.fnamemodify(picker.path, ":p:h")
-                    --     -- require("telescope.actions").close(prompt_bufnr)
-                    --     vim.cmd(string.format("silent cd  %s", dir))
-                    -- end
                 },
                 ["i"] = {
                     ["<C-c>"] = fb_actions.create_from_prompt,
@@ -80,4 +95,3 @@ require("telescope").setup({
 require("telescope").load_extension("fzf")
 require("telescope").load_extension("file_browser")
 require("telescope").load_extension("ui-select")
--- require("telescope").load_extension("make")

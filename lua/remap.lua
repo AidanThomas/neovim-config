@@ -45,6 +45,9 @@ local keymaps = {
         ["<leader>ps"] = { function()
             require("telescope.builtin").grep_string({ search = vim.fn.input("Grep > ") })
         end, { desc = "Find by grep" } },
+        ["<leader>fb"] = { function()
+            require("telescope.builtin").buffers()
+        end, { desc = "Find buffers" } },
 
         -- Harpoon/Tabs
         ["<leader>hp"] = { [[:lua require("harpoon.ui").toggle_quick_menu()<CR>]], { desc = "Toggle harpoon menu" } },

@@ -1,4 +1,5 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+-- Add a comment
 
 -- Install lazy if it is not found
 if not vim.loop.fs_stat(lazypath) then

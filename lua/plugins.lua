@@ -93,8 +93,13 @@ return {
     -- Themes
     {
         "folke/tokyonight.nvim",
-        as = "tokyonight",
+        name = "tokyonight",
         priority = 1000,
+    },
+    {
+        "catppuccin/nvim",
+        name = "catppuccin",
+        priority = 1001,
     },
 
     -- Essential editor plugins

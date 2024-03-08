@@ -51,7 +51,7 @@ lsp.setup_nvim_cmp({
 lsp.on_attach(function(client, bufnr)
     RegisterMappings({
         ["n"] = {
-            ["gd"] = { function() vim.lsp.buf.defintion() end, { desc = "Go to symbol definition", buffer = bufnr } },
+            ["gd"] = { function() vim.lsp.buf.definition() end, { desc = "Go to symbol definition", buffer = bufnr } },
             ["K"] = { function() vim.lsp.buf.hover() end, { desc = "Symbol information", buffer = bufnr } },
             ["<leader>ca"] = { function() vim.lsp.buf.code_action() end, { desc = "See code actions", buffer = bufnr } },
             ["<leader>rn"] = { function() vim.lsp.buf.rename() end, { desc = "Rename symbol", buffer = bufnr } },

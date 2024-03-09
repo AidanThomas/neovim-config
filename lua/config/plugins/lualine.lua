@@ -1,3 +1,5 @@
+local navic = require("nvim-navic")
+
 local function get_dir()
     local path = vim.fn.expand("%:.:h")
     local sep = "/"
@@ -36,12 +38,14 @@ local function get_dir_inactive()
     return path
 end
 
-local navic = require("nvim-navic")
+local colours = vim.g.colors_name
+if colours == "catppuccin-mocha" then colours = "catppuccin" end -- Catppuccin doesn't set name correctly
+local custom_theme = require("config.themes." .. colours .. ".lualine")
 
 require("lualine").setup {
     options = {
         icons_enabled = true,
-        theme = "catppuccin",
+        theme = custom_theme,
         component_separators = { left = '', right = '' },
         section_separators = { left = '', right = '' },
         disabled_filetypes = {
@@ -84,7 +88,10 @@ require("lualine").setup {
         lualine_a = { get_dir },
         lualine_b = { 'filename' },
         lualine_c = {
-            'navic'
+            {
+                'navic',
+                color = { bg = "#11111B" },
+            },
         },
         lualine_x = { 'searchcount', 'selectioncount', 'diagnostics' },
         lualine_y = {},
@@ -96,7 +103,10 @@ require("lualine").setup {
         lualine_b = {
         },
         lualine_c = {
-            get_dir_inactive
+            {
+                get_dir_inactive,
+                color = { bg = "#11111B" },
+            },
         },
         lualine_x = {},
         lualine_y = { 'diagnostics' },

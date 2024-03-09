@@ -1,4 +1,3 @@
-local maps = require("remap")
 local lsp = require("lsp-zero")
 local navic = require("nvim-navic")
 local navbuddy = require("nvim-navbuddy")
@@ -18,9 +17,13 @@ local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
     ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
     ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
-    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+    ["<C-y>"] = cmp.mapping.confirm({ select = true }),
     ["<C-space>"] = cmp.mapping.complete(),
 })
+
+-- Disable tab and shift tab for traversing cmp
+cmp_mappings["<Tab>"] = nil
+cmp_mappings["<S-Tab>"] = nil
 
 -- Fix Undefined global 'vim'
 lsp.configure('lua_ls', {

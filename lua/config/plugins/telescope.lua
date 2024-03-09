@@ -26,11 +26,14 @@ require("telescope").setup({
                 preview_width = 0.55,
             },
             vertical = {
-                mirror = false,
+                mirror = true,
+                prompt_position = "top",
+            },
+            flex = {
+                flip_columns = 140,
             },
             width = 0.87,
             height = 0.80,
-            preview_cutoff = 120,
         },
         file_sorter = require("telescope.sorters").get_fuzzy_file,
         file_ignore_patterns = { "node_modules", ".git/", ".git\\" },

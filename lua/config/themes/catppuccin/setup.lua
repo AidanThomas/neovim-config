@@ -22,6 +22,7 @@ require("catppuccin").setup({
         return {
             Normal = { bg = colors.crust },
             NormalNC = { bg = colors.crust },
+            WinSeparator = { fg = colors.base },
         }
     end,
     integrations = {

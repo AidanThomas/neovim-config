@@ -24,6 +24,8 @@ require("catppuccin").setup({
             -- NormalNC = { bg = colors.crust },
             WinSeparator = { fg = colors.base },
             NormalFloat = { bg = colors.crust },
+            TroubleNormal = { bg = colors.crust },
+            TroubleNormalNC = { bg = colors.crust },
         }
     end,
     integrations = {

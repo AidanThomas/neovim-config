@@ -54,7 +54,8 @@ require("lualine").setup {
             'lazy',
             status_line = {},
             winbar = {
-                'terminal'
+                'trouble',
+                'terminal',
             },
         },
         ignore_focus = {},

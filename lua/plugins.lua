@@ -185,11 +185,10 @@ return {
     },
     {
         "folke/trouble.nvim",
+        branch = "dev",
         dependencies = { "nvim-tree/nvim-web-devicons" },
-        cmd = "TroubleToggle",
-        opts = {
-            require("config.plugins.trouble")
-        },
+        cmd = "Trouble",
+        opts = require("config.plugins.trouble")
     },
     {
         "lewis6991/gitsigns.nvim",
@@ -203,11 +202,10 @@ return {
     },
     {
         "mfussenegger/nvim-lint",
-        lazy = false,
         config = function()
             require("lint").linters_by_ft = {
                 yaml = { 'cfn_lint' }
             }
         end
-    }
+    },
 }

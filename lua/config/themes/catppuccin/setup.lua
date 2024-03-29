@@ -4,25 +4,26 @@ require("catppuccin").setup({
         light = "latte",
         dark = "mocha",
     },
-    transparent_background = false, -- disables setting the background color.
-    show_end_of_buffer = true,      -- shows the '~' characters after the end of buffers
-    term_colors = true,             -- sets terminal colors (e.g. `g:terminal_color_0`)
+    transparent_background = true, -- disables setting the background color.
+    show_end_of_buffer = true,     -- shows the '~' characters after the end of buffers
+    term_colors = true,            -- sets terminal colors (e.g. `g:terminal_color_0`)
     dim_inactive = {
-        enabled = false,            -- dims the background color of inactive window
+        enabled = false,           -- dims the background color of inactive window
         shade = "dark",
-        percentage = 0.15,          -- percentage of the shade to apply to the inactive window
+        percentage = 0.15,         -- percentage of the shade to apply to the inactive window
     },
-    styles = {                      -- Handles the styles of general hi groups (see `:h highlight-args`):
-        comments = { "italic" },    -- Change the style of comments
+    styles = {                     -- Handles the styles of general hi groups (see `:h highlight-args`):
+        comments = { "italic" },   -- Change the style of comments
         conditionals = { "italic" },
         types = { "italic" },
         -- miscs = {}, -- Uncomment to turn off hard-coded styles
     },
     custom_highlights = function(colors)
         return {
-            Normal = { bg = colors.crust },
-            NormalNC = { bg = colors.crust },
+            -- Normal = { bg = colors.crust },
+            -- NormalNC = { bg = colors.crust },
             WinSeparator = { fg = colors.base },
+            NormalFloat = { bg = colors.crust },
         }
     end,
     integrations = {
@@ -45,10 +46,10 @@ require("catppuccin").setup({
                 information = { "italic" },
             },
             underlines = {
-                errors = { "underline" },
-                hints = { "underline" },
-                warnings = { "underline" },
-                information = { "underline" },
+                errors = { "undercurl" },
+                hints = { "undercurl" },
+                warnings = { "undercurl" },
+                information = { "undercurl" },
             },
             inlay_hints = {
                 background = true,

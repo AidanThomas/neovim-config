@@ -84,9 +84,11 @@ local keymaps = {
         ["<A-i>"] = { function() require("custom.terminal").toggle() end, { desc = "Toggle terminal" } },
 
         -- Trouble keybinds
-        ["<leader>tt"] = { "<cmd>TroubleToggle workspace_diagnostics<CR>", { desc = "Toggles Trouble UI" } },
-        ["<leader>tr"] = { "<cmd>TroubleToggle lsp_references<CR>", { desc = "Toggles Trouble references" } },
-        ["<leader>tq"] = { "<cmd>TroubleToggle quickfix<CR>", { desc = "Toggles Trouble references" } },
+        ["<leader>tt"] = { "<cmd>Trouble diagnostics<CR>", { desc = "Toggles Trouble diagnostics" } },
+        ["<leader>tr"] = { "<cmd>Trouble lsp_references<CR>", { desc = "Toggles Trouble references" } },
+        ["<leader>tq"] = { "<cmd>Trouble quickfix<CR>", { desc = "Toggles Trouble quickfix" } },
+        ["<leader>ti"] = { "<cmd>Trouble lsp_implementations<CR>", { desc = "Toggles Trouble implementations" } },
+        ["<leader>tp"] = { "<cmd>Trouble<CR>", { desc = "Toggles Trouble picker" } },
 
         -- Debugging
         ["<F5>"] = { ":lua require'dap'.continue()<CR>", { desc = "Start debugging/Continue" } },

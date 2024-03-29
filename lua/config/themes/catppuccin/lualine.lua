@@ -7,36 +7,43 @@ return {
     normal = {
         a = { bg = colours.blue, fg = colours.crust, gui = "bold" },
         b = { bg = colours.base, fg = colours.blue },
-        c = { bg = colours.crust, fg = colours.text },
+        -- we set to "none" where we want transparecny, probably a cleaner way to do this...
+        c = { bg = "none", fg = colours.text },
     },
     insert = {
         a = { bg = colours.green, fg = colours.crust, gui = "bold" },
         b = { bg = colours.base, fg = colours.green },
-        c = { bg = colours.crust, fg = colours.text },
+        -- we set to "none" where we want transparecny, probably a cleaner way to do this...
+        c = { bg = "none", fg = colours.text },
     },
     terminal = {
         a = { bg = colours.green, fg = colours.crust, gui = "bold" },
         b = { bg = colours.base, fg = colours.green },
-        c = { bg = colours.crust, fg = colours.text },
+        -- we set to "none" where we want transparecny, probably a cleaner way to do this...
+        c = { bg = "none", fg = colours.text },
     },
     command = {
         a = { bg = colours.peach, fg = colours.crust, gui = "bold" },
         b = { bg = colours.base, fg = colours.peach },
-        c = { bg = colours.crust, fg = colours.text },
+        -- we set to "none" where we want transparecny, probably a cleaner way to do this...
+        c = { bg = "none", fg = colours.text },
     },
     visual = {
         a = { bg = colours.mauve, fg = colours.crust, gui = "bold" },
         b = { bg = colours.base, fg = colours.mauve },
-        c = { bg = colours.crust, fg = colours.text },
+        -- we set to "none" where we want transparecny, probably a cleaner way to do this...
+        c = { bg = "none", fg = colours.text },
     },
     replace = {
         a = { bg = colours.red, fg = colours.crust, gui = "bold" },
         b = { bg = colours.base, fg = colours.red },
-        c = { bg = colours.crust, fg = colours.text },
+        -- we set to "none" where we want transparecny, probably a cleaner way to do this...
+        c = { bg = "none", fg = colours.text },
     },
     inactive = {
         a = { bg = colours.crust, fg = colours.blue },
         b = { bg = colours.crust, fg = colours.surface1, gui = "bold" },
-        c = { bg = colours.crust, fg = colours.overlay0 },
+        -- we set to "none" where we want transparecny, probably a cleaner way to do this...
+        c = { bg = "none", fg = colours.overlay0 },
     },
 }

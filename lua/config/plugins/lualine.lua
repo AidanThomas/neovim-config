@@ -55,7 +55,9 @@ require("lualine").setup {
             status_line = {},
             winbar = {
                 'trouble',
+                'trouble_preview',
                 'terminal',
+                'qf', -- quickfix list
             },
         },
         ignore_focus = {},
@@ -106,7 +108,6 @@ require("lualine").setup {
         lualine_c = {
             {
                 get_dir_inactive,
-                color = { bg = "#11111B" },
             },
         },
         lualine_x = {},

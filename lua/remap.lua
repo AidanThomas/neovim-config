@@ -1,17 +1,3 @@
-RegisterMappings = function(mappings)
-    local options = { noremap = true, silent = true }
-    for mode, maps in pairs(mappings) do
-        for lhs, map in pairs(maps) do
-            local rhs = map[1]
-            local opts = map[2]
-            if opts then
-                options = vim.tbl_extend('force', options, opts)
-            end
-            vim.keymap.set(mode, lhs, rhs, options)
-        end
-    end
-end
-
 local keymaps = {
     ["n"] = {
         -- Saving/Quitting
@@ -140,4 +126,4 @@ local keymaps = {
     },
 }
 
-RegisterMappings(keymaps)
+require("custom.utils").register_mappings(keymaps)

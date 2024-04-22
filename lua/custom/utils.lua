@@ -31,4 +31,19 @@ M.vim_print = function(object)
     vim.api.nvim_echo({ { vim.inspect(object) } }, true, {})
 end
 
+
+M.register_mappings = function(mappings)
+    local options = { noremap = true, silent = true }
+    for mode, maps in pairs(mappings) do
+        for lhs, map in pairs(maps) do
+            local rhs = map[1]
+            local opts = map[2]
+            if opts then
+                options = vim.tbl_extend('force', options, opts)
+            end
+            vim.keymap.set(mode, lhs, rhs, options)
+        end
+    end
+end
+
 return M

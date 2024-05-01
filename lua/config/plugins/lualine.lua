@@ -52,12 +52,14 @@ require("lualine").setup {
             'alpha',
             'TelescopePrompt',
             'lazy',
+            'Navbuddy',
             status_line = {},
             winbar = {
                 'trouble',
                 'trouble_preview',
                 'terminal',
                 'qf', -- quickfix list
+                'Navbuddy',
             },
         },
         ignore_focus = {},

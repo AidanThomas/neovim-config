@@ -3,7 +3,7 @@ require("nvim-navbuddy").setup({
         size = "80%",
         sections = {
             right = {
-                preview = "always"
+                preview = "leaf"
             },
         }
     }

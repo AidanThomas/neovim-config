@@ -42,6 +42,10 @@ local keymaps = {
         ["<A-s>"] = { function() require("harpoon.ui").nav_file(2) end, { desc = "Navigate to pooned file 2" } },
         ["<A-d>"] = { function() require("harpoon.ui").nav_file(3) end, { desc = "Navigate to pooned file 3" } },
         ["<A-f>"] = { function() require("harpoon.ui").nav_file(4) end, { desc = "Navigate to pooned file 4" } },
+        ["å"] = { function() require("harpoon.ui").nav_file(1) end, { desc = "Navigate to pooned file 1" } },
+        ["ß"] = { function() require("harpoon.ui").nav_file(2) end, { desc = "Navigate to pooned file 2" } },
+        ["∂"] = { function() require("harpoon.ui").nav_file(3) end, { desc = "Navigate to pooned file 3" } },
+        ["ƒ"] = { function() require("harpoon.ui").nav_file(4) end, { desc = "Navigate to pooned file 4" } },
         ["<Tab>"] = { vim.cmd.bnext, { desc = "Next buffer" } },
         ["<S-Tab>"] = { vim.cmd.bprev, { desc = "Next buffer" } },
 
@@ -68,6 +72,7 @@ local keymaps = {
 
         -- Terminal
         ["<A-i>"] = { function() require("custom.terminal").toggle() end, { desc = "Toggle terminal" } },
+        ["<D-i>"] = { function() require("custom.terminal").toggle() end, { desc = "Toggle terminal" } },
 
         -- Trouble keybinds
         ["<leader>tt"] = { "<cmd>Trouble diagnostics<CR>", { desc = "Toggles Trouble diagnostics" } },
@@ -119,6 +124,7 @@ local keymaps = {
     ["t"] = {
         ["<Esc>"] = { "<C-\\><C-n>", { desc = "Exit terminal mode" } },
         ["<A-i>"] = { function() require("custom.terminal").toggle() end, { desc = "Toggle terminal" } },
+        ["<D-i>"] = { function() require("custom.terminal").toggle() end, { desc = "Toggle terminal" } },
     },
 
     ["x"] = {

@@ -1,4 +1,5 @@
-local navic = require("nvim-navic")
+local _ = require("nvim-navic")
+local icons = require("nvim-web-devicons")
 
 local function get_dir()
     local path = vim.fn.expand("%:.:h")
@@ -9,17 +10,23 @@ local function get_dir()
     end
     path = ""
     for i, v in ipairs(t) do
+        if v == "." then
+            goto continue
+        end
         if i == #t then
             path = path .. v
         else
-            path = path .. v .. "  "
+            path = path .. v .. "  "
         end
+        ::continue::
     end
 
     return path
 end
 
 local function get_dir_inactive()
+    local filename = vim.fn.expand("%:t")
+    local icon = icons.get_icon(filename, vim.bo.filetype)
     local path = vim.fn.expand("%:.")
     local sep = "/"
     local t = {}
@@ -29,13 +36,19 @@ local function get_dir_inactive()
     path = ""
     for i, v in ipairs(t) do
         if i == #t then
-            path = path .. v
+            path = path .. icon .. " " .. v
         else
-            path = path .. v .. "  "
+            path = path .. v .. "  "
         end
     end
 
     return path
+end
+
+local function file_name()
+    local filename = vim.fn.expand("%:t")
+    local icon = icons.get_icon(filename, vim.bo.filetype)
+    return icon .. " " .. filename
 end
 
 local colours = vim.g.colors_name
@@ -46,8 +59,8 @@ require("lualine").setup {
     options = {
         icons_enabled = true,
         theme = custom_theme,
-        component_separators = { left = '', right = '' },
-        section_separators = { left = '', right = '' },
+        component_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
         disabled_filetypes = {
             'alpha',
             'TelescopePrompt',
@@ -91,7 +104,7 @@ require("lualine").setup {
     },
     winbar = {
         lualine_a = { get_dir },
-        lualine_b = { 'filename' },
+        lualine_b = { file_name },
         lualine_c = {
             {
                 'navic',

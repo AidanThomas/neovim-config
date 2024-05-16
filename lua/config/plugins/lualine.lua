@@ -48,7 +48,11 @@ end
 local function file_name()
     local filename = vim.fn.expand("%:t")
     local icon = icons.get_icon(filename, vim.bo.filetype)
-    return icon .. " " .. filename
+    if icon then
+        return icon .. " " .. filename
+    else
+        return filename
+    end
 end
 
 local colours = vim.g.colors_name
@@ -104,7 +108,7 @@ require("lualine").setup {
     },
     winbar = {
         lualine_a = { get_dir },
-        lualine_b = { 'filename' },
+        lualine_b = { file_name },
         lualine_c = {
             {
                 'navic',

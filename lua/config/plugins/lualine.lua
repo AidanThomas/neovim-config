@@ -104,7 +104,7 @@ require("lualine").setup {
     },
     winbar = {
         lualine_a = { get_dir },
-        lualine_b = { file_name },
+        lualine_b = { 'filename' },
         lualine_c = {
             {
                 'navic',

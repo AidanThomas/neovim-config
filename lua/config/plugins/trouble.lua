@@ -22,7 +22,8 @@ return {
         title = "Preview",
         title_pos = "center",
         size = { width = 0.8, height = 0.5 },
-        zindex = 200
+        zindex = 200,
+        ft = "trouble_preview"
     },
     -- Throttle/Debounce settings. Should usually not be changed.
     ---@type table<string, number|{ms:number, debounce?:boolean}>

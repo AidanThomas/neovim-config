@@ -60,3 +60,4 @@ lsp.format_on_save({
 })
 
 lsp.setup()
+require("config.plugins.completion")

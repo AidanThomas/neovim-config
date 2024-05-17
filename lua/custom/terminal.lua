@@ -7,7 +7,7 @@ M.toggle = function()
         if M.buf == nil then
             vim.fn.termopen(vim.o.shell)
             M.buf = current_buf
-            vim.api.nvim_buf_set_option(M.buf, "buflisted", false)
+            vim.api.nvim_set_option_value("buflisted", false, { buf = M.buf })
             vim.api.nvim_buf_set_name(M.buf, "Terminal")
             vim.cmd.set("nonu")
         elseif M.buf ~= current_buf then

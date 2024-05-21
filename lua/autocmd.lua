@@ -22,3 +22,19 @@ autocmd("BufWritePost", {
         require("lint").try_lint()
     end
 })
+
+autocmd("LspAttach", {
+    desc = "Create LSP bindings",
+    pattern = { "*" },
+    group = augroup("LSP Bindings", {clear = true}),
+    callback = function()
+        require("custom.utils").register_mappings({
+            ["n"] = {
+                ["gd"] = { function() vim.lsp.buf.definition() end, { desc = "Go to symbol definition", buffer = bufnr } },
+                ["K"] = { function() vim.lsp.buf.hover() end, { desc = "Symbol information", buffer = bufnr } },
+                ["<leader>ca"] = { function() vim.lsp.buf.code_action() end, { desc = "See code actions", buffer = bufnr } },
+                ["<leader>rn"] = { function() vim.lsp.buf.rename() end, { desc = "Rename symbol", buffer = bufnr } },
+            }
+        })
+    end,
+})

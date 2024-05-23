@@ -4,6 +4,14 @@ local lspconfig = require("lspconfig")
 local navic = require("nvim-navic")
 local navbuddy = require("nvim-navbuddy")
 
+-- Override floating preview globally
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+    opts = opts or {}
+    opts.border = opts.border or "rounded"
+    return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
+
 -- Defaults
 lspconfig.util.default_config = vim.tbl_extend("force", lspconfig.util.default_config, {
     on_attach = function(client, bufnr)
@@ -15,11 +23,11 @@ lspconfig.util.default_config = vim.tbl_extend("force", lspconfig.util.default_c
                 ["<leader>rn"] = { function() vim.lsp.buf.rename() end, { desc = "Rename symbol", buffer = bufnr } },
             }
         })
-     -- Navic
-    if client.server_capabilities.documentSymbolProvider then
-        navic.attach(client, bufnr)
-    end
-    navbuddy.attach(client, bufnr)
+        -- Navic
+        if client.server_capabilities.documentSymbolProvider then
+            navic.attach(client, bufnr)
+        end
+        navbuddy.attach(client, bufnr)
     end,
 })
 
@@ -60,3 +68,6 @@ lspconfig.gopls.setup {}
 
 -- omnisharp
 lspconfig.omnisharp.setup {}
+
+-- typecscript-language-server
+lspconfig.tsserver.setup {}

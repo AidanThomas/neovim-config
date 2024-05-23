@@ -36,7 +36,11 @@ local function get_dir_inactive()
     path = ""
     for i, v in ipairs(t) do
         if i == #t then
-            path = path .. icon .. " " .. v
+            if icon then
+                path = path .. icon .. " " .. v
+            else
+                path = path .. v
+            end
         else
             path = path .. v .. "  "
         end

@@ -7,9 +7,7 @@ return {
             { "nvim-lua/plenary.nvim" },
 
             -- Extra extensions
-            { "nvim-telescope/telescope-ui-select.nvim" },
             { "nvim-telescope/telescope-file-browser.nvim", },
-            { "nvim-telescope/telescope-dap.nvim" },
             {
                 "nvim-telescope/telescope-fzf-native.nvim",
                 build = 'make',
@@ -42,7 +40,6 @@ return {
     -- LSP
     {
         "neovim/nvim-lspconfig",
-        lazy = false,
         dependencies = {
             {
                 "williamboman/mason.nvim",
@@ -77,10 +74,18 @@ return {
         end
     },
 
+    -- Formatting
+    {
+        "stevearc/conform.nvim",
+        event = "BufEnter *.*",
+        config = function()
+            require("config.plugins.conform")
+        end,
+    },
+
     -- Completion
     {
         "hrsh7th/nvim-cmp",
-        lazy = false,
         dependencies = {
             { "hrsh7th/cmp-nvim-lsp" },
             { "L3MON4D3/LuaSnip" },
@@ -88,67 +93,11 @@ return {
             { "hrsh7th/cmp-path" },
             { "onsails/lspkind.nvim" }
         },
+        event = "BufEnter *.*",
         config = function()
             require("config.plugins.completion")
         end
     },
-    -- {
-    --     "VonHeikemen/lsp-zero.nvim",
-    --     branch = "v2.x",
-    --     dependencies = {
-    --         -- LSP support
-    --         {
-    --             "neovim/nvim-lspconfig",
-    --             dependencies = {
-    --                 {
-    --                     "SmiteshP/nvim-navbuddy",
-    --                     dependencies = {
-    --                         {
-    --                             "SmiteshP/nvim-navic",
-    --                             dependencies = {
-    --                                 { "neovim/nvim-lspconfig" }
-    --                             },
-    --                             config = function()
-    --                                 require("config.plugins.navic")
-    --                             end
-    --                         },
-    --                         { "MunifTanjim/nui.nvim" },
-    --                         { "numToStr/Comment.nvim" },
-    --                         { "nvim-telescope/telescope.nvim" },
-    --                     },
-    --                     config = function()
-    --                         require("config.plugins.navbuddy")
-    --                     end
-    --                 },
-    --             },
-    --         },
-    --         {
-    --             "williamboman/mason.nvim",
-    --             build = function()
-    --                 pcall(vim.cmd.MasonUpdate)
-    --             end,
-    --         },
-    --         { "williamboman/mason-lspconfig.nvim" },
-
-    --         -- Autocompletion
-    --         {
-    --             "hrsh7th/nvim-cmp",
-    --             -- config = function()
-    --             --     require("config.plugins.completion")
-    --             -- end
-    --         },
-    --         { "hrsh7th/cmp-nvim-lsp" },
-    --         { "L3MON4D3/LuaSnip" },
-    --         { "saadparwaiz1/cmp_luasnip" },
-    --         { "hrsh7th/cmp-path" },
-    --         { "onsails/lspkind.nvim" },
-    --     },
-
-    --     event = "UIEnter",
-    --     config = function()
-    --         require("config.plugins.lsp")
-    --     end,
-    -- },
 
     -- Themes
     {
@@ -268,9 +217,5 @@ return {
                 yaml = { 'cfn_lint' }
             }
         end
-    },
-    {
-        "sar/friendly-snippets.nvim",
-        lazy = false,
     },
 }

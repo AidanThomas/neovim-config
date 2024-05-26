@@ -4,6 +4,7 @@ require("conform").setup({
         go = { "gopls" },
         -- javascript = { "prettier" },
         json = { "prettier" },
+        nix = { "alejandra" },
     },
     format_on_save = {
         timeout = 500,

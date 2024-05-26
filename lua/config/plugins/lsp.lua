@@ -71,3 +71,6 @@ lspconfig.omnisharp.setup {}
 
 -- typecscript-language-server
 lspconfig.tsserver.setup {}
+
+-- nil ls
+lspconfig.nil_ls.setup {}

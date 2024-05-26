@@ -218,4 +218,8 @@ return {
             }
         end
     },
+    {
+        "gpanders/nvim-parinfer",
+        ft = "yuck",
+    },
 }

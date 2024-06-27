@@ -23,6 +23,9 @@ if home_dir ~= nil then
     vim.opt.undodir = home_dir .. "/.vim/undodir"
 end
 
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
 

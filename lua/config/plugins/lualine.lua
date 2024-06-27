@@ -16,7 +16,7 @@ local function get_dir()
         if i == #t then
             path = path .. v
         else
-            path = path .. v .. "  "
+            path = path .. v .. "  "
         end
         ::continue::
     end
@@ -42,7 +42,7 @@ local function get_dir_inactive()
                 path = path .. v
             end
         else
-            path = path .. v .. "  "
+            path = path .. v .. "  "
         end
     end
 
@@ -63,12 +63,13 @@ local colours = vim.g.colors_name
 if colours == "catppuccin-mocha" then colours = "catppuccin" end -- Catppuccin doesn't set name correctly
 local custom_theme = require("config.themes." .. colours .. ".lualine")
 
+
 require("lualine").setup {
     options = {
         icons_enabled = true,
         theme = custom_theme,
-        component_separators = { left = '', right = '' },
-        section_separators = { left = '', right = '' },
+        component_separators = { right = '', left = '' },
+        section_separators = { left = '', right = '' },
         disabled_filetypes = {
             'alpha',
             'TelescopePrompt',

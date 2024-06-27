@@ -2,7 +2,7 @@ return {
     -- Core
     {
         "nvim-telescope/telescope.nvim",
-        version = "0.1.4",
+        branch = "0.1.x",
         dependencies = {
             { "nvim-lua/plenary.nvim" },
 
@@ -43,8 +43,12 @@ return {
         dependencies = {
             {
                 "williamboman/mason.nvim",
+                cmd = "Mason",
                 build = function()
                     pcall(vim.cmd.MasonUpdate)
+                end,
+                config = function()
+                    require("config.plugins.mason")
                 end,
             },
             { "williamboman/mason-lspconfig.nvim" },
@@ -195,7 +199,6 @@ return {
     },
     {
         "folke/trouble.nvim",
-        branch = "dev",
         dependencies = { "nvim-tree/nvim-web-devicons" },
         cmd = "Trouble",
         opts = require("config.plugins.trouble")
@@ -221,5 +224,12 @@ return {
     {
         "gpanders/nvim-parinfer",
         ft = "yuck",
+    },
+    {
+        "windwp/nvim-ts-autotag",
+        ft = "html",
+        config = function()
+            require("nvim-ts-autotag").setup({})
+        end,
     },
 }

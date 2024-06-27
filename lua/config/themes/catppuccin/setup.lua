@@ -4,28 +4,30 @@ require("catppuccin").setup({
         light = "latte",
         dark = "mocha",
     },
-    transparent_background = true, -- disables setting the background color.
-    show_end_of_buffer = true,     -- shows the '~' characters after the end of buffers
-    term_colors = true,            -- sets terminal colors (e.g. `g:terminal_color_0`)
+    transparent_background = false, -- disables setting the background color.
+    show_end_of_buffer = true,      -- shows the '~' characters after the end of buffers
+    term_colors = true,             -- sets terminal colors (e.g. `g:terminal_color_0`)
     dim_inactive = {
-        enabled = false,           -- dims the background color of inactive window
+        enabled = false,            -- dims the background color of inactive window
         shade = "dark",
-        percentage = 0.15,         -- percentage of the shade to apply to the inactive window
+        percentage = 0.15,          -- percentage of the shade to apply to the inactive window
     },
-    styles = {                     -- Handles the styles of general hi groups (see `:h highlight-args`):
-        comments = { "italic" },   -- Change the style of comments
+    styles = {                      -- Handles the styles of general hi groups (see `:h highlight-args`):
+        comments = { "italic" },    -- Change the style of comments
         conditionals = { "italic" },
         types = { "italic" },
         -- miscs = {}, -- Uncomment to turn off hard-coded styles
     },
     custom_highlights = function(colors)
         return {
-            -- Normal = { bg = colors.crust },
-            -- NormalNC = { bg = colors.crust },
+            Normal = { bg = colors.crust },
+            NormalNC = { bg = colors.crust },
             WinSeparator = { fg = colors.base },
-            NormalFloat = { bg = colors.crust },
-            TroubleNormal = { bg = colors.crust },
-            TroubleNormalNC = { bg = colors.crust },
+            FloatTitle = { fg = colors.blue, bg = colors.mantle },
+            TroubleNormal = { bg = colors.mantle },
+            TroubleNormalNC = { bg = colors.mantle },
+            TelescopeNormal = { bg = colors.crust },
+            TelescopeBorder = { fg = colors.blue, bg = colors.crust },
         }
     end,
     integrations = {
@@ -62,7 +64,7 @@ require("catppuccin").setup({
             custom_bg = "NONE",
         },
         telescope = {
-            enabled = true,
+            enabled = false,
         },
         lsp_trouble = true,
     },

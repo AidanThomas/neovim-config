@@ -19,7 +19,7 @@ return {
         type = "float",
         relative = "editor",
         border = "rounded",
-        title = "Preview",
+        title = " Preview ",
         title_pos = "center",
         size = { width = 0.8, height = 0.5 },
         zindex = 200,

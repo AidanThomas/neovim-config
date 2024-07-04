@@ -3,6 +3,7 @@ require("mason").setup()
 local lspconfig = require("lspconfig")
 local navic = require("nvim-navic")
 local navbuddy = require("nvim-navbuddy")
+local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 -- Override floating preview globally
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
@@ -76,9 +77,17 @@ lspconfig.tsserver.setup {}
 lspconfig.nil_ls.setup {}
 
 -- html-lsp
-local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 require('lspconfig').html.setup({
     capabilities = capabilities,
 })
+
+-- css-lsp
+capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+require 'lspconfig'.cssls.setup {
+    capabilities = capabilities,
+}

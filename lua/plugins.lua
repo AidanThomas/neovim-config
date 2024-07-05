@@ -8,10 +8,6 @@ return {
 
             -- Extra extensions
             { "nvim-telescope/telescope-file-browser.nvim", },
-            {
-                "nvim-telescope/telescope-fzf-native.nvim",
-                build = 'make',
-            },
         },
         cmd = "Telescope",
         config = function()
@@ -24,9 +20,6 @@ return {
         config = function()
             require("config.plugins.treesitter")
         end,
-        dependencies = {
-            { "nvim-treesitter/nvim-treesitter-textobjects" },
-        }
     },
     {
         "nvim-lualine/lualine.nvim",
@@ -70,7 +63,6 @@ return {
                 end
             },
             { "MunifTanjim/nui.nvim" },
-            { "numToStr/Comment.nvim" },
             { "nvim-telescope/telescope.nvim" },
         },
         config = function()
@@ -123,27 +115,12 @@ return {
 
     -- Essential editor plugins
     {
-        "windwp/nvim-autopairs",
-        event = "BufEnter *.*",
-        opts = require("config.plugins.autopairs")
-    },
-    {
-        "unblevable/quick-scope",
-        keys = { "f", "F", "t", "T" },
-        config = function() require("config.plugins.quickscope").setup() end,
-    },
-    {
-        "numToStr/Comment.nvim",
-        keys = {
-            { "gcc", nil, mode = "n" },
-            { "gbc", nil, mode = "n" },
-            { "gc",  nil, mode = "v" },
-            { "gco", nil, mode = "n" },
-            { "gcO", nil, mode = "n" },
-        },
+        "echasnovski/mini.nvim",
+        version = false,
+        lazy = false,
         config = function()
-            require("config.plugins.comment")
-        end
+            require("config.plugins.mini")
+        end,
     },
     {
         "tpope/vim-fugitive",
@@ -190,14 +167,6 @@ return {
         end,
     },
     {
-        "kylechui/nvim-surround",
-        version = "*", -- Use for stability; omit to use `main` branch for latest features
-        event = "BufEnter *.*",
-        config = function()
-            require("config.plugins.nvim-surround")
-        end
-    },
-    {
         "folke/trouble.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons" },
         cmd = "Trouble",
@@ -212,14 +181,6 @@ return {
     },
     {
         "folke/neodev.nvim",
-    },
-    {
-        "mfussenegger/nvim-lint",
-        config = function()
-            require("lint").linters_by_ft = {
-                yaml = { 'cfn_lint' }
-            }
-        end
     },
     {
         "gpanders/nvim-parinfer",

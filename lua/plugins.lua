@@ -117,7 +117,7 @@ return {
     {
         "echasnovski/mini.nvim",
         version = false,
-        lazy = false,
+        event = { event = "User", pattern = "AlphaExit" },
         config = function()
             require("config.plugins.mini")
         end,

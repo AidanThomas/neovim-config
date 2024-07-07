@@ -117,9 +117,12 @@ return {
     {
         "echasnovski/mini.nvim",
         version = false,
-        event = { event = "User", pattern = "AlphaExit" },
+        lazy = false,
         config = function()
-            require("config.plugins.mini")
+            require("config.plugins.mini").register_modules({
+                { "mini.ai",     { "BufEnter", "*.*" } },
+                { "mini.notify", { "BufEnter", "*.*" } },
+            })
         end,
     },
     {
@@ -134,18 +137,18 @@ return {
     },
 
     -- Debugging
-    {
-        "mfussenegger/nvim-dap",
-        dependencies = {
-            { "leoluz/nvim-dap-go" },
-            { "rcarriga/nvim-dap-ui" },
-            { "theHamsta/nvim-dap-virtual-text" },
-            { "nvim-neotest/nvim-nio" },
-        },
-        config = function()
-            require("config.plugins.nvim-dap")
-        end,
-    },
+    -- {
+    --     "mfussenegger/nvim-dap",
+    --     dependencies = {
+    --         { "leoluz/nvim-dap-go" },
+    --         { "rcarriga/nvim-dap-ui" },
+    --         { "theHamsta/nvim-dap-virtual-text" },
+    --         { "nvim-neotest/nvim-nio" },
+    --     },
+    --     config = function()
+    --         require("config.plugins.nvim-dap")
+    --     end,
+    -- },
 
     -- Misc plugins
     {

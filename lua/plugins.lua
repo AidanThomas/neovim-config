@@ -120,8 +120,15 @@ return {
         lazy = false,
         config = function()
             require("config.plugins.mini").register_modules({
-                { "mini.ai",     { "BufEnter", "*.*" } },
-                { "mini.notify", { "BufEnter", "*.*" } },
+                { "mini.ai",         { "BufEnter", "*.*" } },
+                { "mini.notify",     { "BufEnter", "*.*" } },
+                { "mini.bracketed",  { "BufEnter", "*.*" } },
+                { "mini.clue",       { "BufEnter", "*.*" } },
+                { "mini.hipatterns", { "BufEnter", "*.*" } },
+                -- { "mini.notify",    { "BufEnter", "*.*" } },
+                -- { "mini.notify",    { "BufEnter", "*.*" } },
+                -- { "mini.notify",    { "BufEnter", "*.*" } },
+                -- { "mini.notify",    { "BufEnter", "*.*" } },
             })
         end,
     },

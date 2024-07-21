@@ -200,9 +200,6 @@ return {
         end,
     },
     {
-        "folke/neodev.nvim",
-    },
-    {
         "gpanders/nvim-parinfer",
         ft = "yuck",
     },

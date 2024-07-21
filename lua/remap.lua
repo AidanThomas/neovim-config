@@ -114,8 +114,8 @@ local keymaps = {
         ["<leader>a"] = { "<ESC>ggVG", { desc = "Highlight all lines in file" } },
 
         -- Move commands
-        ["J"] = { ":m '>+1<CR>gv=gv", { desc = "Move highlighted line down" } },
-        ["K"] = { ":m '<-2<CR>gv=gv", { desc = "Move highlighted line up" } },
+        -- ["J"] = { ":m '>+1<CR>gv=gv", { desc = "Move highlighted line down" } },
+        -- ["K"] = { ":m '<-2<CR>gv=gv", { desc = "Move highlighted line up" } },
 
         -- Copy/Paste
         ["<leader>y"] = { [["+y]], { desc = "Copy to clipboard" } },

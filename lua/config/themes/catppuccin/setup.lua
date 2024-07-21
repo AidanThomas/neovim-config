@@ -28,6 +28,7 @@ require("catppuccin").setup({
             TroubleNormalNC = { bg = colors.mantle },
             TelescopeNormal = { bg = colors.crust },
             TelescopeBorder = { fg = colors.blue, bg = colors.crust },
+            AlphaHeader = { fg = colors.flamingo },
         }
     end,
     integrations = {

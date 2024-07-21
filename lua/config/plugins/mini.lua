@@ -79,7 +79,34 @@ M.config = {
             note      = { pattern = '%f[%w]()NOTE()%f[%W]', group = '@comment.note' },
 
             -- Highlight hex color strings (`#rrggbb`) using that color
-            hex_color = require("mini.hipatterns").gen_highlighter.hex_color(),
+            hex_color = require("mini.hipatterns").gen_highlighter.hex_color({
+                style = "inline",
+                priority = 2000,
+                inline_text = "⬤ ",
+            }),
+        }
+    },
+    ["mini.jump2d"] = {
+        view = {
+            dim = true,
+        },
+    },
+    ["mini.move"] = {
+        mappings = {
+            left = "H",
+            right = "L",
+            up = "K",
+            down = "J",
+
+            line_left = '<M-h>',
+            line_right = '<M-l>',
+            line_down = '<M-j>',
+            line_up = '<M-k>',
+        }
+    },
+    ["mini.surround"] = {
+        custom_surroundings = {
+            ['B'] = { output = { left = '{ ', right = ' }' } }
         }
     },
 }

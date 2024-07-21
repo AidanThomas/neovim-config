@@ -115,6 +115,18 @@ return {
 
     -- Essential editor plugins
     {
+        "windwp/nvim-autopairs",
+        event = "BufEnter *.*",
+        opts = require("config.plugins.autopairs")
+    },
+    {
+        "unblevable/quick-scope",
+        keys = { 'f', 'F', 't', 'T' },
+        config = function()
+            require("config.plugins.quickscope").setup()
+        end
+    },
+    {
         "echasnovski/mini.nvim",
         version = false,
         lazy = false,
@@ -123,12 +135,10 @@ return {
                 { "mini.ai",         { "BufEnter", "*.*" } },
                 { "mini.notify",     { "BufEnter", "*.*" } },
                 { "mini.bracketed",  { "BufEnter", "*.*" } },
-                { "mini.clue",       { "BufEnter", "*.*" } },
                 { "mini.hipatterns", { "BufEnter", "*.*" } },
-                -- { "mini.notify",    { "BufEnter", "*.*" } },
-                -- { "mini.notify",    { "BufEnter", "*.*" } },
-                -- { "mini.notify",    { "BufEnter", "*.*" } },
-                -- { "mini.notify",    { "BufEnter", "*.*" } },
+                { "mini.icons",      { "BufEnter", "*.*" } },
+                { "mini.move",       { "BufEnter", "*.*" } },
+                { "mini.surround",   { "BufEnter", "*.*" } },
             })
         end,
     },

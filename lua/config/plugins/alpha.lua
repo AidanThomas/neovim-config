@@ -86,11 +86,11 @@ local options = {
     buttons = {
         type = "group",
         val = {
-            button("b", "  Browse files", ":Telescope file_browser grouped=true hidden=true<CR>"),
+            button("b", "  Browse files", ":Oil --float<CR>"),
             button("f", "  Find File", ":Telescope find_files<CR>"),
             button("w", "󰈭  Find Word", ":Telescope live_grep<CR>"),
             button("m", "  Marks", ":Telescope marks<CR>"),
-            button("s", "  Settings", ":Telescope find_files cwd=~/.config/nvim<CR>"),
+            button("s", "  Settings", ":Oil --float ~/.config/nvim<CR>"),
         },
         opts = {
             spacing = 1,

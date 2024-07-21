@@ -1,4 +1,3 @@
-local fb_actions = require("telescope").extensions.file_browser.actions
 local actions = require("telescope.actions")
 
 require("telescope").setup({
@@ -73,26 +72,5 @@ require("telescope").setup({
         },
     },
 
-    extensions_list = { "themes", "terms", "file_browser" },
-
-    extensions = {
-        file_browser = {
-            hijack_netrw = true,
-            initial_mode = "normal",
-            mappings = {
-                ["n"] = {
-                    ["<r>"] = fb_actions.rename,
-                    ["<m>"] = fb_actions.move,
-                    ["<d>"] = fb_actions.remove,
-                    ["_"] = fb_actions.goto_parent_dir,
-                },
-                ["i"] = {
-                    ["<C-c>"] = fb_actions.create_from_prompt,
-                }
-            }
-        }
-    }
+    extensions_list = { "themes", "terms" },
 })
-
--- Extensions
-require("telescope").load_extension("file_browser")

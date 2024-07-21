@@ -8,20 +8,15 @@ local keymaps = {
         -- Navigation
         ["<C-d>"] = { "<C-d>zz", { desc = "Scroll down" } },
         ["<C-u>"] = { "<C-u>zz", { desc = "Scroll up" } },
-        ["<leader>es"] = { ":Telescope find_files cwd=~/.config/nvim<CR>", { desc = "Show configuration files" } },
+        ["<leader>es"] = { ":Oil --float ~/.config/nvim<CR>", { desc = "Show configuration files" } },
         ["<leader>cwd"] = { ":cd %:p:h <CR>", { desc = "Set current working directory" } },
         ["<leader>u"] = { vim.cmd.UndotreeToggle, { desc = "Open undo tree" } },
         ["<leader>n"] = { vim.cmd.Navbuddy, { desc = "Open Navdbuddy" } },
 
+        -- Oil
+        ["<leader>pv"] = { ":Oil --float<CR>", { desc = "Open file explorer" } },
+
         -- Telescope
-        ["<leader>pv"] = { function()
-            require("telescope").extensions.file_browser.file_browser({
-                grouped = true,
-                hidden = true,
-                select_buffer = true,
-                cwd = vim.fn.expand("%:h")
-            })
-        end, { desc = "Open file explorer" } },
         ["<leader>ph"] = { function()
             require("telescope.builtin").help_tags()
         end, { desc = "Open help" } },
@@ -66,10 +61,6 @@ local keymaps = {
         -- Copy/Paste
         ["<leader>y"] = { [["+y]], { desc = "Copy to clipboard" } },
 
-        -- Splitting
-        ["<leader>vs"] = { "<cmd>vsplit<CR>", { desc = "Vertically split the current file" } },
-        ["<leader>hs"] = { "<cmd>split<CR>", { desc = "Horizontally split the currentl file" } },
-
         -- Terminal
         ["<A-i>"] = { function() require("custom.terminal").toggle() end, { desc = "Toggle terminal" } },
         ["<D-i>"] = { function() require("custom.terminal").toggle() end, { desc = "Toggle terminal" } },
@@ -101,11 +92,6 @@ local keymaps = {
     },
 
     ["i"] = {
-        ["<A-h>"] = { "<Left>", { desc = "Move left" } },
-        ["<A-l>"] = { "<Right>", { desc = "Move right" } },
-        ["<A-j>"] = { "<Down>", { desc = "Move down" } },
-        ["<A-k>"] = { "<Up>", { desc = "Move up" } },
-
         ["jk"] = { "<ESC>", { desc = "Stephen is always right" } }
     },
 

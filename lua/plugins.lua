@@ -5,9 +5,6 @@ return {
         branch = "0.1.x",
         dependencies = {
             { "nvim-lua/plenary.nvim" },
-
-            -- Extra extensions
-            { "nvim-telescope/telescope-file-browser.nvim", },
         },
         cmd = "Telescope",
         config = function()
@@ -136,10 +133,17 @@ return {
                 { "mini.notify",     { "BufEnter", "*.*" } },
                 { "mini.bracketed",  { "BufEnter", "*.*" } },
                 { "mini.hipatterns", { "BufEnter", "*.*" } },
-                { "mini.icons",      { "BufEnter", "*.*" } },
                 { "mini.move",       { "BufEnter", "*.*" } },
                 { "mini.surround",   { "BufEnter", "*.*" } },
             })
+        end,
+    },
+    {
+        "stevearc/oil.nvim",
+        dependencies = { "echasnovski/mini.icons" },
+        lazy = false,
+        config = function()
+            require("config.plugins.oil")
         end,
     },
     {

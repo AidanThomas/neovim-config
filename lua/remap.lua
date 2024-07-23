@@ -14,7 +14,7 @@ local keymaps = {
         ["<leader>n"] = { vim.cmd.Navbuddy, { desc = "Open Navdbuddy" } },
 
         -- Oil
-        ["<leader>pv"] = { ":Oil --float<CR>", { desc = "Open file explorer" } },
+        ["<leader>pv"] = { ":Oil<CR>", { desc = "Open file explorer" } },
 
         -- Telescope
         ["<leader>ph"] = { function()

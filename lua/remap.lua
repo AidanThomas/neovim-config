@@ -73,10 +73,10 @@ local keymaps = {
         ["<leader>tp"] = { "<cmd>Trouble<CR>", { desc = "Toggles Trouble picker" } },
 
         -- Debugging
-        ["<F5>"] = { ":lua require'dap'.continue()<CR>", { desc = "Start debugging/Continue" } },
-        ["<F6>"] = { ":lua require'dap'.step_over()<CR>", { desc = "Step over" } },
-        ["<F7>"] = { ":lua require'dap'.step_into()<CR>", { desc = "Step into" } },
-        ["<F8>"] = { ":lua require'dap'.step_out()<CR>", { desc = "Step out" } },
+        ["<C-5>"] = { ":lua require'dap'.continue()<CR>", { desc = "Start debugging/Continue" } },
+        ["<C-6>"] = { ":lua require'dap'.step_over()<CR>", { desc = "Step over" } },
+        ["<C-7>"] = { ":lua require'dap'.step_into()<CR>", { desc = "Step into" } },
+        ["<C-8>"] = { ":lua require'dap'.step_out()<CR>", { desc = "Step out" } },
         ["<leader>b"] = { ":lua require'dap'.toggle_breakpoint()<CR>", { desc = "Toggle breakpoint" } },
         ["<leader>B"] = { ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
             { desc = "Set breakpoint with conidition" } },

@@ -29,6 +29,7 @@ require("catppuccin").setup({
             TelescopeNormal = { bg = colors.crust },
             TelescopeBorder = { fg = colors.blue, bg = colors.crust },
             AlphaHeader = { fg = colors.flamingo },
+            DapBreakpoint = { fg = colors.red },
         }
     end,
     integrations = {
@@ -41,7 +42,7 @@ require("catppuccin").setup({
             enabled = true,
         },
         mason = true,
-        dap_ui = true,
+        dap_ui = false,
         native_lsp = {
             enabled = true,
             virtual_text = {

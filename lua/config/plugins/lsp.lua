@@ -67,8 +67,8 @@ lspconfig.lua_ls.setup {
 -- gopls
 lspconfig.gopls.setup {}
 
--- omnisharp
-lspconfig.omnisharp.setup {}
+-- csharp_ls
+lspconfig.csharp_ls.setup {}
 
 -- typecscript-language-server
 lspconfig.tsserver.setup {}

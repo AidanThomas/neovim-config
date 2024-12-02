@@ -52,4 +52,3 @@ vim.opt.list = true
 vim.opt.listchars:append "eol:↴"
 
 vim.o.cmdheight = 0
-vim.o.showtabline = 0 -- Don't show tabline

@@ -86,7 +86,7 @@ local options = {
     buttons = {
         type = "group",
         val = {
-            button("b", "  Browse files", ":Oil --float<CR>"),
+            button("b", "  Browse files", ":Oil<CR>"),
             button("f", "  Find File", ":Telescope find_files<CR>"),
             button("w", "󰈭  Find Word", ":Telescope live_grep<CR>"),
             button("m", "  Marks", ":Telescope marks<CR>"),

@@ -26,7 +26,7 @@ autocmd("BufWritePost", {
 autocmd("LspAttach", {
     desc = "Create LSP bindings",
     pattern = { "*" },
-    group = augroup("LSP Bindings", {clear = true}),
+    group = augroup("LSP Bindings", { clear = true }),
     callback = function()
         require("custom.utils").register_mappings({
             ["n"] = {
@@ -37,4 +37,26 @@ autocmd("LspAttach", {
             }
         })
     end,
+})
+
+local term_config = augroup("Configure Terminal", { clear = true })
+autocmd("TermOpen", {
+    desc = "Turn off line numbers",
+    group = term_config,
+    command = "setlocal nonumber"
+})
+
+autocmd("TermOpen", {
+    desc = "Set term winbar",
+    group = term_config,
+    callback = function()
+        vim.cmd("setlocal filetype=terminal")
+        vim.cmd("setlocal winbar=Terminal")
+    end
+})
+
+autocmd("TermOpen", {
+    desc = "Set insert mode",
+    group = term_config,
+    command = "startinsert",
 })

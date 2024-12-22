@@ -33,7 +33,8 @@ require("catppuccin").setup({
         }
     end,
     integrations = {
-        cmp = true,
+        blink_cmp = true,
+        fzf = true,
         gitsigns = true,
         treesitter = true,
         alpha = true,

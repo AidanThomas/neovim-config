@@ -1,15 +1,12 @@
 return {
     -- Core
     {
-        "nvim-telescope/telescope.nvim",
-        branch = "0.1.x",
-        dependencies = {
-            { "nvim-lua/plenary.nvim" },
-        },
-        cmd = "Telescope",
+        "ibhagwan/fzf-lua",
+        dependencies = { "mini.icons" },
+        cmd = "FzfLua",
         config = function()
-            require("config.plugins.telescope")
-        end,
+            require("config.plugins.fzflua")
+        end
     },
     {
         "nvim-treesitter/nvim-treesitter",
@@ -43,9 +40,32 @@ return {
             },
             { "williamboman/mason-lspconfig.nvim" },
         },
-        config = function()
-            require("config.plugins.lsp")
-        end,
+        opts = {
+            servers = {
+                lua_ls = {},
+                gopls = {},
+                csharp_ls = {},
+                ts_ls = {},
+                nil_ls = {},
+                html = {
+                    capabilities = function()
+                        local capabilities = vim.lsp.protocol.make_client_capabilities()
+                        capabilities.textDocument.completion.completionItem.snippetSupport = true
+                        return capabilities
+                    end
+                },
+                cssls = {
+                    capabilities = function()
+                        local capabilities = vim.lsp.protocol.make_client_capabilities()
+                        capabilities.textDocument.completion.completionItem.snippetSupport = true
+                        return capabilities
+                    end
+                }
+            }
+        },
+        config = function(_, opts)
+            require "config.plugins.lsp".setup(opts)
+        end
     },
     {
         "SmiteshP/nvim-navbuddy",
@@ -60,7 +80,6 @@ return {
                 end
             },
             { "MunifTanjim/nui.nvim" },
-            { "nvim-telescope/telescope.nvim" },
         },
         config = function()
             require("config.plugins.navbuddy")
@@ -74,22 +93,6 @@ return {
         config = function()
             require("config.plugins.conform")
         end,
-    },
-
-    -- Completion
-    {
-        "hrsh7th/nvim-cmp",
-        dependencies = {
-            { "hrsh7th/cmp-nvim-lsp" },
-            { "L3MON4D3/LuaSnip" },
-            { "saadparwaiz1/cmp_luasnip" },
-            { "hrsh7th/cmp-path" },
-            { "onsails/lspkind.nvim" }
-        },
-        event = "BufEnter *.*",
-        config = function()
-            require("config.plugins.completion")
-        end
     },
 
     -- Themes
@@ -173,6 +176,74 @@ return {
     -- },
 
     -- Misc plugins
+    {
+        "folke/lazydev.nvim",
+        ft = "lua",
+        opts = {
+            library = {
+                { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+            },
+        },
+    },
+    {
+        'saghen/blink.cmp',
+        dependencies = {
+            'rafamadriz/friendly-snippets',
+            'mini.icons'
+        },
+        version = '*',
+        opts = {
+            enabled = function()
+                return not vim.tbl_contains({ "TelescopePrompt" }, vim.bo.filetype)
+                    and vim.bo.buftype ~= "prompt"
+                    and vim.b.completion ~= false
+            end,
+            keymap = { preset = 'default' },
+            appearance = {
+                nerd_font_variant = 'mono'
+            },
+            completion = {
+                menu = {
+                    auto_show = true,
+                    draw = {
+                        components = {
+                            kind_icon = {
+                                ellipsis = false,
+                                text = function(ctx)
+                                    local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
+                                    return kind_icon
+                                end,
+                                highlight = function(ctx)
+                                    local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
+                                    return hl
+                                end,
+                            }
+                        }
+                    }
+                },
+                documentation = {
+                    auto_show = true,
+                    auto_show_delay_ms = 500,
+                    window = { border = "single" }
+                },
+            },
+            sources = {
+                default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev' },
+                providers = {
+                    lazydev = {
+                        name = "LazyDev",
+                        module = "lazydev.integrations.blink",
+                        score_offset = 100, -- make lazydev completions top priority
+                    }
+                },
+            },
+            signature = {
+                enabled = true,
+                window = { border = "single" }
+            }
+        },
+        opts_extend = { "sources.default" }
+    },
     {
         "mbbill/undotree",
         cmd = "UndotreeToggle",

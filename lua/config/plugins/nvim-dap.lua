@@ -49,4 +49,3 @@ require("netcoredbg-macOS-arm64").setup(require("dap"))
 -- }
 --
 -- require("nvim-dap-virtual-text").setup()
--- require("telescope").load_extension("dap")

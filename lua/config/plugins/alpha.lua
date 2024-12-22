@@ -87,9 +87,9 @@ local options = {
         type = "group",
         val = {
             button("b", "  Browse files", ":Oil<CR>"),
-            button("f", "  Find File", ":Telescope find_files<CR>"),
-            button("w", "󰈭  Find Word", ":Telescope live_grep<CR>"),
-            button("m", "  Marks", ":Telescope marks<CR>"),
+            button("f", "  Find File", ":FzfLua files<CR>"),
+            button("w", "󰈭  Find Word", ":FzfLua live_grep<CR>"),
+            button("m", "  Marks", ":FzfLua marks<CR>"),
             button("s", "  Settings", ":Oil --float ~/.config/nvim<CR>"),
         },
         opts = {

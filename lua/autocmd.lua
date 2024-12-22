@@ -47,15 +47,6 @@ autocmd("TermOpen", {
 })
 
 autocmd("TermOpen", {
-    desc = "Set term winbar",
-    group = term_config,
-    callback = function()
-        vim.cmd("setlocal filetype=terminal")
-        vim.cmd("setlocal winbar=Terminal")
-    end
-})
-
-autocmd("TermOpen", {
     desc = "Set insert mode",
     group = term_config,
     command = "startinsert",

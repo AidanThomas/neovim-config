@@ -13,22 +13,24 @@ local keymaps = {
         ["<leader>u"] = { vim.cmd.UndotreeToggle, { desc = "Open undo tree" } },
         ["<leader>n"] = { vim.cmd.Navbuddy, { desc = "Open Navdbuddy" } },
 
+        -- Quickfix
+        ["<M-j>"] = { vim.cmd.cnext, { desc = "Next quickfix" } },
+        ["<M-k>"] = { vim.cmd.cprev, { desc = "Next quickfix" } },
+
         -- Oil
         ["<leader>pv"] = { ":Oil<CR>", { desc = "Open file explorer" } },
 
-        -- Telescope
-        ["<leader>ph"] = { function()
-            require("telescope.builtin").help_tags()
-        end, { desc = "Open help" } },
-        ["<leader>ff"] = { function()
-            require("telescope.builtin").find_files()
-        end, { desc = "Find files" } },
-        ["<leader>ps"] = { function()
-            require("telescope.builtin").grep_string({ search = vim.fn.input("Grep > ") })
-        end, { desc = "Find by grep" } },
-        ["<leader>fb"] = { function()
-            require("telescope.builtin").buffers()
-        end, { desc = "Find buffers" } },
+        -- FzfLua
+        ["<leader>fh"] = { function() vim.cmd.FzfLua("helptags") end, { desc = "Open help" } },
+        ["<leader>ff"] = { function() vim.cmd.FzfLua("files") end, { desc = "Find files" } },
+        ["<leader>fg"] = { function() vim.cmd.FzfLua("grep") end, { desc = "Find files" } },
+        ["<leader>fb"] = { function() vim.cmd.FzfLua("buffers") end, { desc = "Find buffers" } },
+        ["<leader>fc"] = { function() vim.cmd.FzfLua("git_commit") end, { desc = "Find commit" } },
+        ["<leader>fm"] = { function() vim.cmd.FzfLua("marks") end, { desc = "Find marks" } },
+        ["<leader>wk"] = { function() vim.cmd.FzfLua("keymaps") end, { desc = "Find keymaps" } },
+        ["<leader>gd"] = { function() vim.cmd.FzfLua("lsp_workspace_diagnostics") end, { desc = "Show diagnostics" } },
+        ["gr"] = { function() vim.cmd.FzfLua("lsp_references") end, { desc = "Find references" } },
+        ["gi"] = { function() vim.cmd.FzfLua("lsp_implementations") end, { desc = "Find implementations" } },
 
         -- Harpoon/Tabs
         ["<leader>hp"] = { [[:lua require("harpoon.ui").toggle_quick_menu()<CR>]], { desc = "Toggle harpoon menu" } },
@@ -61,17 +63,6 @@ local keymaps = {
         -- Copy/Paste
         ["<leader>y"] = { [["+y]], { desc = "Copy to clipboard" } },
 
-        -- Terminal
-        ["<A-i>"] = { function() require("custom.terminal").toggle() end, { desc = "Toggle terminal" } },
-        ["<D-i>"] = { function() require("custom.terminal").toggle() end, { desc = "Toggle terminal" } },
-
-        -- Trouble keybinds
-        ["<leader>tt"] = { "<cmd>Trouble diagnostics<CR>", { desc = "Toggles Trouble diagnostics" } },
-        ["<leader>tr"] = { "<cmd>Trouble lsp_references<CR>", { desc = "Toggles Trouble references" } },
-        ["<leader>tq"] = { "<cmd>Trouble quickfix<CR>", { desc = "Toggles Trouble quickfix" } },
-        ["<leader>ti"] = { "<cmd>Trouble lsp_implementations<CR>", { desc = "Toggles Trouble implementations" } },
-        ["<leader>tp"] = { "<cmd>Trouble<CR>", { desc = "Toggles Trouble picker" } },
-
         -- Debugging
         ["<C-5>"] = { ":lua require'dap'.continue()<CR>", { desc = "Start debugging/Continue" } },
         ["<C-6>"] = { ":lua require'dap'.step_over()<CR>", { desc = "Step over" } },
@@ -98,10 +89,6 @@ local keymaps = {
     ["v"] = {
         -- Highlight all
         ["<leader>a"] = { "<ESC>ggVG", { desc = "Highlight all lines in file" } },
-
-        -- Move commands
-        -- ["J"] = { ":m '>+1<CR>gv=gv", { desc = "Move highlighted line down" } },
-        -- ["K"] = { ":m '<-2<CR>gv=gv", { desc = "Move highlighted line up" } },
 
         -- Copy/Paste
         ["<leader>y"] = { [["+y]], { desc = "Copy to clipboard" } },

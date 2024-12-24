@@ -10,6 +10,7 @@ return {
     },
     {
         "nvim-treesitter/nvim-treesitter",
+        event = "VeryLazy",
         build = ":TSUpdate",
         config = function()
             require("config.plugins.treesitter")
@@ -155,25 +156,12 @@ return {
     },
     {
         "ThePrimeagen/harpoon",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        branch = "harpoon2",
         config = function()
             require("config.plugins.harpoon")
         end
     },
-
-    -- Debugging
-    -- {
-    --     "mfussenegger/nvim-dap",
-    --     dependencies = {
-    --         { "leoluz/nvim-dap-go" },
-    --         { "rcarriga/nvim-dap-ui" },
-    --         { "theHamsta/nvim-dap-virtual-text" },
-    --         { "nvim-neotest/nvim-nio" },
-    --         { "Cliffback/netcoredbg-macOS-arm64.nvim" },
-    --     },
-    --     config = function()
-    --         require("config.plugins.nvim-dap")
-    --     end,
-    -- },
 
     -- Misc plugins
     {
@@ -277,21 +265,7 @@ return {
         "windwp/nvim-ts-autotag",
         ft = "html",
         config = function()
-            require("nvim-ts-autotag").setup({})
+            require("nvim-ts-autotag").setup()
         end,
     },
-    -- {
-    --     "kristijanhusak/vim-dadbod-ui",
-    --     dependencies = {
-    --         { "tpope/vim-dadbod" },
-    --         {
-    --             "kristijanhusak/vim-dadbod-completion",
-    --             ft = { "sql", "mysql", "plsql" }
-    --         },
-    --     },
-    --     cmd = { "DBUI", "DBUIToggle", "DBUIAddConnection", "DBUIFindBuffer" },
-    --     init = function()
-    --         vim.g.db_ui_use_nerd_fonts = 1
-    --     end,
-    -- },
 }

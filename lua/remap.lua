@@ -8,7 +8,7 @@ local keymaps = {
         -- Navigation
         ["<C-d>"] = { "<C-d>zz", { desc = "Scroll down" } },
         ["<C-u>"] = { "<C-u>zz", { desc = "Scroll up" } },
-        ["<leader>es"] = { ":Oil --float ~/.config/nvim<CR>", { desc = "Show configuration files" } },
+        ["<leader>es"] = { ":FzfLua files cwd=~/.config/nvim<CR>", { desc = "Show configuration files" } },
         ["<leader>cwd"] = { ":cd %:p:h <CR>", { desc = "Set current working directory" } },
         ["<leader>u"] = { vim.cmd.UndotreeToggle, { desc = "Open undo tree" } },
         ["<leader>n"] = { vim.cmd.Navbuddy, { desc = "Open Navdbuddy" } },

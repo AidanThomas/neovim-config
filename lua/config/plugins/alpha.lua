@@ -86,11 +86,12 @@ local options = {
     buttons = {
         type = "group",
         val = {
+            button("n", " New File", ":Scratch<CR>"),
             button("b", "  Browse files", ":Oil<CR>"),
             button("f", "  Find File", ":FzfLua files<CR>"),
             button("w", "󰈭  Find Word", ":FzfLua live_grep<CR>"),
             button("m", "  Marks", ":FzfLua marks<CR>"),
-            button("s", "  Settings", ":Oil --float ~/.config/nvim<CR>"),
+            button("s", "  Settings", ":FzfLua files cwd=~/.config/nvim<CR>"),
         },
         opts = {
             spacing = 1,

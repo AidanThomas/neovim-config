@@ -145,7 +145,7 @@ return {
     {
         "stevearc/oil.nvim",
         dependencies = { "echasnovski/mini.icons" },
-        lazy = false,
+        cmd = "Oil",
         config = function()
             require("config.plugins.oil")
         end,
@@ -155,12 +155,12 @@ return {
         cmd = "Git"
     },
     {
-        "ThePrimeagen/harpoon",
-        dependencies = { "nvim-lua/plenary.nvim" },
-        branch = "harpoon2",
+        "voxelprismatic/rabbit.nvim",
+        lazy = false,
         config = function()
-            require("config.plugins.harpoon")
-        end
+            require("rabbit").setup({
+            })
+        end,
     },
 
     -- Misc plugins

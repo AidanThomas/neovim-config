@@ -12,10 +12,13 @@ local keymaps = {
         ["<leader>cwd"] = { ":cd %:p:h <CR>", { desc = "Set current working directory" } },
         ["<leader>u"] = { vim.cmd.UndotreeToggle, { desc = "Open undo tree" } },
         ["<leader>n"] = { vim.cmd.Navbuddy, { desc = "Open Navdbuddy" } },
+        ["<leader>j"] = { function() vim.cmd.Rabbit("history") end, { desc = "Open rabbit history" } },
 
         -- Quickfix
         ["<M-j>"] = { vim.cmd.cnext, { desc = "Next quickfix" } },
-        ["<M-k>"] = { vim.cmd.cprev, { desc = "Next quickfix" } },
+        ["<M-k>"] = { vim.cmd.cprev, { desc = "Prev quickfix" } },
+        ["∆"] = { vim.cmd.cnext, { desc = "Next quickfix" } },
+        ["˚"] = { vim.cmd.cprev, { desc = "Prev quickfix" } },
 
         -- Oil
         ["<leader>pv"] = { ":Oil<CR>", { desc = "Open file explorer" } },

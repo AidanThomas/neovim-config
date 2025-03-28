@@ -12,10 +12,10 @@ require("fzf-lua").setup({
     grep = {
         file_icons = "mini",
         actions = {
-            ["alt-q"] = {
+            ["ctrl-q"] = {
                 fn = actions.file_edit_or_qf,
                 prefix = "select-all+",
-            }
+            },
         }
     },
     buffers = { file_icons = "mini" },

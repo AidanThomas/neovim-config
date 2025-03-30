@@ -24,37 +24,20 @@ Then run neovim and [Lazy](https://github.com/folke/lazy.nvim) should download t
 While most plugins should and will work out of the box, there are a couple notable exceptions:
 
 ## Language servers
-You need to manually install language servers and potentially set up their config using [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig). To install a language server you can either download the binaries manually, or you can use the `:Mason` command to browse and install Language servers, debuggers, Linters and Formatters. Once you have done that, you will need to add the configuration to allow neovim to talk to the language server. Most of the time this can be done by editing the `opts` table found in `./lua/plugins.lua`. You can find the details for how to configure various language servers [here](https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md), or by using the command `:help lspconfig-all` inside of Neovim.
+You need to manually install language servers and set up their config. To install a language server you can either download the binaries manually, or you can use the `:Mason` command to browse and install Language servers, debuggers, Linters and Formatters. Once you have done that, you will need to add the configuration to allow neovim to talk to the language server. This can be done by editing the `servers` table found in `./lua/config/plugins/lsp.lua`. If you don't know where to start, [lspconfig](https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md), has some documentation. I would recommend looking at the source to see the default options for whichever server you want to configure.
 
-You could edit `./lua/plugins.lua` to look something like:
+You could edit `servers` in `./lua/config/plugins/lsp.lua` to look something like:
 ```lua
-    {
-        "neovim/nvim-lspconfig",
-        dependencies = {
-            {
-                "williamboman/mason.nvim",
-                cmd = "Mason",
-                build = function()
-                    pcall(vim.cmd.MasonUpdate)
-                end,
-                config = function()
-                    require("config.plugins.mason")
-                end,
-            },
-            { "williamboman/mason-lspconfig.nvim" },
+    local servers = {
+        your_language_server = {
+            cmd = { "command_to_start" },
+            root_markers = { "filename_found_in_root"},
+            filetypes = {"filetype_you_want_to_attach_the_lsp_to"}
         },
-        opts = {
-            servers = {
-                your_server = {},
-                your_other_server = {
-                    -- add any extra configuration that you want here
-                },
-            }
+        your_other_language_server = {
+            ...
         },
-        config = function(_, opts)
-            require "config.plugins.lsp".setup(opts)
-        end
-    },
+    }
 ```
 
 ## Formatters

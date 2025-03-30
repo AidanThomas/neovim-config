@@ -27,55 +27,21 @@ return {
 
     -- LSP
     {
-        "neovim/nvim-lspconfig",
-        dependencies = {
-            {
-                "williamboman/mason.nvim",
-                cmd = "Mason",
-                build = function()
-                    pcall(vim.cmd.MasonUpdate)
-                end,
-                config = function()
-                    require("config.plugins.mason")
-                end,
-            },
-            { "williamboman/mason-lspconfig.nvim" },
-        },
-        opts = {
-            servers = {
-                lua_ls = {},
-                gopls = {},
-                csharp_ls = {},
-                ts_ls = {},
-                nil_ls = {},
-                html = {
-                    capabilities = function()
-                        local capabilities = vim.lsp.protocol.make_client_capabilities()
-                        capabilities.textDocument.completion.completionItem.snippetSupport = true
-                        return capabilities
-                    end
-                },
-                cssls = {
-                    capabilities = function()
-                        local capabilities = vim.lsp.protocol.make_client_capabilities()
-                        capabilities.textDocument.completion.completionItem.snippetSupport = true
-                        return capabilities
-                    end
-                }
-            }
-        },
-        config = function(_, opts)
-            require "config.plugins.lsp".setup(opts)
-        end
+        "williamboman/mason.nvim",
+        cmd = "Mason",
+        build = function()
+            pcall(vim.cmd.MasonUpdate)
+        end,
+        config = function()
+            require("config.plugins.mason")
+        end,
     },
+    { "williamboman/mason-lspconfig.nvim" },
     {
         "SmiteshP/nvim-navbuddy",
         dependencies = {
             {
                 "SmiteshP/nvim-navic",
-                dependencies = {
-                    { "neovim/nvim-lspconfig" }
-                },
                 config = function()
                     require("config.plugins.navic")
                 end

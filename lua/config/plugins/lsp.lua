@@ -1,24 +1,89 @@
 local M = {}
 
-M.setup = function(opts)
+M.setup = function()
     require("mason").setup()
 
-    local lspconfig = require("lspconfig")
     local navic = require("nvim-navic")
     local navbuddy = require("nvim-navbuddy")
 
+    -- Configure servers
+    local servers = {
+        csharp_ls = {
+            cmd = { "csharp-ls" },
+            root_markers = { "*.sln", "*.csproj" },
+            filetypes = { "cs" },
+            init_options = {
+                AutomaticWorkspaceInit = true,
+            }
+        },
+        css_ls = {
+            cmd = { "vscode-css-language-server", "--stdio" },
+            root_markers = {},
+            filetypes = { "css", "scss", "less" },
+            init_options = {
+                provideFormatter = true
+            },
+            single_file_support = true,
+            settings = {
+                css = { validate = true },
+                scss = { validate = true },
+                less = { validate = true },
+            },
+            capabilties = M.get_special_capabilities()
+        },
+        gopls = {
+            cmd = { "gopls" },
+            root_markers = { "go.mod", "go.sum" },
+            filetypes = { "go", "gomod", "gowork", "gotmpl" },
+        },
+        html = {
+            cmd = { "vscode-html-language-server", "--stdio" },
+            root_markers = { "package.json" },
+            filetypes = { "html", "tmpl" },
+            single_file_support = true,
+            settings = {},
+            init_options = {
+                provideFormatter = true,
+                embeddedLanguages = { css = true, javascript = true },
+                configurationSection = { "html", "css", "javascript" },
+            },
+            capabilities = M.get_special_capabilities()
+        },
+        lua_ls = {
+            cmd = { "lua-language-server" },
+            root_markers = { ".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml", "stylua.toml", "selene.toml", "selene.yml" },
+            filetypes = { "lua" },
+            single_file_support = true,
+            log_level = vim.lsp.protocol.MessageType.Warning,
+        },
+        nil_ls = {
+            cmd = { "nil" },
+            root_markers = { "flake.nix" },
+            filetypes = { "nix" },
+            single_file_support = true,
+        },
+        ts_ls = {
+            cmd = { "typescript-language-server", "--stdio" },
+            root_markers = { "tsconfig.json", "jsconfig.json", "package.json" },
+            filetypes = {
+                "javasscript",
+                "javascriptreact",
+                "javascript.jsx",
+                "typescript",
+                "typescriptreact",
+                "typescript.jsx"
+            },
+            single_file_support = true,
+            init_options = {
+                hostInfo = "neovim"
+            },
+        },
+    }
+
     -- Defaults
-    lspconfig.util.default_config = vim.tbl_extend("force", lspconfig.util.default_config, {
+    vim.lsp.config("*", {
+        root_markers = { ".git" },
         on_attach = function(client, bufnr)
-            require("custom.utils").register_mappings({
-                ["n"] = {
-                    ["gd"] = { function() vim.lsp.buf.definition() end, { desc = "Go to symbol definition", buffer = bufnr } },
-                    ["K"] = { function() vim.lsp.buf.hover() end, { desc = "Symbol information", buffer = bufnr } },
-                    ["<leader>ca"] = { function() vim.lsp.buf.code_action() end, { desc = "See code actions", buffer = bufnr } },
-                    ["<leader>rn"] = { function() vim.lsp.buf.rename() end, { desc = "Rename symbol", buffer = bufnr } },
-                }
-            })
-            -- Navic
             if client.server_capabilities.documentSymbolProvider then
                 navic.attach(client, bufnr)
             end
@@ -26,10 +91,20 @@ M.setup = function(opts)
         end,
     })
 
-    for server, config in pairs(opts.servers) do
+    -- Enable all servers
+    local servers_to_enable = {}
+    for server, config in pairs(servers) do
         config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilites)
-        lspconfig[server].setup(config)
+        vim.lsp.config[server] = config
+        table.insert(servers_to_enable, server)
     end
+    vim.lsp.enable(servers_to_enable)
+end
+
+M.get_special_capabilities = function()
+    local capabilites = vim.lsp.protocol.make_client_capabilities()
+    capabilites.textDocument.completion.completionItem.snippetSupport = true
+    return capabilites
 end
 
 return M

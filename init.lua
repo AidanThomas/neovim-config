@@ -22,5 +22,8 @@ require("commands")
 -- Start lazy
 require("config.lazy")
 
+-- Configure LSPs
+require("config.plugins.lsp").setup()
+
 -- Set colourscheme, see lua/config/themes
 vim.cmd.colorscheme("catppuccin")

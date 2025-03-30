@@ -32,8 +32,8 @@ local keymaps = {
         ["<leader>fm"] = { function() vim.cmd.FzfLua("marks") end, { desc = "Find marks" } },
         ["<leader>wk"] = { function() vim.cmd.FzfLua("keymaps") end, { desc = "Find keymaps" } },
         ["<leader>gd"] = { function() vim.cmd.FzfLua("lsp_workspace_diagnostics") end, { desc = "Show diagnostics" } },
-        ["gr"] = { function() vim.cmd.FzfLua("lsp_references") end, { desc = "Find references" } },
-        ["gi"] = { function() vim.cmd.FzfLua("lsp_implementations") end, { desc = "Find implementations" } },
+        ["grr"] = { function() vim.cmd.FzfLua("lsp_references") end, { desc = "Find references" } },
+        ["gri"] = { function() vim.cmd.FzfLua("lsp_implementations") end, { desc = "Find implementations" } },
 
         -- Harpoon/Tabs
         ["<leader>hp"] = { function() require("harpoon").ui:toggle_quick_menu(require("harpoon"):list()) end, { desc = "Toggle harpoon menu" } },
@@ -81,8 +81,6 @@ local keymaps = {
 
         -- Diagnostics
         ["<leader>df"] = { function() vim.diagnostic.open_float() end, { desc = "Open diagnostic as float" } },
-        ["]d"] = { function() vim.diagnostic.goto_next() end, { desc = "Go to next diagnostic" } },
-        ["[d]"] = { function() vim.diagnostic.goto_prev() end, { desc = "Go to previous diagnostic" } },
     },
 
     ["i"] = {

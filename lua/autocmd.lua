@@ -19,7 +19,7 @@ autocmd("BufWritePost", {
     pattern = { "*/cm-dev/platform/*.yaml" },
     group = augroup("YAML Linting", { clear = true }),
     callback = function()
-        require("lint").try_lint()
+        require("conform").format()
     end
 })
 

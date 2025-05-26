@@ -67,6 +67,24 @@ M.setup = function()
             root_markers = { "Cargo.toml" },
             filetypes = { "rust" },
         },
+        sourcekit = {
+            cmd = { "sourcekit-lsp" },
+            root_markers = { "package.swift" },
+            filetypes = { "swift", "objc", "objcpp" },
+            capabilities = {
+                textDocument = {
+                    diagnostic = {
+                        dynamicRegistration = true,
+                        relatedDocumentSupport = true,
+                    }
+                },
+                workspace = {
+                    didChangeWatchedFiles = {
+                        dynamicRegistration = true,
+                    }
+                }
+            }
+        },
         ts_ls = {
             cmd = { "typescript-language-server", "--stdio" },
             root_markers = { "tsconfig.json", "jsconfig.json", "package.json" },

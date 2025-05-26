@@ -62,6 +62,11 @@ M.setup = function()
             filetypes = { "nix" },
             single_file_support = true,
         },
+        rust_analyzer = {
+            cmd = { "rust-analyzer" },
+            root_markers = { "Cargo.toml" },
+            filetypes = { "rust" },
+        },
         ts_ls = {
             cmd = { "typescript-language-server", "--stdio" },
             root_markers = { "tsconfig.json", "jsconfig.json", "package.json" },

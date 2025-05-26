@@ -38,18 +38,29 @@ vim.opt.updatetime = 50
 vim.g.qs_highlight_on_keys = { 'f', 'F', 't', 'T' }
 vim.g.mapleader = " "
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+vim.diagnostic.config({
     signs = true,
     underline = true,
     virtual_text = {
-        spacing = 5,
+        spacing = 1,
         min = vim.diagnostic.severity.HINT,
     },
     update_in_insert = true,
 })
-vim.diagnostic.config({ virtual_text = true })
 
 vim.opt.list = true
 vim.opt.listchars:append "eol:↴"
 
 vim.o.cmdheight = 0
+
+vim.o.foldmethod = "indent"
+vim.o.foldlevelstart = 99
+
+function _G.FoldText()
+    local line = vim.fn.getline(vim.v.foldstart)
+    return "" .. line:sub(2) .. " …"
+end
+
+vim.opt.foldtext = "v:lua.FoldText()"
+
+vim.opt.fillchars:append({ fold = " ", foldopen = "", foldclose = "" })

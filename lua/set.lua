@@ -58,6 +58,9 @@ vim.o.foldlevelstart = 99
 
 function _G.FoldText()
     local line = vim.fn.getline(vim.v.foldstart)
+    if vim.bo.filetype == "go" then
+        return "    " .. line .. " …"
+    end
     return "" .. line:sub(2) .. " …"
 end
 

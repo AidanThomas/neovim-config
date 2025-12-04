@@ -85,6 +85,11 @@ M.setup = function()
                 }
             }
         },
+        terraformls = {
+            cmd = { "terraform-ls", "serve" },
+            root_markers = { ".terraform", ".git" },
+            filetypes = { "terraform", "terraform-vars" }
+        },
         ts_ls = {
             cmd = { "typescript-language-server", "--stdio" },
             root_markers = { "tsconfig.json", "jsconfig.json", "package.json" },
